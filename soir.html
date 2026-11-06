@@ -127,6 +127,10 @@ summary:hover{color:var(--red)}
 .planche .scale text{font-size:10px}
 .planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
 .planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
+.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
+.epigraphe p{margin:0 0 6px}
+.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
+.epigraphe cite i{font-style:italic;letter-spacing:0}
 .fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
 
 footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
@@ -134,6 +138,20 @@ footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:
 footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
 footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
 footer p{margin:0;font-style:italic;text-align:center}
+</style>
+<style>
+/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
+.cote{grid-template-columns:auto repeat(6,1fr)}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
+.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
+.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
+.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
+.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
+.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.agenda li{font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
+.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
+.corbeille .text{columns:auto}
 </style>
 
 
@@ -145,29 +163,185 @@ footer p{margin:0;font-style:italic;text-align:center}
   <div class="mast-row">
     <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
     <h1>Novabene</h1>
-    <div class="ear r"><b>Le soir</b>Lecture : dix minutes</div>
+    <div class="ear r"><b>N° 1</b>Lecture : dix minutes</div>
   </div>
   <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
-  <div class="dateline"><span>Du lundi au vendredi</span><span>Parution à dix-neuf heures</span></div>
+  <div class="dateline"><span>Vendredi 6 novembre 2026</span><span>Saint Léonard</span><span>Parution de dix-neuf heures</span></div>
+  <div class="cote" aria-label="Cote du soir">
+    <span class="t">Cote du soir</span>
+    <div class="v"><span class="n">CAC 40</span><span class="p">8 139,00</span><span class="d dn">▼ 0,81 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">&nbsp;</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">4 068 $</span><span class="d dn">▼ 1,1 %</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">97,58 $</span><span class="d dn">▼ 0,7 %</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">75 953 $</span><span class="d dn">▼ 4,6 %</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">1,1152</span><span class="d dn">▼ 0,7 %</span></div>
+  </div>
+  <p class="cote-note">CAC 40 : clôture de Paris, 17 h 35. Brent (contrat de janvier) et euro/dollar : relevés de BFM Bourse à la clôture parisienne. Or : contrat à terme new-yorkais vers 18 h 30. Bitcoin : relevé de 13 h 50, sur 24 heures. Airbus : cours de clôture non trouvé dans une source fiable du jour.</p>
 </header>
 
+<section class="meteo" aria-labelledby="met">
+  <h2 id="met">Le temps de demain à Grenade</h2>
+  <p><b>Samedi.</b> Matinée grise et couverte, quelques éclaircies en soirée ; temps sec. Minimum 4 °C au petit jour, maximum 13 à 14 °C. Vent faible de sud-est.</p>
+  <p><b>Dimanche.</b> Ciel le plus souvent couvert mais toujours sans pluie ; nuit douce à 7 ou 8 °C, après-midi à 18 ou 19 °C. Le vent de sud-est forcit, de l'ordre de 15 à 20 km/h. Soleil levé vers 7 h 40, couché vers 17 h 40.</p>
+  <p class="src">D'après météo.fr (mise à jour de 18 h 45) et Météo-Villes ; les deux sources divergent d'un degré.</p>
+</section>
+
+<div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
+
 <section class="sommaire" aria-labelledby="som">
-  <h2 id="som">Avis au lecteur</h2>
-  <p style="margin:0;text-align:center">La première édition du soir paraîtra le <b>vendredi 6 novembre 2026, à dix-neuf heures</b>.<br>On y trouvera ce qui a changé depuis le matin, la clôture de la Corbeille et l'agenda du lendemain.</p>
+  <h2 id="som">Ce qu'il faut retenir de la journée</h2>
+  <ol>
+    <li>À la veille d'un quatrième samedi de manifestations, l'exécutif prépare la conférence sociale de lundi, et le principe d'un coup de pouce au Smic serait acquis, selon Le Parisien.</li>
+    <li>L'économie américaine a créé 165 000 emplois en octobre, près de trois fois plus qu'attendu, et le chômage revient à 4,1 %.</li>
+    <li>Wall Street se reprend après sa débâcle de jeudi, mais Paris cède 0,81 %, dans le sillage d'une Europe entière dans le rouge.</li>
+    <li>M. Donald Trump s'est entretenu avec l'émir du Qatar, tandis que les Gardiens de la révolution affirment que deux pétroliers ont heurté des mines près d'Ormuz.</li>
+    <li>Au Mississippi, l'avance du démocrate Scott Colom dépasse désormais 1 900 voix, et la bataille se déplace sur le terrain des bulletins provisoires.</li>
+  </ol>
+</section>
+
+<!-- 1 -->
+<article class="lead">
+  <div class="rubric">La question sociale</div>
+  <h2>Avant lundi, chacun fourbit ses arguments</h2>
+  <p class="decks"><span>Le principe d'un geste sur le Smic serait arrêté</span><span>Le patronat dénonce une contradiction</span><span>Les blocages reprennent dans les lycées</span></p>
+  <div class="text">
+    <p>Au lendemain de la plus forte journée de mobilisation depuis la mi-octobre, la journée de vendredi a été celle des préparatifs. Selon Le Parisien, dont l'information est reprise par Entrevue, le gouvernement aurait d'ores et déjà arrêté le principe d'un coup de pouce supplémentaire au salaire minimum, sans qu'en soient fixés ni le montant ni les modalités ; aucun barème n'a été rendu public. Europe 1 rapporte que Bercy évoque une hausse anticipée, voire un relèvement au-delà de l'indexation légale. Le ministre de l'Économie, M. Roland Lescure, avait laissé entendre mercredi qu'une revalorisation pourrait intervenir avant le 1<sup>er</sup> janvier. Le ministre du Travail, M. Jean-Pierre Farandou, recueille jusqu'à dimanche les propositions des partenaires sociaux.</p>
+    <p>Les marges demeurent étroites. Toute hausse accordée aux fonctionnaires devra être financée, note Europe 1, et le Medef pointe une « contradiction » entre l'appel à augmenter les salaires et l'alourdissement des charges qui pèsent sur les entreprises. La rue, elle, ne désarme pas : les premières annonces n'ont pas empêché la reprise des blocages dans des établissements scolaires, et gilets jaunes comme organisations de jeunesse appellent à défiler samedi, pour le quatrième samedi d'affilée. Une rencontre avec des représentants lycéens, prévue de longue date, doit se tenir la semaine prochaine.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Que faut-il attendre de la conférence de lundi ?</summary><div class="ans">
+      <p>Matignon n'a confirmé que la date, le lieu et l'objet de la réunion : salaires et pouvoir d'achat, en présence des organisations syndicales et patronales. Les syndicats, qui ne parlent pas d'une seule voix sur les montants, préviennent qu'ils resteront mobilisés tant que les réponses ne leur paraîtront pas à la hauteur ; le patronat, lui, redoute qu'un relèvement du Smic s'ajoute aux hausses de cotisations prévues. Partant, l'enjeu de lundi sera moins le principe d'un geste, désormais admis, que son ampleur et son calendrier.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 2 -->
+<article>
+  <div class="rubric">Dépêches d'Amérique</div>
+  <h2>L'emploi américain surprend, la Bourse reprend son souffle</h2>
+  <p class="decks"><span>165 000 créations de postes en octobre</span><span>Le chômage à 4,1 %</span><span>Une hausse des taux en décembre plus probable</span></p>
+  <div class="text">
+    <p>Le rapport mensuel sur l'emploi, publié à 14 h 30, heure de Paris, a déjoué les pronostics : 165 000 postes créés en octobre, quand le consensus en attendait 59 000 selon le Wall Street Journal. Le taux de chômage recule de 4,2 % à 4,1 %, et le salaire horaire moyen progresse de 0,4 % sur un mois, selon Yahoo Finance. Les embauches se concentrent dans les services aux entreprises, la santé et la logistique ; l'industrie en ajoute 19 000.</p>
+    <p>Au lendemain d'une séance que d'aucuns qualifient de noire, Wall Street s'est ressaisie : à la clôture européenne, le Nasdaq gagnait 1,5 % et le S&amp;P 500 0,9 %, le Dow Jones restant étale, selon BFM Bourse. AMD, Nvidia et Intel rebondissaient vivement, quand DraftKings perdait plus du quart de sa valeur après des résultats décevants. Pour M. Clark Bellin, de Bellwether Wealth, cité par TheStreet, ces chiffres sont « un soulagement » ; il n'en continue pas moins d'attendre un relèvement des taux de la Réserve fédérale en décembre, scénario que le rapport conforte, selon Yahoo Finance.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi une bonne nouvelle inquiète-t-elle les marchés ?</summary><div class="ans">
+      <p>Parce qu'un marché du travail vigoureux, conjugué à un pétrole proche de cent dollars, entretient l'inflation et éloigne toute détente monétaire. Les anticipations d'inflation à un an des ménages, mesurées par l'université du Michigan, refluent certes à 4,3 % contre 4,7 % le mois précédent, selon BFM Bourse, mais restent loin de la cible de 2 %. Nonobstant ce vent contraire, M. Chris Zaccarelli, de Northlight Asset Management, juge auprès de TheStreet l'économie assez robuste pour absorber des taux plus élevés, tout en avertissant qu'il existe une limite à leur hausse.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 3 -->
+<article>
+  <div class="rubric">Affaires d'Orient</div>
+  <h2>Entre Doha et Ormuz, la diplomatie et les mines</h2>
+  <p class="decks"><span>M. Trump s'entretient avec l'émir du Qatar</span><span>Téhéran affirme que deux pétroliers ont sauté sur des mines</span><span>Washington parle de fabrication</span></p>
+  <div class="text">
+    <p>Le bureau de l'émir du Qatar, cheikh Tamim ben Hamad Al Thani, a fait savoir vendredi que celui-ci s'était entretenu au téléphone avec M. Trump des efforts diplomatiques visant à une désescalade, l'émir insistant sur la poursuite du dialogue, selon CBS News ; la Maison-Blanche n'avait fourni aucun détail vendredi matin. L'appel suit la transmission à Washington, par Doha, d'une proposition iranienne sur le nucléaire, que Téhéran ne discutera qu'une fois satisfaites ses sept conditions, selon Reuters. La veille, dans le Bureau ovale, M. Trump avait derechef brandi la menace : il préférerait ne pas détruire ce qui reste du pays, mais pourrait s'y résoudre, et l'on serait fixé « très bientôt ».</p>
+    <p>Sur l'eau, la tension ne retombe pas. Les Gardiens de la révolution affirment, par la voix des médias d'État iraniens, que deux pétroliers empruntant une route « non autorisée », l'un à l'est du détroit, l'autre dans le détroit même, ont heurté des mines ; aucune autorité maritime ne l'avait confirmé, et M. Trump accuse Téhéran d'inventer de tels incidents pour faire monter les cours, rapporte CBS. L'Iran dit encore avoir abattu un drone américain au-dessus de l'île de Qeshm, selon The American Conservative. Jeudi, M. Mohsen Rezaei, secrétaire du Conseil suprême de sécurité nationale, avait été reçu à Moscou par M. Vladimir Poutine.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Quel effet sur le prix du pétrole ?</summary><div class="ans">
+      <p>Modéré, pour l'heure. Le Brent a fini la séance européenne en repli de 0,7 %, à 97,58 dollars, selon BFM Bourse, les marchés gageant davantage sur la négociation que sur l'escalade. Aux États-Unis, le prix moyen de l'essence avoisine 4,06 dollars le gallon, et le spécialiste de GasBuddy, M. Patrick De Haan, cité par CBS, le voit passer sous les quatre dollars la semaine prochaine. L’agence maritime britannique avait recensé en octobre au moins trente attaques contre des navires de commerce, un record.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 4 -->
+<article>
+  <div class="rubric">Dépêches d'Amérique</div>
+  <h2>Au Mississippi, l'écart se creuse et les avocats s'en mêlent</h2>
+  <p class="decks"><span>M. Colom devance Mme Hyde-Smith de plus de 1 900 voix</span><span>Le sort des bulletins provisoires en question</span></p>
+  <div class="text">
+    <p>L'avance du démocrate Scott Colom sur la sénatrice républicaine sortante Cindy Hyde-Smith, qui n'était que de quelque 1 100 voix jeudi, dépassait vendredi matin 1 900 voix, selon CBS News ; plusieurs milliers de bulletins restent à dépouiller, selon les autorités de l'État. Le comité sénatorial républicain et l'équipe de Mme Hyde-Smith ont demandé aux comtés de mettre à part et de conserver les bulletins provisoires, démarche que M. Colom a qualifiée de « manœuvre désespérée ». Ses avocats ont, de leur côté, écrit aux 82 comtés pour les inviter à respecter les procédures, et le comité démocrate a dépêché des juristes pour suivre le décompte.</p>
+    <p>Mme Hyde-Smith se dit convaincue que des milliers de voix venues de comtés républicains conforteront sa victoire, et le président du parti républicain de l'État, M. Mike Hurst, juge l'élection loin d'être terminée. Le Mississippi ne connaissant pas de recomptage, le candidat arrivé en tête l'emporte ; les comtés doivent certifier leurs résultats d'ici au 13 novembre. Avec l'Alaska, c'est l'un des deux sièges encore en suspens, les démocrates étant d'ores et déjà assurés de la majorité au Sénat.</p>
+  </div>
+</article>
+
+<!-- 5 -->
+<article>
+  <div class="rubric">Le front de l'Est</div>
+  <h2>Pendant que l'on parle à Washington, les frappes continuent</h2>
+  <p class="decks"><span>M. Trump reçoit un émissaire russe</span><span>Le bilan de Komychouvakha porté à 43 morts</span><span>Une nouvelle raffinerie en feu en Russie</span></p>
+  <div class="text">
+    <p>M. Trump a reçu à Washington un émissaire russe en amont de pourparlers de paix et assure qu'un grand accord se prépare, rapporte le Kyiv Independent. Le président Volodymyr Zelensky, de son côté, estime que l'Ukraine doit consolider ses soutiens dans les deux partis américains au lendemain des élections de mi-mandat, qui accroîtraient selon lui ses chances d'obtenir davantage d'aide. Il a annoncé une aide militaire espagnole de quelque 490 millions de dollars en marge du sommet ibéro-américain.</p>
+    <p>Sur le terrain, le bilan de la frappe russe sur Komychouvakha s'élève à 43 morts selon les autorités ukrainiennes, les recherches se poursuivant. Dans la nuit de jeudi à vendredi, une raffinerie du sud de la Russie a pris feu après une attaque de drones, selon des canaux de surveillance cités par le Kyiv Independent ; Moscou n'avait pas commenté dans les sources consultées, et Kiev n'a pas officiellement revendiqué la frappe.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<article class="corbeille">
+  <div class="rubric">La Corbeille</div>
+  <h2>Paris rend une partie de ses gains de la semaine</h2>
+  <div class="text">
+    <p>Paris n'a pas échappé au contrecoup de la séance new-yorkaise. Le CAC 40 a terminé en baisse de 0,81 %, à 8 139,00 points, après avoir cédé jusqu'à 1,9 % en séance, mais conserve un gain de 2,1 % sur la semaine, selon BFM Bourse et l'Agefi. Francfort a reculé de 1,92 %, Londres de 1,01 %, Milan de 0,90 % et Zurich de 1,14 %, selon l'AFP citée par Zonebourse, qui évoque un vaste mouvement de vente des actifs risqués après les élections américaines. Trente-cinq valeurs du CAC 40 ont fini dans le rouge, Capgemini (−2,8 %), Euronext (−2,5 %) et LVMH en tête des replis ; Legrand et STMicroelectronics ont, au contraire, repris un peu de couleur. Air France-KLM a encore gagné 7,1 % après un relèvement de recommandation de Barclays, tandis que TP, l'ancien Teleperformance, chutait de 15,3 % sur une croissance décevante et des objectifs révisés en baisse. L'euro s'est replié à 1,1152 dollar, et la réduction des pertes en fin de séance doit beaucoup au rebond de Wall Street, que les commentateurs attribuent à des achats à bon compte après la déroute de la technologie, tempérés par la perspective d'un nouveau tour de vis de la Réserve fédérale.</p>
+  </div>
+</article>
+
+<section class="agenda sommaire" aria-labelledby="dem">
+  <h2 id="dem">Demain &amp; le week-end</h2>
+  <ul>
+    <li><b>Samedi 7.</b> Quatrième samedi consécutif de manifestations, à l'appel des gilets jaunes et d'organisations de jeunesse.</li>
+    <li><b>Samedi 7, 14 h 30 et à partir de 17 h.</b> Demi-finales du Rolex Paris Masters à Nanterre ; M. Luca Van Assche, dernier Français en lice, disputait vendredi son quart de finale contre M. Rinky Hijikata.</li>
+    <li><b>Samedi 7, 21 h 10.</b> Le XV de France reçoit les Fidji à Lyon, dans le cadre du nouveau Championnat des nations (TF1).</li>
+    <li><b>Dimanche 8.</b> Fin des concertations de M. Farandou avec les partenaires sociaux.</li>
+    <li><b>Dimanche 8, 15 h.</b> Finale du Rolex Paris Masters.</li>
+    <li><b>Lundi 9.</b> Conférence sociale à Matignon sur les salaires et le pouvoir d'achat.</li>
+    <li><b>Vendredi 13.</b> Date limite de certification des résultats par les comtés du Mississippi.</li>
+  </ul>
 </section>
 
 <footer>
-  <p>L'édition du matin demeure à son adresse habituelle.</p>
+  <h2>Sources consultées</h2>
+  <ul>
+    <li><a href="https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html">BFM Bourse</a> (libéral, économie)</li>
+    <li><a href="https://www.abcbourse.com/marches/cac-40-la-bourse-de-paris-termine-en-baisse-wall-street-ne-rassure-qu-a-moitie_705783">ABC Bourse, fil Agefi-Dow Jones</a> (économie)</li>
+    <li><a href="https://ch.zonebourse.com/actualite-bourse/les-bourses-europeennes-terminent-dans-le-rouge-ce785fd2da80f723">Zonebourse, AWP et AFP</a> (Suisse, agence)</li>
+    <li><a href="https://www.europe1.fr/politique/conference-sociale-smic-et-blocages-les-marges-de-manoeuvre-restreintes-de-sebastien-lecornu-face-a-la-colere-populaire-1212269">Europe 1</a> (droite)</li>
+    <li><a href="https://entrevue.fr/politique/apres-les-manifestations-du-5-novembre-lecornu-convoque-les-syndicats/">Entrevue, citant Le Parisien</a> (droite ; centre)</li>
+    <li><a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-november-6-dow-sp-500-nasdaq-jobs-report-earnings-135953863.html">Yahoo Finance</a> (États-Unis, économie)</li>
+    <li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-06-2026">TheStreet</a> (États-Unis, économie)</li>
+    <li><a href="https://www.cbsnews.com/live-updates/iran-war-trump-us-strait-hormuz-persian-gulf/">CBS News, Iran</a> (États-Unis, centre)</li>
+    <li><a href="https://www.theamericanconservative.com/iran-war-day-252-trump-promises-decision-on-new-strikes-very-soon-as-iran-hits-more-tankers/">The American Conservative</a> (États-Unis, droite non interventionniste)</li>
+    <li><a href="https://www.arabnews.com/middle-east/iran-sent-nuclear-proposal-to-the-us-via-qatar-senior-iranian-official-says-3010067">Arab News, dépêche Reuters</a> (Arabie saoudite, agence)</li>
+    <li><a href="https://www.cbsnews.com/news/mississippi-senate-race-results-2026-midterms/">CBS News, Mississippi</a> (États-Unis, centre)</li>
+    <li><a href="https://kyivindependent.com/">The Kyiv Independent</a> (Ukraine, libéral pro-occidental)</li>
+    <li><a href="https://www.universtennis.com/2026/11/06/rolex-paris-masters-alcaraz-fritz-shelton-paul-van-assche-le-programme-des-quarts-de-finale/">Univers Tennis</a> et <a href="https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/335695-paris-masters-2026-today-s-indoor-tennis-tournament-schedule-and-results">Sortir à Paris</a> (sport, loisirs)</li>
+    <li><a href="https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/353218-nations-championship-2026-what-time-and-which-channel-to-watch-france-vs-fiji">Sortir à Paris, France-Fidji</a> (loisirs)</li>
+    <li>Météo : <a href="https://www.xn--mto-bmab.fr/grenade">météo.fr, Grenade</a> et <a href="https://www.meteo-villes.com/previsions-meteo-grenade-31330">Météo-Villes, Grenade 31330</a> ; l'API Open-Meteo n'a pu être interrogée ce soir.</li>
+  </ul>
+  <p>Les newsletters attendues dans la boîte aux lettres n'étaient pas parvenues ; la version russe des événements d'Ukraine n'a pu être consultée. Rédigé le vendredi 6 novembre 2026, à dix-neuf heures.</p>
 </footer>
 </div>
+
+<script>
+(function(){
+  var btn=document.getElementById('toggleAll');
+  btn.addEventListener('click',function(){
+    var open=btn.dataset.state!=='open';
+    document.querySelectorAll('details').forEach(function(d){d.open=open});
+    btn.dataset.state=open?'open':'closed';
+    btn.textContent=open?'Refermer toutes les suites':'Ouvrir toutes les suites';
+  });
+})();
+</script>
 <script>
 (function(){
   if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
   // En mode application, iOS reprend la page telle qu'on l'a laissée :
   // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
   var loaded=Date.now();
   document.addEventListener('visibilitychange',function(){
-    if(document.visibilityState==='visible' && Date.now()-loaded>3600000){location.reload();}
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
   });
 })();
 </script>
