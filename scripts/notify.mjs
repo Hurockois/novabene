@@ -13,7 +13,8 @@ let subs = [];
 try { const j = JSON.parse(raw); subs = Array.isArray(j) ? j : [j]; }
 catch { subs = raw.split(/\n+/).filter(Boolean).map((l) => JSON.parse(l)); }
 
-const changed = execSync('git diff --name-only HEAD~1 HEAD').toString().split('\n');
+const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+const changed = manual ? ['index.html'] : execSync('git diff --name-only HEAD~1 HEAD').toString().split('\n');
 const editions = [];
 if (changed.includes('index.html')) editions.push(['index.html', 'Novabene · Édition du matin', 'novabene-matin']);
 if (changed.includes('soir.html')) editions.push(['soir.html', 'Novabene · Édition du soir', 'novabene-soir']);
@@ -26,7 +27,7 @@ let failures = 0;
 for (const [file, title, tag] of editions) {
   const html = readFileSync(file, 'utf8');
   const art = html.match(/<article[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>/);
-  const body = art ? strip(art[1]) : 'Une nouvelle édition vient de paraître.';
+  const body = (manual ? 'Essai des avis de parution — ' : '') + (art ? strip(art[1]) : 'Une nouvelle édition vient de paraître.');
   const payload = JSON.stringify({ title, body, tag, url: './' + file });
   for (const s of subs) {
     try { await webpush.sendNotification(s, payload, { TTL: 6 * 3600, urgency: 'normal' }); console.log(`Avis envoyé : ${title} — ${body}`); }
