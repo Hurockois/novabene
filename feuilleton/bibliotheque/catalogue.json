@@ -1,1 +1,116 @@
-[]
+[
+ {
+  "fichier": "montaigne-essais.txt",
+  "titre": "Essais de Montaigne (self-édition) - Volume I",
+  "auteurs": "Montaigne, Michel de, 1533-1592; Michaud [Translator]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/48529",
+  "mots": 308799,
+  "autres_volumes": [
+   "49168",
+   "58706",
+   "58801"
+  ]
+ },
+ {
+  "fichier": "pascal-pensees.txt",
+  "titre": "Notes de Voltaire et de Condorcet sur les pensées de Pascal",
+  "auteurs": "Pascal, Blaise, 1623-1662; Condorcet, Jean-Antoine-Nicolas de Caritat, marquis de, 1743-1794; François de Neufchâteau, Nicolas Louis, comte, 1750-1828; Voltaire, 1694-1778",
+  "gutenberg": "https://www.gutenberg.org/ebooks/29772",
+  "mots": 18576,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "la-rochefoucauld-maximes.txt",
+  "titre": "Réflexions ou sentences et maximes morales",
+  "auteurs": "La Rochefoucauld, François duc de, 1613-1680",
+  "gutenberg": "https://www.gutenberg.org/ebooks/14913",
+  "mots": 110544,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "la-bruyere-caracteres.txt",
+  "titre": "Les caractères",
+  "auteurs": "La Bruyère, Jean de, 1645-1696",
+  "gutenberg": "https://www.gutenberg.org/ebooks/17980",
+  "mots": 148018,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "montesquieu-esprit-des-lois.txt",
+  "titre": "Esprit des lois livres I à V, précédés d'une introduction de l'éditeur",
+  "auteurs": "Montesquieu, Charles de Secondat, baron de, 1689-1755; Janet, Paul, 1823-1899 [Editor]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/27573",
+  "mots": 119926,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "montesquieu-lettres-persanes.txt",
+  "titre": "Lettres persanes, tome I",
+  "auteurs": "Montesquieu, Charles de Secondat, baron de, 1689-1755; Lefèvre, André, 1834-1904 [Annotator]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/30268",
+  "mots": 60204,
+  "autres_volumes": [
+   "33856"
+  ]
+ },
+ {
+  "fichier": "tocqueville-ancien-regime.txt",
+  "titre": "L'ancien régime et la révolution",
+  "auteurs": "Tocqueville, Alexis de, 1805-1859",
+  "gutenberg": "https://www.gutenberg.org/ebooks/54339",
+  "mots": 107094,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "descartes-methode.txt",
+  "titre": "Discours de la méthode",
+  "auteurs": "Descartes, René, 1596-1650",
+  "gutenberg": "https://www.gutenberg.org/ebooks/13846",
+  "mots": 118785,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "chateaubriand-memoires.txt",
+  "titre": "Mémoires d'Outre-Tombe, Tome 1",
+  "auteurs": "Chateaubriand, François-René, vicomte de, 1768-1848; Biré, Edmond, 1829-1907 [Editor]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/18864",
+  "mots": 171746,
+  "autres_volumes": [
+   "23654",
+   "25575",
+   "28930",
+   "45550"
+  ]
+ },
+ {
+  "fichier": "renan-souvenirs.txt",
+  "titre": "Souvenirs d'enfance et de jeunesse",
+  "auteurs": "Renan, Ernest, 1823-1892",
+  "gutenberg": "https://www.gutenberg.org/ebooks/31440",
+  "mots": 80336,
+  "autres_volumes": []
+ },
+ {
+  "fichier": "chamfort.txt",
+  "titre": "Œuvres Complètes de Chamfort (Tome 1) Recueillies et publiées avec une notice historique sur la vie et les écrits de l'auteur.",
+  "auteurs": "Chamfort, Sébastien-Roch-Nicolas, 1740?-1794; Auguis, P. R. (Pierre René), 1786-1846 [Editor]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/42377",
+  "mots": 111574,
+  "autres_volumes": [
+   "42695",
+   "43501",
+   "43956",
+   "44373"
+  ]
+ },
+ {
+  "fichier": "rivarol.txt",
+  "titre": "L'enfer (1 of 2) La Divine Comédie - Traduit par Rivarol",
+  "auteurs": "Dante Alighieri, 1265-1321; Rivarol, Antoine, 1753-1801 [Translator]",
+  "gutenberg": "https://www.gutenberg.org/ebooks/22768",
+  "mots": 37901,
+  "autres_volumes": [
+   "22769"
+  ]
+ }
+]
