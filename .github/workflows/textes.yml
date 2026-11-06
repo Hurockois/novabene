@@ -1,0 +1,32 @@
+name: Textes du feuilleton
+
+# Télécharge les textes du domaine public (Project Gutenberg) dans feuilleton/.
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/textes.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  textes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Télécharger De la démocratie en Amérique
+        run: |
+          mkdir -p feuilleton/sources
+          for n in 30513 30514 30515 30516; do
+            curl -sSfL "https://www.gutenberg.org/cache/epub/$n/pg$n.txt" -o "feuilleton/sources/pg$n.txt" || echo "absent : $n"
+          done
+          ls -la feuilleton/sources
+          for f in feuilleton/sources/*.txt; do echo "== $f"; grep -m3 -iE "^(Title|Titre)" "$f" || true; done
+      - name: Enregistrer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898341+github-actions[bot]@users.noreply.github.com"
+          git add feuilleton/sources
+          git diff --cached --quiet || git commit -m "Feuilleton : textes de Tocqueville (Project Gutenberg, domaine public)"
+          git push
