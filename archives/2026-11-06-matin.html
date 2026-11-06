@@ -402,9 +402,14 @@ footer p{margin:0;font-style:italic;text-align:center}
   if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){});}
   // En mode application, iOS reprend la page telle qu'on l'a laissée :
   // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
   var loaded=Date.now();
   document.addEventListener('visibilitychange',function(){
-    if(document.visibilityState==='visible' && Date.now()-loaded>3600000){location.reload();}
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
   });
 })();
 </script>

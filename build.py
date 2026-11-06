@@ -55,9 +55,14 @@ TAIL = """
   if('serviceWorker' in navigator){{navigator.serviceWorker.register('{base}sw.js').catch(function(){{}});}}
   // En mode application, iOS reprend la page telle qu'on l'a laissée :
   // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){{ if(navigator.clearAppBadge){{ navigator.clearAppBadge().catch(function(){{}}); }} }}
+  effacer();
   var loaded=Date.now();
   document.addEventListener('visibilitychange',function(){{
-    if(document.visibilityState==='visible' && Date.now()-loaded>3600000){{location.reload();}}
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){{location.reload();}}
   }});
 }})();
 </script>
@@ -140,6 +145,8 @@ ul{{list-style:none;margin:0;padding:0;border-top:3px double var(--ink)}}
 li{{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dotted var(--gray)}}
 li a{{color:var(--ink);text-decoration:none;font-size:17px}}
 li span{{color:var(--gray);font-style:italic;font-size:14px}}
+.avis{{text-align:center;margin:22px 0 0;font-style:italic}}
+.avis a{{color:var(--ink)}}
 </style>
 <div class="sheet">
 <h1>Novabene</h1>
@@ -147,6 +154,7 @@ li span{{color:var(--gray);font-style:italic;font-size:14px}}
 <ul>
 {chr(10).join(rows) or '<li>Aucune édition archivée pour l’instant.</li>'}
 </ul>
+<p class="avis"><a href="../avis.html">Être prévenu de chaque parution</a></p>
 </div>
 """
     (ROOT / "archives" / "index.html").write_text(page(body, "archives", "../"), encoding="utf-8")
