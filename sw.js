@@ -1,7 +1,7 @@
 // Novabene — cache hors connexion.
 // Les pages sont servies « réseau d'abord » : la dernière édition s'affiche
 // dès qu'il y a du réseau, la copie en cache sert quand il n'y en a pas.
-const VERSION = '20261111175120';
+const VERSION = '20261112174825';
 const CACHE = 'novabene-' + VERSION;
 const CORE = ['./', './index.html', './soir.html', './archives/', './avis.html', './manifest.webmanifest', './icons/icon-192.png'];
 

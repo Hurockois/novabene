@@ -24,173 +24,7 @@ img{max-width:100%}
 .nb-nav a[aria-current="page"]{color:var(--ink,#1B1915);border-bottom-color:var(--ink,#1B1915)}
 .nb-nav a:focus-visible{outline:2px solid var(--red,#7A2418);outline-offset:3px}
 </style>
-<title>Novabene du soir</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
-<style>
-/* Layout : quotidien du matin début de siècle — manchette à oreilles, filets doubles, titres centrés à sous-titres en cascade, texte justifié en colonnes sur grand écran, « suites » dépliables */
-:root{
-  --paper:#EEEAE0; --ink:#1B1915; --gray:#5E584D; --rule:#1B1915; --hair:#BDB5A4;
-  --red:#7A2418; --fold:#E4DFD2;
-  --mast:"Playfair Display","Didot","Bodoni 72",Georgia,serif;
-  --head:"Old Standard TT","Didot",Georgia,serif;
-  --body:"Libre Caslon Text","Caslon",Georgia,"Times New Roman",serif;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
-  --red:#D98A74; --fold:#211E16; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
-  --red:#D98A74; --fold:#211E16; color-scheme:dark }
-
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.sheet{max-width:860px;margin:0 auto;padding-block:22px 60px;display:flex;flex-direction:column;gap:34px}
-
-/* Manchette */
-.mast{display:flex;flex-direction:column;gap:8px}
-.mast-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
-.ear{border:1px solid var(--rule);padding:6px 8px;font-family:var(--head);font-size:11px;line-height:1.35;text-align:center;max-width:130px}
-.ear b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.ear.r{justify-self:end}
-.mast h1{font-family:var(--mast);font-weight:900;font-size:clamp(30px,9vw,82px);line-height:.95;margin:0;text-align:center;letter-spacing:.005em;white-space:nowrap}
-.motto{text-align:center;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px;margin:0}
-.dateline{border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:5px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;
-  font-family:var(--head);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-@media (max-width:560px){.mast-row{grid-template-columns:1fr}.ear{display:none}}
-
-/* Cote du matin */
-.cote{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch;border-bottom:1px solid var(--rule);font-family:var(--head);font-variant-numeric:lining-nums tabular-nums}
-.cote .t{display:flex;align-items:center;padding:6px 12px 6px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule)}
-.cote div.v{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--hair);text-align:center;gap:1px}
-.cote div.v:last-child{border-right:0}
-.cote .n{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
-.cote .p{font-size:15px;font-weight:700}
-.cote .d{font-size:12px}
-.cote .up{color:var(--ink)}
-.cote .dn{color:var(--red)}
-.cote-note{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center;margin:-2px 0 0}
-@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote .t{grid-column:1/-1;justify-content:center;border-right:0;border-bottom:1px solid var(--hair);padding:5px 0}.cote div.v:nth-child(3){border-right:0}.cote div.v:nth-child(2),.cote div.v:nth-child(3){border-bottom:1px solid var(--hair)}}
-
-.howto{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;font-family:var(--head);font-size:13px;color:var(--gray);font-style:italic}
-button.toggle{font-family:var(--head);font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--ink);
-  border:1px solid var(--rule);padding:6px 14px;cursor:pointer}
-button.toggle:hover{background:var(--fold)}
-button.toggle:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-
-/* Sommaire */
-.sommaire{border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:3px;padding:16px 20px;margin:4px}
-.sommaire h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 10px}
-.sommaire ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
-.sommaire li::marker{font-family:var(--head);font-weight:700}
-
-/* Articles */
-article{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px}
-.rubric{font-family:var(--head);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--red)}
-article h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,5vw,36px);line-height:1.1;margin:0;text-align:center;text-wrap:balance}
-.decks{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:15px;margin:0;text-wrap:balance}
-.decks span+span::before{content:" — "}
-.text{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
-.text p{margin:0 0 .7em;text-indent:1.4em}
-.text p:first-child{text-indent:0}
-@media (min-width:760px){.text{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
-.lead .text p:first-child::first-letter{font-family:var(--mast);font-weight:900;float:left;font-size:3.6em;line-height:.82;padding:4px 6px 0 0}
-.chiffres{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-family:var(--head);font-size:13.5px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px 0;font-variant-numeric:lining-nums tabular-nums}
-.chiffres b{font-weight:700}
-
-.suites{display:flex;flex-direction:column}
-.suites > .label{font-family:var(--head);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--gray);padding:4px 0 2px}
-details{border-bottom:1px dotted var(--gray)}
-summary{list-style:none;cursor:pointer;padding:10px 30px 10px 0;position:relative;font-family:var(--head);font-size:16.5px}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"☞ ";color:var(--red)}
-summary::after{content:"Lire";position:absolute;right:0;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
-details[open] summary::after{content:"Clore"}
-summary:hover{color:var(--red)}
-.ans{padding:2px 0 14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;background:linear-gradient(var(--fold),var(--fold)) no-repeat left/3px 100%;padding-left:14px}
-.ans p{margin:0 0 .6em}
-.ans p:last-child{margin:0}
-
-.breves ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 26px}
-.breves li{font-size:15px;text-align:justify}
-.breves li b{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
-/* Planches : cartes et graphiques en noir et blanc */
-.planche{margin:4px 0;display:flex;flex-direction:column;gap:6px}
-.planche svg{width:100%;height:auto;max-width:100%;display:block}
-.planche text{font-family:var(--head);fill:var(--ink)}
-.planche .country{font-size:15px;letter-spacing:.25em}
-.planche .small{font-size:11px}
-.planche .sea{font-style:italic;font-size:13px;fill:var(--gray)}
-.planche .place{font-size:11px}
-.planche .strait{font-size:12px;font-style:italic;fill:var(--red)}
-.planche .scale text{font-size:10px}
-.planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
-.planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
-.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
-.epigraphe p{margin:0 0 6px}
-.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
-.epigraphe cite i{font-style:italic;letter-spacing:0}
-.fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
-
-footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
-footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0;text-align:center}
-footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
-footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
-footer p{margin:0;font-style:italic;text-align:center}
-
-/* Le temps qu'il fera, agenda, éphéméride, mot du jour */
-.meteo{border-bottom:1px solid var(--rule);padding:4px 0 8px;font-family:var(--head);font-size:13.5px;line-height:1.5;text-align:center}
-.meteo .t{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
-.meteo p{margin:0}
-.meteo .vig{font-style:italic;color:var(--gray);font-size:12.5px}
-.agenda{border:1px solid var(--hair);padding:12px 16px}
-.agenda h2,.ephemeride h2,.mot h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}
-.agenda ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
-.agenda li{display:grid;grid-template-columns:7.2em 1fr;gap:10px;border-bottom:1px dotted var(--hair);padding-bottom:4px}
-.agenda li:last-child{border-bottom:0}
-.agenda .h{font-family:var(--head);font-weight:700;font-variant-numeric:lining-nums tabular-nums}
-.agenda .note{font-family:var(--head);font-style:italic;font-size:12.5px;color:var(--gray);margin:8px 0 0;text-align:center}
-.ephemeride,.mot{border-top:1px solid var(--rule);padding-top:14px}
-.ephemeride ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:justify}
-.ephemeride li b{font-family:var(--head);font-size:15px;margin-right:6px}
-.mot .vedette{text-align:center;margin:0}
-.mot .vedette b{font-family:var(--mast);font-weight:900;font-size:clamp(26px,6vw,38px);letter-spacing:.02em}
-.mot .nature{display:block;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px}
-.mot p{margin:0 0 .5em;text-align:justify}
-.mot .ex{font-style:italic;text-align:center}
-@media (max-width:560px){.agenda li{grid-template-columns:5.6em 1fr}}
-/* Feuilleton : « rez-de-chaussée » du journal, séparé par un double filet, texte un peu plus petit */
-.feuilleton{border-top:4px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:10px}
-.feuilleton .rubric{color:var(--ink)}
-.feuilleton h2{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.15;margin:0;text-align:center;text-wrap:balance}
-.feuilleton .fe-meta{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:14px;margin:0}
-.feuilleton .fe-resume{font-family:var(--head);font-size:14.5px;font-style:italic;color:var(--gray);border:1px solid var(--hair);padding:8px 12px;margin:0;text-align:justify}
-.feuilleton .fe-texte{font-size:15.5px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
-.feuilleton .fe-texte p{margin:0 0 .65em;text-indent:1.4em}
-.feuilleton .fe-texte .fe-chap{font-family:var(--head);font-weight:700;text-align:center;text-indent:0;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:1em 0 .2em}
-.feuilleton .fe-texte .fe-titre{font-family:var(--head);text-align:center;text-indent:0;font-size:15px;margin:0 0 .5em}
-.feuilleton .fe-texte .fe-sommaire{font-family:var(--head);font-style:italic;font-size:13.5px;color:var(--gray);text-indent:0;margin:0 0 .8em}
-@media (min-width:760px){.feuilleton .fe-texte{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
-.feuilleton .fe-suite{font-family:var(--head);font-style:italic;text-align:right;margin:0}
-
-</style>
-
-
-<style>
-/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
-.cote{grid-template-columns:auto repeat(6,1fr)}
-@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
-.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
-.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
-.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
-.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
-.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
-.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.agenda li{display:block;font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
-.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
-.corbeille .text{columns:auto}
-</style>
+<nav class="nb-nav" aria-label="Éditions"><a href="../index.html">Le matin</a><a href="../soir.html" aria-current="page">Le soir</a><a href="../archives/">Archives</a></nav>
 
 
 </head>
@@ -201,26 +35,26 @@ footer p{margin:0;font-style:italic;text-align:center}
   <div class="mast-row">
     <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
     <h1>Novabene</h1>
-    <div class="ear r"><b>N° 4</b>Lecture : dix minutes</div>
+    <div class="ear r"><b>N° 5</b>Lecture : dix minutes</div>
   </div>
   <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
-  <div class="dateline"><span>Mercredi 11 novembre 2026</span><span>Saint Martin · Armistice</span><span>Parution de dix-neuf heures</span></div>
+  <div class="dateline"><span>Jeudi 12 novembre 2026</span><span>Saint Christian</span><span>Parution de dix-neuf heures</span></div>
   <div class="cote" aria-label="Cote du soir">
     <span class="t">Cote du soir</span>
-    <div class="v"><span class="n">CAC 40</span><span class="p">8 332,87</span><span class="d up">▲ 0,66 %</span></div>
-    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
-    <div class="v"><span class="n">Or (once)</span><span class="p">3 997,70 $</span><span class="d dn">▼ 0,85 %</span></div>
-    <div class="v"><span class="n">Brent</span><span class="p">≈ 92,5 $</span><span class="d up">▲ ≈ 1,1 %</span></div>
-    <div class="v"><span class="n">Bitcoin</span><span class="p">≈ 73 900 $</span><span class="d">n. c.</span></div>
-    <div class="v"><span class="n">Euro/dollar</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">CAC 40</span><span class="p">8 361,36</span><span class="d up">▲ 0,34 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d dn">▼ 1,16 %</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">≈ 3 870 $</span><span class="d dn">▼ ≈ 3 %</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">≈ 93,7 $</span><span class="d up">▲ ≈ 1,1 %</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">≈ 71 500 $</span><span class="d dn">▼ ≈ 3,5 %</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">1,1056</span><span class="d dn">▼ 0,3 %</span></div>
   </div>
-  <p class="cote-note">CAC 40 : clôture de 17 h 30, selon BFM Bourse et Boursorama. Airbus : aucune clôture datée n'a été trouvée. Or : cours au comptant relevé par Kitco à 17 h 53, heure de Paris (CNBC donnait 4 037,72 $ à 15 h). Brent : échéance de janvier en séance, vers 7 h 30 (FinanceFeeds, Invezz) ; un relevé de 16 h 19 le donnait à 93,89 $, sans confirmation. Bitcoin : relevé de Fortune à 13 h 30, heure de Paris, variation sur 24 heures non publiée. Euro/dollar : aucun cours daté dans les sources accessibles.</p>
+  <p class="cote-note">CAC 40 : clôture de 17 h 30, selon BFM Bourse, Zonebourse et Investing.com. Airbus : variation de séance d'après le palmarès de l'Agefi-Dow Jones, cours de clôture introuvable. Or : cours au comptant de la fin d'après-midi selon USAGold (3 866,51 $, −3,05 %) et JournalArta (3 871,6 $, −2,9 %). Brent : en séance, vers la fin de matinée new-yorkaise, selon CNBC et OilPrice.com. Bitcoin : relevés du soir de Kriptofoni et WorldCoinIndex, variation sur 24 heures ; les plateformes divergent de quelques centaines de dollars. Euro/dollar : vers 18 h, selon Reuters repris par Boursorama.</p>
 </header>
 
 <section class="meteo" aria-labelledby="met">
   <h2 id="met">Le temps de demain à Grenade</h2>
-  <p><b>Jeudi 12.</b> Le temps se gâte : pluie le matin, puis averses l'après-midi sous un ciel chargé. Le thermomètre fléchit : 11 à 12 °C à l'aube, 16 à 17 °C au mieux. Vent d'ouest assez fort, en rafales voisines de 60 à 65 km/h selon Météo-France. Soleil levé vers 7 h 45. Les cumuls de pluie divergent fort selon les modèles, de quelques millimètres à une quinzaine.</p>
-  <p class="src">Prévisions pour l'agglomération toulousaine (Météo-France, Franceinfo Météo, MétéoMédia, Meteored), l'API Open-Meteo n'étant pas joignable depuis la rédaction ce soir. La Haute-Garonne était en vert ce matin ; la carte de vigilance de demain paraît à 6 heures.</p>
+  <p><b>Vendredi 13.</b> Fraîcheur marquée après les pluies de jeudi : ciel en partie nuageux, quelques averses éparses au petit matin, puis des éclaircies ; le risque de pluie avoisine 40 %. Le thermomètre ira de 5 ou 6 °C à l'aube à 13 ou 14 °C l'après-midi. Vent faible à modéré de nord-ouest, rafales voisines de 25 km/h. Soleil levé vers 7 h 45.</p>
+  <p class="src">Prévisions pour l'agglomération toulousaine (Franceinfo Météo, MétéoMédia), l'API Open-Meteo et les pages de prévisions n'étant pas joignables depuis la rédaction ce soir. La Haute-Garonne était en vert ce matin ; la carte de vigilance de vendredi paraît à 6 heures.</p>
 </section>
 
 <div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
@@ -228,39 +62,46 @@ footer p{margin:0;font-style:italic;text-align:center}
 <section class="sommaire" aria-labelledby="som">
   <h2 id="som">Ce qu'il faut retenir de la journée</h2>
   <ol>
-    <li>M. Emmanuel Macron a présidé sous l'Arc de Triomphe son dernier 11-Novembre de chef de l'État ; les noms de cinq militaires morts pour la France en 2026 ont été lus.</li>
-    <li>La nouvelle cérémonie d'hommage imposée aux écoles, contestée par plusieurs syndicats d'enseignants, a divisé la journée du Souvenir.</li>
-    <li>À Abou Dhabi, Russes et Ukrainiens se sont accordés sur un vaste échange de prisonniers ; les émissaires américains seront reçus jeudi matin par M. Vladimir Poutine.</li>
-    <li>Téhéran dément toute négociation avec Washington et maintient Ormuz fermé ; des pétroliers auraient été touchés dans le détroit, et le baril se reprend.</li>
-    <li>La Bourse de Paris a aligné une troisième hausse d'affilée (+0,66 %), dans des volumes de jour férié, portée par le regain des valeurs de l'intelligence artificielle.</li>
+    <li>M. Sébastien Lecornu promet des poursuites contre les « complices » des violences aux abords des lycées, personnels de l'Éducation nationale compris ; Matignon recense 609 blessés depuis la fin de septembre.</li>
+    <li>M. Jensen Huang, fondateur de Nvidia, a quitté la présidence de l'entreprise avec effet immédiat ; la directrice financière, Mme Colette Kress, assure l'intérim.</li>
+    <li>M. Donald Trump affirme que les États-Unis n'ont « pas besoin » d'un accord avec l'Iran, ce qui a fait remonter le baril.</li>
+    <li>Au Kremlin, M. Vladimir Poutine a reçu MM. Steve Witkoff et Jared Kushner ; Moscou juge l'entretien « constructif », et une nouvelle rencontre à trois serait convenue.</li>
+    <li>À Dublin, M. Volodymyr Zelensky a mis en garde les Européens contre toute refonte de leur sécurité négociée par-dessus leur tête.</li>
   </ol>
 </section>
 
 <!-- 1 -->
 <article class="lead">
-  <div class="rubric">Le Souvenir</div>
-  <h2>Un dernier 11-Novembre pour M. Macron, une querelle pour l'école</h2>
-  <p class="decks"><span>La Flamme ravivée sous l'Arc de Triomphe</span><span>Cinq noms lus place de l'Étoile</span><span>Des syndicats boudent la cérémonie scolaire</span></p>
+  <div class="rubric">La question scolaire</div>
+  <h2>M. Lecornu promet de poursuivre les « complices »</h2>
+  <p class="decks"><span>609 blessés recensés par Matignon</span><span>Les personnels de l'Éducation nationale visés</span><span>Les syndicats réclament protection plutôt que soupçon</span></p>
   <div class="text">
-    <p>Le programme annoncé ce matin s'est déroulé sans accroc. M. Emmanuel Macron a déposé une gerbe au pied de la statue de Georges Clemenceau, puis remonté les Champs-Élysées jusqu'à l'Étoile, où il a passé les troupes en revue et ravivé la Flamme sur la tombe du Soldat inconnu, pour le 108<sup>e</sup> anniversaire de l'armistice, rapportent franceinfo et Ouest-France, qui soulignent qu'il s'agissait de son dernier 11-Novembre à l'Élysée. Les noms des cinq militaires morts pour la France depuis le début de l'année ont été lus place de l'Étoile. Le chef de l'État n'a pas prononcé de discours, selon Euronews, et s'est exprimé sur les réseaux sociaux : « derrière chaque uniforme, il y a le courage », a-t-il écrit ; France 24 lui prête toutefois un propos selon lequel la mémoire du 11-Novembre a sa place dans toutes les écoles.</p>
-    <p>C'est que la journée a ravivé une querelle naguère cantonnée aux salles des professeurs. Une circulaire du 2 juillet, signée de M. Édouard Geffray, impose désormais à tous les établissements publics et privés sous contrat, du CM1 à la terminale, une cérémonie d'hommage aux morts pour la France dans les jours qui encadrent le 11 novembre. Le SNES-FSU, la FSU-SNUipp et Sud Éducation y voient une « militarisation de l'école » et ont appelé les personnels à ne pas y participer, la CGT Éduc'action un exercice d'obéissance, rapportent France 3 et franceinfo. Le ministre juge la polémique regrettable et défend un devoir de transmission, le 11 novembre célébrant à ses yeux la victoire et la paix ; le porte-parole du gouvernement par intérim, M. Mathieu Lefèvre, a qualifié de « scandaleux » le procès fait à la commémoration, selon France 3 ; Ouest-France évoque des appels au boycott.</p>
+    <p>Ce matin, M. Édouard Geffray chiffrait à 245 les personnels blessés ; ce jeudi, le Premier ministre a élargi le bilan et durci derechef le ton. Matignon recense 609 blessés depuis le début de la mobilisation, le 28 septembre, dont 364 élèves et 245 personnels, parmi lesquels 81 chefs d'établissement ou adjoints, ainsi que 1 190 blessés dans les rangs des forces de l'ordre, rapportent VousNousIls et Affiches Parisiennes. Sur BFMTV, M. Sébastien Lecornu a dénoncé une organisation logistique chargée de fournir du matériel, mortiers d'artifice notamment, et de coordonner les interventions ; il a prévenu que les complices, « actifs ou passifs », y compris parmi les agents de l'Éducation nationale, seraient poursuivis, sur le terrain judiciaire ou, à défaut, disciplinaire.</p>
+    <p>Le Premier ministre a toutefois relativisé l'ampleur du phénomène : sur quelque 3 800 lycées, une très petite minorité serait concernée, selon les mêmes sources. Les actes délictueux commis aux abords des établissements, en leur sein ou sur les réseaux sociaux, en particulier contre des personnels, seront systématiquement judiciarisés. La mise en cause des enseignants a heurté : M. Jean-Rémi Girard, responsable syndical cité par VousNousIls, estime que les personnels attendent du Premier ministre qu'il les protège, non qu'il les accuse. Les sources consultées ne font état d'aucune mise en examen nouvelle dans l'affaire de Chelles ; les organisations de jeunesse maintiennent leurs appels à manifester, jusqu'à la grève de la fonction publique du mardi 17 novembre.</p>
   </div>
+  <div class="chiffres"><span>Blessés : <b>609</b>, dont <b>364</b> élèves</span><span>Forces de l'ordre : <b>1 190</b></span><span>Lycées en France : <b>≈ 3 800</b></span></div>
   <div class="suites">
     <span class="label">Les suites</span>
-    <details><summary>Que dit exactement la circulaire ?</summary><div class="ans">
-      <p>Elle crée une cérémonie annuelle interne à chaque école, collège et lycée, à tenir dans les quatre jours qui précèdent ou suivent le 11 novembre, pour les élèves du CM1 à la terminale. Elle prolonge la loi du 28 février 2012, qui a fait du 11-Novembre le jour d'hommage à tous les morts pour la France. Les syndicats opposés ne contestent pas l'enseignement de la Grande Guerre, qui figure aux programmes d'histoire, mais le caractère obligatoire et rituel du dispositif ; le ministère y voit un prolongement naturel de cet enseignement.</p>
+    <details><summary>Que risque un agent public « complice » ?</summary><div class="ans">
+      <p>Deux voies distinctes s'offrent à l'administration. La voie pénale relève des parquets, qui apprécient s'il y a complicité d'un délit, ce qui suppose un acte positif d'aide ou d'instigation. La voie disciplinaire relève de l'employeur : le gouvernement a annoncé des poursuites contre les agents qui « encourageraient des actes illicites ». La notion de complicité « passive » avancée par M. Lecornu n'est pas précisée dans les sources consultées ; c'est elle que contestent les syndicats, qui y voient un soupçon jeté sur toute une profession.</p>
     </div></details>
   </div>
 </article>
 
 <!-- 2 -->
 <article>
-  <div class="rubric">La question scolaire</div>
-  <h2>Chelles : l'enquête suit son cours, le mouvement marque le pas</h2>
-  <p class="decks"><span>Un lycéen attendu devant un juge</span><span>La droite et le gouvernement réclament la fermeté</span></p>
+  <div class="rubric">Les affaires et la puissance</div>
+  <h2>M. Jensen Huang quitte Nvidia, la Bourse vacille</h2>
+  <p class="decks"><span>Départ « avec effet immédiat » du fondateur</span><span>Mme Colette Kress assure l'intérim</span><span>Un scandale aux ramifications chinoises, selon la presse américaine</span></p>
   <div class="text">
-    <p>Au lendemain de l'agression de Mme Angela Pascoa Dos Santos, conseillère régionale LR atteinte à la poitrine par une bouteille d'essence devant le lycée Gaston-Bachelard, l'enquête ouverte par le parquet de Meaux pour tentative d'homicide volontaire se poursuit. Selon franceinfo, les trois lycéens interpellés mardi étaient encore en garde à vue, et l'un d'eux devait être présenté à un juge ce mercredi ; d'autres sources, dont Epoch Times, indiquaient la veille qu'aucun n'avait d'abord été placé en garde à vue pour le jet lui-même. Aucune mise en examen n'avait été annoncée à l'heure de ces lignes. Outre Mme Valérie Pécresse, M. Bruno Retailleau a condamné l'acte, relève CNews.</p>
-    <p>Le jour férié a, partant, suspendu les blocages, dont le ministère avait compté 49 mardi matin. Les organisations de jeunesse maintiennent leurs appels à manifester samedi et mardi prochain, et les syndicats de la fonction publique à la grève le 17 novembre ; M. Sébastien Lecornu doit recevoir ces derniers vendredi à Matignon. Le gouvernement compte sur la reprise des cours jeudi pour mesurer si le reflux constaté en début de semaine se confirme.</p>
+    <p>Le conseil d'administration de Nvidia, premier fabricant mondial de puces pour l'intelligence artificielle, a annoncé jeudi que M. Jensen Huang, qui avait cofondé l'entreprise en 1993, renonçait à ses fonctions de président-directeur général et d'administrateur, avec effet immédiat, selon le communiqué du groupe. La directrice financière, Mme Colette Kress, assure l'intérim tout en conservant ses attributions, et M. Harvey C. Jones, administrateur depuis 1993, devient le premier président non exécutif du conseil. Le communiqué ne donne aucun motif. Selon le Washington Post, Variety et CNN, ce départ ferait suite à la révélation de liaisons, dont l'une avec une femme soupçonnée d'espionnage au profit de la Chine ; le conseil, qui avait mandaté un cabinet d'avocats, dit n'avoir « aucune raison de croire » que la sécurité nationale ou les secrets de l'entreprise aient été compromis. M. Huang ne s'est pas exprimé.</p>
+    <p>L'onde de choc a parcouru les marchés. Le titre a ouvert en recul d'environ 13 % à Wall Street avant de réduire sa perte à quelque 5 % en cours de séance, selon Reuters et Zonebourse ; un analyste de XTB, cité par Reuters, juge excessif de voir près de 700 milliards de dollars de capitalisation s'évaporer en une semaine « pour un seul homme ». M. Donald Trump a, pour sa part, estimé que M. Tim Cook, ancien patron d'Apple, ferait un bon successeur, rapporte Reuters. France 24 note que l'entreprise doit désormais rassurer sur la continuité de sa stratégie, au moment où elle concentre l'essentiel des espoirs placés dans l'intelligence artificielle.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi l'affaire touche-t-elle à la sécurité nationale ?</summary><div class="ans">
+      <p>Parce que les puces les plus avancées de Nvidia sont au cœur de la rivalité technologique sino-américaine et soumises à des restrictions d'exportation vers la Chine. Toute porosité supposée au sommet de l'entreprise inquiète donc Washington. À ce stade, ces craintes reposent sur des informations de presse ; le conseil affirme que son enquête examinera toutes les informations disponibles, et aucune autorité américaine n'a, selon les sources consultées, rendu publiques des conclusions.</p>
+    </div></details>
   </div>
 </article>
 
@@ -268,40 +109,34 @@ footer p{margin:0;font-style:italic;text-align:center}
 
 <!-- 3 -->
 <article>
-  <div class="rubric">Le front de l'Est · Abou Dhabi</div>
-  <h2>Un grand échange de prisonniers, et les émissaires filent à Moscou</h2>
-  <p class="decks"><span>Moins de deux heures pour la seconde journée</span><span>M. Kushner parle de discussions « dures »</span><span>Rien de neuf sur les territoires</span></p>
+  <div class="rubric">Le front de l'Est · Moscou</div>
+  <h2>Au Kremlin, un entretien « constructif » et un nouveau rendez-vous</h2>
+  <p class="decks"><span>MM. Witkoff et Kushner reçus par M. Poutine</span><span>Une mission humanitaire évoquée à Kostiantynivka</span><span>Les Européens toujours à la porte</span></p>
   <div class="text">
-    <p>La seconde journée des pourparlers à trois a été brève : moins de deux heures, contre plus de quatre la veille, selon l'agence russe TASS et l'ukrainienne Interfax, citées par l'AP. Elle a pourtant produit le seul résultat tangible du cycle : Moscou et Kiev sont convenus d'un échange de prisonniers de guerre de grande ampleur, confirmé par M. Vladimir Medinski comme par M. Roustem Oumerov. M. Volodymyr Zelensky avait évoqué de 1 000 à 1 500 détenus ; le chef de la délégation russe a renvoyé à plus tard le nombre et les modalités. M. Jared Kushner a qualifié les discussions de substantielles et de « dures », disant voir des compromis possibles sur certains points et la nécessité de parler davantage sur d'autres, rapporte The Hill.</p>
-    <p>Sur le fond, rien n'a bougé. M. Medinski ne voit aucune possibilité d'échanges territoriaux avec l'Ukraine, selon TASS, et M. Sergueï Lavrov a de nouveau écarté l'idée d'une trêve. Le Kyiv Post note que les différends territoriaux demeurent entiers. La diplomatie, nonobstant, change de théâtre : M. Kushner et M. Steve Witkoff seront reçus jeudi matin au Kremlin par M. Vladimir Poutine, a confirmé son conseiller M. Iouri Ouchakov, puis retrouveront M. Zelensky à Dublin, rapportent CNN et Meduza. Le Kremlin a dit n'avoir eu aucun contact avec les Européens présents en marge ; M. Kushner affirme vouloir les associer aux discussions. Côté ukrainien, M. Davyd Arakhamia estime que la date d'une nouvelle session sera fixée après ces deux rencontres.</p>
-  </div>
-  <div class="suites">
-    <span class="label">Les suites</span>
-    <details><summary>Pourquoi les Européens restent-ils à la porte ?</summary><div class="ans">
-      <p>Moscou refuse de voir les capitales européennes, qu'elle tient pour parties prenantes du soutien militaire à Kiev, siéger dans la négociation directe, rapporte CNN. Les Européens font valoir que la sécurité du continent les concerne au premier chef et qu'aucune garantie offerte à l'Ukraine ne tiendrait sans eux. Le rendez-vous de Dublin, où se réunit jeudi la Communauté politique européenne, offre à M. Zelensky une tribune pour plaider leur présence.</p>
-    </div></details>
+    <p>Annoncée pour la matinée, la rencontre a finalement débuté vers 15 heures, heure de Moscou, au palais du Sénat du Kremlin, selon le site ukrainien Censor.net ; M. Iouri Ouchakov, conseiller diplomatique, M. Vladimir Medinski, revenu d'Abou Dhabi, et M. Kirill Dmitriev, émissaire économique, entouraient M. Vladimir Poutine. M. Ouchakov a qualifié l'entretien de substantiel, constructif et franc, rapporte l'agence ukrainienne UNN : les émissaires américains auraient appuyé une proposition russe de mission humanitaire à Kostiantynivka, ville du Donbass disputée, et les deux capitales seraient convenues de poursuivre le format à trois. M. Steve Witkoff a dit à la presse que des progrès avaient été accomplis, selon Time ; il aurait annoncé un accord sur la date d'une prochaine rencontre trilatérale, que les sources consultées ne précisent pas.</p>
+    <p>M. Jared Kushner comptait obtenir de Moscou qu'elle accepte d'associer des Européens aux discussions, ainsi que finaliser le volet humanitaire et l'échange de prisonniers, selon La Nouvelle Tribune, qui cite Reuters. Rien n'indique ce soir que le Kremlin ait cédé : la radio-télévision canadienne CBC rappelle que Moscou refuse toute présence européenne dans la négociation directe, comme toute troupe européenne en Ukraine après la guerre. Le nombre de prisonniers à échanger, que M. Kushner disait vouloir arrêter jeudi, n'avait pas été publié à l'heure de ces lignes.</p>
   </div>
 </article>
 
 <!-- 4 -->
 <article>
-  <div class="rubric">Affaires d'Orient</div>
-  <h2>Téhéran pose ses sept conditions, le détroit reste clos</h2>
-  <p class="decks"><span>M. Rezaei dément toute négociation avec Washington</span><span>Des pétroliers touchés, versions divergentes</span><span>M. Rubio ne voit « pas de raison » de frapper</span></p>
+  <div class="rubric">Dublin · Communauté politique européenne</div>
+  <h2>M. Zelensky met les Européens en garde</h2>
+  <p class="decks"><span>Une cinquantaine de dirigeants réunis en Irlande</span><span>Le « nouveau modèle de sécurité » en question</span><span>Les émissaires américains attendus le soir</span></p>
   <div class="text">
-    <p>Au lendemain des propos optimistes de M. Donald Trump, la partie iranienne a douché les espoirs. M. Mohsen Rezaei, figure de l'appareil sécuritaire, a démenti toute négociation avec les États-Unis et tout projet de rencontre au Qatar, affirmant que Téhéran attend une réponse américaine à sept conditions et que le détroit d'Ormuz restera fermé jusqu'à leur pleine exécution, rapportent Al Jazeera et l'agence turque Anadolu. La liste complète n'a pas été publiée ; M. Abbas Araghchi en a cité la levée des sanctions et du blocus naval, et la fin des combats sur tous les fronts, au Liban notamment, en échange d'une réouverture sous deux jours. Le Qatar, de son côté, avait fait état mardi de réponses positives des deux capitales. À Washington, M. Marco Rubio a jugé qu'il n'y avait « pas de raison » d'attaquer l'Iran tant que la diplomatie progresse, selon Yahoo News.</p>
-    <p>Sur l'eau, les récits divergent. Les Gardiens de la révolution affirment que trois pétroliers ont pris feu après avoir heurté des mines en empruntant une route « non autorisée » dans l'est du détroit ; l'agence britannique UKMTO fait état d'un seul navire frappé par un projectile non identifié au nord-est du village omanais de Lima, rapporte Gulf News. Aucune source indépendante n'a confirmé la thèse des mines. Ces incidents ont suffi à faire rebondir le baril depuis ses plus bas de deux mois.</p>
+    <p>Invité à s'exprimer en ouverture de la neuvième réunion de la Communauté politique européenne, aux côtés de M. Micheál Martin, chef du gouvernement irlandais, et de M. António Costa, président du Conseil européen, M. Volodymyr Zelensky a appelé les Européens à la vigilance face aux tentatives russes de remodeler l'architecture de sécurité du continent avant tout cessez-le-feu, rapporte la radio-télévision publique irlandaise RTÉ. Le Kyiv Post relève qu'il s'interroge sur la poussée russo-américaine en faveur d'un « nouveau modèle » de sécurité avec l'Europe ; il a réclamé des intercepteurs Patriot et NASAMS, des munitions pour F-16 et du matériel énergétique, et plaidé pour des sanctions plus dures contre Moscou.</p>
+    <p>L'Europe, a-t-il résumé selon RTÉ, fait désormais partie des discussions, sans être encore à la table avec la Russie. Dublin avait déployé la plus vaste opération de sécurité de son histoire, selon IrishCentral, et l'Irish Times a qualifié le sommet de réussite. MM. Witkoff et Kushner devaient rejoindre M. Zelensky dans la capitale irlandaise jeudi soir pour lui rendre compte de leur visite à Moscou, selon le Kyiv Independent ; rien n'avait filtré de cet entretien à l'heure de la rédaction.</p>
   </div>
 </article>
 
 <!-- 5 -->
 <article>
-  <div class="rubric">Jérusalem</div>
-  <h2>Premier vote gagné pour le camp Eisenkot, rupture avec le Likoud</h2>
-  <p class="decks"><span>La commission des arrangements votée par 63 voix contre 50</span><span>Un discours de M. Nétanyahou fait capoter les contacts</span></p>
+  <div class="rubric">Affaires d'Orient</div>
+  <h2>M. Trump n'a « pas besoin » d'un accord avec l'Iran</h2>
+  <p class="decks"><span>« Leur détroit », écrit le président américain</span><span>M. Vance renvoyé aux affaires intérieures</span><span>Téhéran maintient son offre</span></p>
   <div class="text">
-    <p>Au lendemain de la prestation de serment, la Knesset a approuvé par 63 voix contre 50 la composition de la commission des arrangements, qui conduit l'essentiel des travaux de l'assemblée tant qu'aucun gouvernement n'est formé, rejetant une proposition du Likoud visant à réduire la place des partis arabes, rapporte le Jerusalem Post. Présidée par M. Roy Folkman, du parti Yashar, elle donne la majorité au bloc de M. Gadi Eisenkot, chargé par le président Isaac Herzog de former le gouvernement dans un délai de vingt-huit jours, prorogeable de quatorze.</p>
-    <p>Le climat s'est derechef tendu. Un discours de M. Benyamin Nétanyahou attaquant les partis arabes a conduit M. Eisenkot à annuler les discussions prévues avec le Likoud et à juger le Premier ministre inapte à rester en fonctions, selon Ynet. M. Nétanyahou soutient qu'un gouvernement d'union nationale demeure possible et dit vouloir continuer de tendre la main. Le gouvernement sortant reste en place jusqu'à la formation d'une coalition ; le vote sur le remplacement du président de la Knesset est toujours fixé au 17 novembre.</p>
+    <p>Ce matin, Téhéran attendait par l'entremise du Qatar une réponse à ses sept conditions ; la réponse est venue de M. Donald Trump, sur son réseau Truth Social. « Nous n'avons pas besoin d'un accord avec l'Iran », a-t-il écrit, jugeant que « ces jours-là sont révolus » et faisant valoir que les États-Unis détiennent des centaines de milliards de dollars d'avoirs iraniens et « leur détroit », rapporte CNBC. Il a demandé au vice-président, M. J. D. Vance, de se consacrer à la corruption dans les villes et États démocrates, alors que le Wall Street Journal le disait prêt à rencontrer un haut responsable sécuritaire iranien, selon Arab News et Axios. The National, quotidien émirien, y voit un revirement après des semaines où M. Trump jugeait un accord possible ; Axios rappelle que M. Marco Rubio doutait déjà d'une percée.</p>
+    <p>Téhéran n'avait pas répondu officiellement en soirée, selon Kurdistan 24 ; l'offre iranienne de rouvrir le détroit d'Ormuz deux jours après un accord demeure sur la table, et le Qatar poursuit sa médiation. Mardi, M. Abbas Araghchi avait affirmé que le conflit ne se réglerait ni par les armes ni par un surcroît de sanctions. La chaîne CBS note que, si les grands combats ont cessé au cours de l'été, l'Iran continue de s'en prendre aux navires dans le détroit. Le baril, qui avait perdu un cinquième de sa valeur en novembre, s'est aussitôt repris.</p>
   </div>
 </article>
 
@@ -309,43 +144,39 @@ footer p{margin:0;font-style:italic;text-align:center}
 
 <article class="corbeille">
   <div class="rubric">La Corbeille</div>
-  <h2>L'intelligence artificielle ranime une séance désertée</h2>
+  <h2>Paris imperturbable dans la tempête Nvidia</h2>
   <div class="text">
-    <p>Dans des volumes d'étiage, nombre d'investisseurs français ayant fait le pont de l'Armistice, la Bourse de Paris a signé sa troisième hausse d'affilée : le CAC 40 a gagné 0,66 %, à 8 332,87 points, selon BFM Bourse et Boursorama, les autres places européennes finissant elles aussi dans le vert. Les valeurs technologiques ont mené la danse après les résultats de l'hébergeur américain CoreWeave et sur l'espoir, relevé par BFM Bourse, d'un relèvement de la valorisation visée par Anthropic pour son entrée à Wall Street : STMicroelectronics a bondi de 5,16 %, Schneider Electric de 3,04 %, tandis qu'EssilorLuxottica a cédé 2,69 %. Outre-Atlantique, où le marché obligataire chôme pour Veterans Day, Wall Street a ouvert en hausse : à 15 h 30, le Dow Jones prenait 0,05 %, à 52 259,02 points, le S&amp;P 500 0,97 %, à 7 593,95 points, et le Nasdaq 1,54 %, à 25 451,05 points, selon Reuters ; CoreWeave s'envolait d'environ 26 %, d'après Bloomberg, et Nvidia regagnait quelque 4 %. Le Brent s'est repris d'environ 1 % dès le matin, les attaques de navires près d'Ormuz tempérant les paris sur la paix, tandis que l'or s'effritait, lesté par la perspective d'une hausse des taux de la Réserve fédérale en décembre après l'inflation de mardi.</p>
+    <p>Nonobstant le séisme de Santa Clara et la volte-face de M. Trump sur l'Iran, la Bourse de Paris a aligné une quatrième séance de hausse : le CAC 40 a gagné 0,34 %, à 8 361,36 points, plus haut d'un mois, et le SBF 120 0,3 %, à 6 323,79 points, selon Zonebourse, BFM Bourse et Investing.com. TotalEnergies (+1,6 %) a tiré l'indice dans le sillage du pétrole, épaulé par les valeurs défensives et le luxe, quand Airbus (−1,16 %) figurait parmi les lanternes rouges, d'après l'Agefi-Dow Jones. Le Stoxx 600 paneuropéen a fini à un record, rapporte Reuters. Outre-Atlantique, Wall Street, tombée de plus de 1 % à l'ouverture, s'était ressaisie à la clôture européenne : le Dow Jones prenait 0,31 %, le S&amp;P 500 0,17 % et le Nasdaq 0,08 %, Nvidia limitant sa chute à quelque 5 %. Le marché des changes a vu le dollar toucher un plus haut de dix-neuf mois, les opérateurs gageant sur une hausse des taux de la Réserve fédérale en décembre ; l'euro a reculé de 0,3 %, à 1,1056 dollar, au plus bas depuis le printemps 2025. Le même pari a fait chuter l'or d'environ 3 %, sous 3 900 dollars l'once, tandis que le Brent regagnait quelque 1 %, vers 93,7 dollars, le retour d'une prime de risque sur Ormuz l'emportant.</p>
   </div>
+  <div class="chiffres"><span>CAC 40 : <b>8 361,36</b> (+0,34 %)</span><span>SBF 120 : <b>6 323,79</b></span><span>TotalEnergies : <b>+1,6 %</b></span><span>Airbus : <b>−1,16 %</b></span><span>Euro : <b>1,1056 $</b></span></div>
 </article>
 
 <section class="agenda sommaire" aria-labelledby="dem">
   <h2 id="dem">Demain</h2>
   <ul>
-    <li><b>Jeudi 12, matin.</b> M. Vladimir Poutine reçoit au Kremlin MM. Steve Witkoff et Jared Kushner, a confirmé M. Iouri Ouchakov.</li>
-    <li><b>Jeudi 12.</b> Sommet de la Communauté politique européenne à Dublin, sous la présidence de M. Micheál Martin, avec une cinquantaine de dirigeants attendus ; M. Zelensky doit y rencontrer les émissaires américains.</li>
-    <li><b>Jeudi 12.</b> Reprise des cours dans les lycées après le jour férié, premier test pour la mobilisation.</li>
-    <li><b>Jeudi 12, 14 h 30.</b> Inscriptions hebdomadaires au chômage aux États-Unis, attendues à 195 000, puis interventions de cinq responsables de la Réserve fédérale, dont M. John Williams.</li>
-    <li><b>Jeudi 12, soir.</b> Résultats de Disney, Applied Materials, Palo Alto Networks et JD.com.</li>
-    <li><b>Jeudi 12.</b> Le Parlement européen achève sa session de deux jours à Bruxelles.</li>
-    <li><b>Vendredi 13.</b> M. Sébastien Lecornu reçoit les syndicats de la fonction publique à Matignon.</li>
+    <li><b>Vendredi 13, 8 h 45.</b> L'Insee publie l'indice définitif des prix à la consommation d'octobre.</li>
+    <li><b>Vendredi 13, 11 h.</b> Balance commerciale de la zone euro (Eurostat).</li>
+    <li><b>Vendredi 13, 14 h 30.</b> Prix à la production américains d'octobre, guettés après l'inflation de mardi et les paris sur la Réserve fédérale.</li>
+    <li><b>Vendredi 13.</b> M. Sébastien Lecornu reçoit à Matignon les syndicats de la fonction publique, qui réclament le dégel du point d'indice avant la grève du 17 novembre.</li>
+    <li><b>Vendredi 13.</b> Le Luxembourg poursuit l'examen du budget de la Sécurité sociale, séance également prévue samedi, avant le vote solennel du 18 novembre.</li>
   </ul>
 </section>
 
 <footer>
   <h2>Sources consultées</h2>
   <ul>
-    <li><a href="https://www.franceinfo.fr/societe/guerre-de-14-18/11-novembre/emmanuel-macron-a-preside-sa-derniere-ceremonie-du-11-novembre_8278010.html">franceinfo, 11-Novembre</a>, <a href="https://www.franceinfo.fr/societe/education/a-l-ecole-la-commemoration-du-11-novembre-fait-des-vagues-chez-certains-syndicats_8274968.html">franceinfo, commémoration scolaire</a>, <a href="https://www.franceinfo.fr/replay-jt/france-2/20-heures/une-elue-blessee-devant-un-lycee-de-chelles-le-ministre-de-l-education-nationale-evoque-des-comportements-criminels_8276861.html">franceinfo, Chelles</a> et <a href="https://france3-regions.franceinfo.fr/paris-ile-de-france/paris/l-introduction-d-une-culture-de-guerre-la-nouvelle-commemoration-du-11-novembre-a-l-ecole-fait-polemique-3447798.html">France 3 Paris Île-de-France</a> (service public)</li>
-    <li><a href="https://www.france24.com/fr/france/20261111-ceremonies-du-11-novembre-une-polemique-hommage-national-education-histoire">France 24</a> (service public) et <a href="https://fr.euronews.com/2026/11/11/11-novembre-entre-memoire-nationale-et-pacifisme-les-hommages-de-macron-le-pen-et-melencho">Euronews</a> (Europe, centre)</li>
-    <li><a href="https://www.ouest-france.fr/politique/emmanuel-macron/video-macron-a-preside-son-dernier-11-novembre-en-tant-que-chef-de-l-etat-2591862e-c5e7-449a-adde-7c8fce49a90c">Ouest-France, cérémonie</a> et <a href="https://www.ouest-france.fr/societe/fetes/11-novembre/11-novembre-des-syndicats-denseignants-appellent-au-boycott-des-ceremonies-dans-les-ecoles-edouard-geffray-se-defend-28661560-d867-11f1-b736-5b9907ef0b5a">Ouest-France, boycott</a> (centre)</li>
-    <li><a href="https://www.cnews.fr/france/2026-11-10/seine-et-marne-un-lyceen-jette-une-bouteille-dessence-sur-une-elue-devant-un">CNews</a> (droite) et <a href="https://www.epochtimes.fr/chelles-une-elue-atteinte-par-une-bouteille-dessence-devant-un-lycee-macron-condamne-une-violence-inacceptable-3390668.html">Epoch Times</a> (droite)</li>
-    <li><a href="https://www.inquirer.com/news/nation-world/russia-ukraine-talks-prisoner-exchange-20261111.html">AP, via The Philadelphia Inquirer</a> (États-Unis, agence), <a href="https://thehill.com/policy/international/6213290-russia-ukraine-prisoner-swap-abu-dhabi-talks/">The Hill</a> (États-Unis, centre) et <a href="https://www.cnn.com/2026/11/11/politics/trump-envoys-russia-trip-peace-talks-intl">CNN</a> (États-Unis, centre gauche)</li>
-    <li><a href="https://www.kyivpost.com/post/89761">Kyiv Post</a> (Ukraine, libéral), <a href="https://meduza.io/en/news/2026/11/11/they-re-bringing-something-kushner-and-witkoff-to-meet-putin-in-moscow-day-after-abu-dhabi-peace-talks">Meduza</a> (Lettonie, russe d'opposition en exil) et <a href="https://rtenfrancais.tv/russie/139960-pourparlers-abou-dhabi-moscou-kiev-washington-entament-deuxieme-journee-discussions">RT en français</a> (Russie, média d'État)</li>
-    <li><a href="https://aljazeera.com/news/2026/11/11/iran-denies-talks-with-us-says-hormuz-will-stay-shut-until-demands-are-met">Al Jazeera</a> (Qatar, financé par l'État), <a href="https://www.aa.com.tr/en/middle-east/iran-denies-ongoing-talks-with-us-planned-meeting-in-qatar/4119411">Anadolu</a> (Turquie, agence d'État), <a href="https://gulfnews.com/world/mena/middle-east-conflict-iran-says-tanker-hits-mine-in-strait-of-hormuz-as-pezeshkian-criticises-us-1.500743246">Gulf News</a> (Émirats, proche du pouvoir) et <a href="https://yahoo.com/news/politics/articles/rubio-says-no-attack-iran-153709721.html">Yahoo News</a> (États-Unis, agrégateur)</li>
-    <li><a href="https://jpost.com/israel-election-2026/2026-11-11/live-updates-914541">The Jerusalem Post</a> (Israël, centre droit) et <a href="https://www.ynetnews.com/article/bkymgwm0me">Ynet</a> (Israël, centre)</li>
-    <li><a href="https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-l-ia-rebondit-en-bourse-grace-notamemnt-aux-espoirs-autour-d-un-relevement-de-la-valorisation-cible-d-anthropic-pour-son-entree-a-wall-street-le-cac-40-termine-en-hausse-1173605.html">BFM Bourse</a>, <a href="https://www.boursorama.com/bourse/actualites/trois-a-la-suite-pour-paris-le-reste-de-l-europe-dans-le-vert-egalement-d4f24f965d7de2fc3e591ad7efa9ac85">Boursorama</a> et <a href="https://www.zonebourse.com/actualite-bourse/11-novembre-l-ia-rallume-la-flamme-dans-un-marche-deserte-ce785edbdd8bf52c">Zonebourse</a> (économie)</li>
-    <li><a href="https://www.investing.com/news/stock-market-news/wall-st-opens-higher-as-coreweave-lifts-ai-trade-5019274">Reuters, via Investing.com</a> (Royaume-Uni, agence), <a href="https://www.bloomberg.com/news/articles/2026-11-10/stock-market-today-dow-s-p-live-updates">Bloomberg</a> et <a href="https://thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026">TheStreet</a> (États-Unis, économie)</li>
-    <li>Cotations : <a href="https://www.kitco.com/charts/gold">Kitco</a>, <a href="https://www.cnbc.com/select/the-price-of-gold-today-nov-11-2026/">CNBC</a>, <a href="https://financefeeds.com/brent-crude-oil-price-92-53-wednesday-after-lowest-settle-since-august-iran-talks-bull-98-bear-89/">FinanceFeeds</a>, <a href="https://invezz.com/sg/news/2026/11/11/oil-price-today-brent-rebounds-to-dollar93-despite-a-massive-opec-output-surge/">Invezz</a> et <a href="https://fortune.com/article/price-of-bitcoin-11-11-2026/">Fortune</a> (États-Unis, économie)</li>
-    <li>Agenda : <a href="https://irish-presidency.consilium.europa.eu/en/events/">Présidence irlandaise du Conseil de l'UE</a> (officiel), <a href="https://www.touteleurope.eu/economie-et-social/l-agenda-europeen-les-principaux-evenements-prevus-du-9-au-15-novembre-2026/">Toute l'Europe</a> (information européenne), calendrier économique repris de l'édition du matin (Finviz).</li>
-    <li>Météo : <a href="https://meteofrance.com/previsions-meteo-france/toulouse/31000">Météo-France</a>, <a href="https://meteo.franceinfo.fr/previsions-meteo-france/toulouse/31000">Franceinfo Météo</a>, <a href="https://www.meteomedia.com/fr/ville/fr/occitanie/toulouse/14-jours">MétéoMédia</a> et <a href="https://www.tameteo.com/meteo_Toulouse-Europe-France-Haute+Garonne-LFBO-1-26128.html">Meteored</a>, pour Toulouse.</li>
+    <li><a href="https://www.vousnousils.fr/2026/11/12/violence-dans-leducation-nationale-des-faits-tres-graves-706096">VousNousIls</a> (presse éducative), <a href="https://mesinfos.fr/ile-de-france/violences-dans-les-lycees-lecornu-met-en-cause-des-complicites-dans-l-education-nationale-343093.html">Affiches Parisiennes</a> (presse régionale), <a href="https://www.lagazettefrance.fr/article/lycees-le-gouvernement-hausse-le-ton-face-a-une-intensification-des-violences">La Gazette France</a>, déclarations de M. Lecornu sur BFMTV</li>
+    <li><a href="https://www.lejdd.fr/politique/lecornu-recoit-les-syndicats-marine-le-pen-au-salon-du-made-in-france-proces-de-delogu-les-4-infos-dont-vous-allez-entendre-parler-demain-188361">Le JDD</a> (droite), pour l'agenda de Matignon, recoupé avec l'édition de la veille ; <a href="https://www.publicsenat.fr/actualites/politique/budget-2027-les-points-chauds-lors-des-debats-au-senat-du-9-au-17-novembre">Public Sénat</a> (chaîne parlementaire)</li>
+    <li><a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">Communiqué de Nvidia</a> (officiel), <a href="https://www.washingtonpost.com/technology/2026/11/12/nvidia-board-weighs-jensen-huangs-future-after-affair-with-allege-chinese-spy/">The Washington Post</a> (États-Unis, centre gauche), <a href="https://variety.com/2026/biz/news/nvidia-ceo-jensen-huang-resigns-affairs-alleged-chinese-spy-1236945653/">Variety</a> (États-Unis), <a href="https://www.cnn.com/2026/11/11/business/live-news/nvidia-jensen-huang-investigation-fallout">CNN</a> (États-Unis, centre gauche), <a href="https://www.france24.com/fr/%C3%A9co-tech/20261112-le-pdg-de-nvidia-jensen-huang-quitte-ses-fonctions-%C3%A0-la-t%C3%AAte-de-l-entreprise">France 24</a> (service public)</li>
+    <li><a href="https://censor.net/en/news/4033393/witkoff-and-kushner-began-their-meeting-with-putin-at-the-kremlin">Censor.net</a> (Ukraine), <a href="https://unn.ua/en/news/putin-was-concerned-by-zelenskyy-and-his-greetings-to-trump-what-else-the-russian-dictator-discussed-with-witkoff-and-kushner">UNN</a> (Ukraine, agence), <a href="https://time.com/article/2026/11/12/ukraine-russia-peace-deal-talks-putin-zelensky-witkoff-kushner/">Time</a> (États-Unis, centre), <a href="https://www.boursorama.com/actualite-economique/actualites/kushner-et-witkoff-a-moscou-pour-s-entretenir-avec-poutine-3cdc3584830b89e66fb0109196cafd6d">Reuters, via Boursorama</a> (Royaume-Uni, agence), <a href="https://lanouvelletribune.info/2026/11/les-emissaires-de-trump-a-moscou-veulent-que-poutine-accepte-la-presence-des-europeens-aux-negociations-sur-lukraine/">La Nouvelle Tribune</a> (Bénin), <a href="https://www.cbc.ca/news/world/us-witkoff-kushner-putin-zelenskyy-talks-9.7418799">CBC</a> (Canada, service public)</li>
+    <li><a href="https://www.rte.ie/news/ireland/2026/1112/1598960-epc-meetings-dublin/">RTÉ</a> (Irlande, service public), <a href="https://www.kyivpost.com/post/89954">Kyiv Post</a> (Ukraine, libéral), <a href="https://kyivindependent.com/zelensky-arrives-in-dublin-for-european-political-community-summit-expects-a-debrief-from-witkoff-kushner/">Kyiv Independent</a> (Ukraine, libéral), <a href="https://www.irishcentral.com/news/politics/european-political-community-summit-dublin">IrishCentral</a> (États-Unis, diaspora irlandaise), <a href="https://www.irishtimes.com/politics/2026/11/12/eu-meetings-dublin-road-closures-traffic-disruption-latest/">The Irish Times</a> (Irlande, centre)</li>
+    <li><a href="https://www.cnbc.com/2026/11/12/trump-iran-deal-hormuz-strait.html">CNBC</a> (États-Unis, économie), <a href="https://axios.com/2026/11/12/trump-vance-focus-democrat-cities-iran">Axios</a> (États-Unis, centre), <a href="https://www.arabnews.com/middle-east/trump-says-us-does-not-need-a-deal-with-iran-3011447">Arab News</a> (Arabie saoudite, proche du pouvoir), <a href="https://www.thenationalnews.com/news/us/2026/11/12/iran-deal-trump/">The National</a> (Émirats, proche du pouvoir), <a href="https://www.kurdistan24.net/en/story/952603/trump-we-dont-need-a-deal-with-iran">Kurdistan 24</a> (Kurdistan irakien), <a href="https://www.cbsnews.com/live-updates/iran-war-us-nuclear-strait-of-hormuz/">CBS News</a> (États-Unis, centre)</li>
+    <li>Corbeille : <a href="https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-le-seisme-du-depart-de-jensen-huang-chez-nvidia-et-trump-qui-affirme-ne-pas-avoir-besoin-d-un-accord-avec-l-iran-le-cac-40-termine-encore-en-hausse-1173691.html">BFM Bourse</a>, <a href="https://www.zonebourse.com/actualite-bourse/le-cac-40-etire-sa-belle-serie-sur-fond-de-tempete-nvidia-ce785ed8d18ffe20">Zonebourse</a>, <a href="https://www.investing.com/news/stock-market-news/france-stocks-higher-at-close-of-trade-cac-40-up-034-5022817">Investing.com</a>, <a href="https://www.moneyvox.fr/bourse/actualites/111221/cac-40-a-8-361-points-nvidia-rotation-sectorielle-le-journal-de-la-bourse-du-jeudi-12-novembre-2026">MoneyVox</a>, <a href="https://www.boursorama.com/bourse/actualites/l-europe-finit-en-hausse-a-l-abri-des-secousses-chez-nvidia-2fcd17d78994f7dd44c0b2f98698bd9d">Reuters, via Boursorama</a> (économie)</li>
+    <li>Cotations : <a href="https://www.usagold.com/daily-precious-metals-market-report-november-12-2026/">USAGold</a>, <a href="https://journalarta.com/en/2026/11/12/gold-price-today-spot-gold-drops-2-9-to-3871-6-as-silver-falls-3-47-and-copper-slides/">JournalArta</a>, <a href="https://oilprice.com/Latest-Energy-News/World-News/Brent-Briefly-Hits-94-After-Trump-Says-US-Has-No-Need-for-Iran-Deal.html">OilPrice.com</a>, <a href="https://www.cnbc.com/2026/11/12/oil-prices-jump-after-trump-says-no-iran-deal-needed-weve-got-their-strait.html">CNBC</a>, <a href="https://www.kriptofoni.com/en/bitcoin-price/">Kriptofoni</a>, <a href="https://www.worldcoinindex.com/coin/bitcoin">WorldCoinIndex</a> (États-Unis et Turquie, économie)</li>
+    <li>Agenda : <a href="https://www.boursorama.com/bourse/actualites/agenda-macro-zonebourse-le-13-novembre-2026-d14ea3aed2084133880cf900e56e4c26">Agenda macro Zonebourse du 13 novembre</a>, <a href="https://presseagence.fr/paris-economie-linsee-devoile-son-calendrier-des-indicateurs-cles-pour-novembre/">calendrier de l'Insee</a>.</li>
+    <li>Météo : <a href="https://meteo.franceinfo.fr/previsions-meteo-france/toulouse/31000">Franceinfo Météo</a> (Météo-France) et <a href="https://www.meteomedia.com/fr/ville/fr/occitanie/toulouse/14-jours">MétéoMédia</a>, pour Toulouse.</li>
   </ul>
-  <p>Ce soir encore, la lecture directe des pages était impossible depuis la rédaction : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'était parvenue dans la boîte aux lettres ; Le Figaro, Le Monde, Les Échos, L'Opinion, Libération et La Croix manquent donc à l'analyse. Rédigé le mercredi 11 novembre 2026, vers dix-neuf heures.</p>
+  <p>Ce soir encore, la lecture directe des pages était impossible depuis la rédaction : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'était parvenue dans la boîte aux lettres ; Le Figaro, Le Monde, Les Échos, L'Opinion, Libération, La Croix et Ouest-France manquent donc à l'analyse, et le JDD n'a servi qu'à l'agenda, recoupé. Rédigé le jeudi 12 novembre 2026, vers dix-neuf heures.</p>
 </footer>
 </div>
 <script>
