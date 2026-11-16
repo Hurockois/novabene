@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Novabene">
+<meta name="theme-color" content="#EEEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.nb-nav{display:flex;justify-content:center;gap:4px 22px;flex-wrap:wrap;padding:10px 0 2px;font-family:"Old Standard TT","Didot",Georgia,serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.nb-nav a{color:var(--gray,#5E584D);text-decoration:none;padding:6px 2px;border-bottom:1px solid transparent}
+.nb-nav a[aria-current="page"]{color:var(--ink,#1B1915);border-bottom-color:var(--ink,#1B1915)}
+.nb-nav a:focus-visible{outline:2px solid var(--red,#7A2418);outline-offset:3px}
+</style>
+<title>Novabene du soir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout : quotidien du matin début de siècle — manchette à oreilles, filets doubles, titres centrés à sous-titres en cascade, texte justifié en colonnes sur grand écran, « suites » dépliables */
+:root{
+  --paper:#EEEAE0; --ink:#1B1915; --gray:#5E584D; --rule:#1B1915; --hair:#BDB5A4;
+  --red:#7A2418; --fold:#E4DFD2;
+  --mast:"Playfair Display","Didot","Bodoni 72",Georgia,serif;
+  --head:"Old Standard TT","Didot",Georgia,serif;
+  --body:"Libre Caslon Text","Caslon",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:860px;margin:0 auto;padding-block:22px 60px;display:flex;flex-direction:column;gap:34px}
+
+/* Manchette */
+.mast{display:flex;flex-direction:column;gap:8px}
+.mast-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.ear{border:1px solid var(--rule);padding:6px 8px;font-family:var(--head);font-size:11px;line-height:1.35;text-align:center;max-width:130px}
+.ear b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ear.r{justify-self:end}
+.mast h1{font-family:var(--mast);font-weight:900;font-size:clamp(30px,9vw,82px);line-height:.95;margin:0;text-align:center;letter-spacing:.005em;white-space:nowrap}
+.motto{text-align:center;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px;margin:0}
+.dateline{border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:5px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;
+  font-family:var(--head);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:560px){.mast-row{grid-template-columns:1fr}.ear{display:none}}
+
+/* Cote du matin */
+.cote{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch;border-bottom:1px solid var(--rule);font-family:var(--head);font-variant-numeric:lining-nums tabular-nums}
+.cote .t{display:flex;align-items:center;padding:6px 12px 6px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule)}
+.cote div.v{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--hair);text-align:center;gap:1px}
+.cote div.v:last-child{border-right:0}
+.cote .n{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.cote .p{font-size:15px;font-weight:700}
+.cote .d{font-size:12px}
+.cote .up{color:var(--ink)}
+.cote .dn{color:var(--red)}
+.cote-note{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center;margin:-2px 0 0}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote .t{grid-column:1/-1;justify-content:center;border-right:0;border-bottom:1px solid var(--hair);padding:5px 0}.cote div.v:nth-child(3){border-right:0}.cote div.v:nth-child(2),.cote div.v:nth-child(3){border-bottom:1px solid var(--hair)}}
+
+.howto{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;font-family:var(--head);font-size:13px;color:var(--gray);font-style:italic}
+button.toggle{font-family:var(--head);font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--ink);
+  border:1px solid var(--rule);padding:6px 14px;cursor:pointer}
+button.toggle:hover{background:var(--fold)}
+button.toggle:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Sommaire */
+.sommaire{border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:3px;padding:16px 20px;margin:4px}
+.sommaire h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 10px}
+.sommaire ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
+.sommaire li::marker{font-family:var(--head);font-weight:700}
+
+/* Articles */
+article{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px}
+.rubric{font-family:var(--head);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--red)}
+article h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,5vw,36px);line-height:1.1;margin:0;text-align:center;text-wrap:balance}
+.decks{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:15px;margin:0;text-wrap:balance}
+.decks span+span::before{content:" — "}
+.text{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.text p{margin:0 0 .7em;text-indent:1.4em}
+.text p:first-child{text-indent:0}
+@media (min-width:760px){.text{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.lead .text p:first-child::first-letter{font-family:var(--mast);font-weight:900;float:left;font-size:3.6em;line-height:.82;padding:4px 6px 0 0}
+.chiffres{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-family:var(--head);font-size:13.5px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px 0;font-variant-numeric:lining-nums tabular-nums}
+.chiffres b{font-weight:700}
+
+.suites{display:flex;flex-direction:column}
+.suites > .label{font-family:var(--head);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--gray);padding:4px 0 2px}
+details{border-bottom:1px dotted var(--gray)}
+summary{list-style:none;cursor:pointer;padding:10px 30px 10px 0;position:relative;font-family:var(--head);font-size:16.5px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"☞ ";color:var(--red)}
+summary::after{content:"Lire";position:absolute;right:0;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+details[open] summary::after{content:"Clore"}
+summary:hover{color:var(--red)}
+.ans{padding:2px 0 14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;background:linear-gradient(var(--fold),var(--fold)) no-repeat left/3px 100%;padding-left:14px}
+.ans p{margin:0 0 .6em}
+.ans p:last-child{margin:0}
+
+.breves ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 26px}
+.breves li{font-size:15px;text-align:justify}
+.breves li b{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+/* Planches : cartes et graphiques en noir et blanc */
+.planche{margin:4px 0;display:flex;flex-direction:column;gap:6px}
+.planche svg{width:100%;height:auto;max-width:100%;display:block}
+.planche text{font-family:var(--head);fill:var(--ink)}
+.planche .country{font-size:15px;letter-spacing:.25em}
+.planche .small{font-size:11px}
+.planche .sea{font-style:italic;font-size:13px;fill:var(--gray)}
+.planche .place{font-size:11px}
+.planche .strait{font-size:12px;font-style:italic;fill:var(--red)}
+.planche .scale text{font-size:10px}
+.planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
+.planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
+.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
+.epigraphe p{margin:0 0 6px}
+.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
+.epigraphe cite i{font-style:italic;letter-spacing:0}
+.fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
+
+footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
+footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0;text-align:center}
+footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
+footer p{margin:0;font-style:italic;text-align:center}
+
+/* Le temps qu'il fera, agenda, éphéméride, mot du jour */
+.meteo{border-bottom:1px solid var(--rule);padding:4px 0 8px;font-family:var(--head);font-size:13.5px;line-height:1.5;text-align:center}
+.meteo .t{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.meteo p{margin:0}
+.meteo .vig{font-style:italic;color:var(--gray);font-size:12.5px}
+.agenda{border:1px solid var(--hair);padding:12px 16px}
+.agenda h2,.ephemeride h2,.mot h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}
+.agenda ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
+.agenda li{display:grid;grid-template-columns:7.2em 1fr;gap:10px;border-bottom:1px dotted var(--hair);padding-bottom:4px}
+.agenda li:last-child{border-bottom:0}
+.agenda .h{font-family:var(--head);font-weight:700;font-variant-numeric:lining-nums tabular-nums}
+.agenda .note{font-family:var(--head);font-style:italic;font-size:12.5px;color:var(--gray);margin:8px 0 0;text-align:center}
+.ephemeride,.mot{border-top:1px solid var(--rule);padding-top:14px}
+.ephemeride ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:justify}
+.ephemeride li b{font-family:var(--head);font-size:15px;margin-right:6px}
+.mot .vedette{text-align:center;margin:0}
+.mot .vedette b{font-family:var(--mast);font-weight:900;font-size:clamp(26px,6vw,38px);letter-spacing:.02em}
+.mot .nature{display:block;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px}
+.mot p{margin:0 0 .5em;text-align:justify}
+.mot .ex{font-style:italic;text-align:center}
+@media (max-width:560px){.agenda li{grid-template-columns:5.6em 1fr}}
+/* Feuilleton : « rez-de-chaussée » du journal, séparé par un double filet, texte un peu plus petit */
+.feuilleton{border-top:4px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.feuilleton .rubric{color:var(--ink)}
+.feuilleton h2{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.15;margin:0;text-align:center;text-wrap:balance}
+.feuilleton .fe-meta{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:14px;margin:0}
+.feuilleton .fe-resume{font-family:var(--head);font-size:14.5px;font-style:italic;color:var(--gray);border:1px solid var(--hair);padding:8px 12px;margin:0;text-align:justify}
+.feuilleton .fe-texte{font-size:15.5px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.feuilleton .fe-texte p{margin:0 0 .65em;text-indent:1.4em}
+.feuilleton .fe-texte .fe-chap{font-family:var(--head);font-weight:700;text-align:center;text-indent:0;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:1em 0 .2em}
+.feuilleton .fe-texte .fe-titre{font-family:var(--head);text-align:center;text-indent:0;font-size:15px;margin:0 0 .5em}
+.feuilleton .fe-texte .fe-sommaire{font-family:var(--head);font-style:italic;font-size:13.5px;color:var(--gray);text-indent:0;margin:0 0 .8em}
+@media (min-width:760px){.feuilleton .fe-texte{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.feuilleton .fe-suite{font-family:var(--head);font-style:italic;text-align:right;margin:0}
+
+</style>
+
+<style>
+/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
+.cote{grid-template-columns:auto repeat(6,1fr)}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
+.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
+.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
+.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
+.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
+.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.agenda li{display:block;font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
+.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
+.corbeille .text{columns:auto}
+</style>
+
+
+</head>
+<body>
+<nav class="nb-nav" aria-label="Éditions"><a href="../index.html">Le matin</a><a href="../soir.html" aria-current="page">Le soir</a><a href="../archives/">Archives</a></nav>
+<div class="sheet">
+<header class="mast">
+  <div class="mast-row">
+    <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
+    <h1>Novabene</h1>
+    <div class="ear r"><b>N° 9</b>Lecture : dix minutes</div>
+  </div>
+  <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
+  <div class="dateline"><span>Lundi 16 novembre 2026</span><span>Sainte Marguerite</span><span>Parution de dix-neuf heures</span></div>
+  <div class="cote" aria-label="Cote du soir">
+    <span class="t">Cote du soir</span>
+    <div class="v"><span class="n">CAC 40</span><span class="p">8 352</span><span class="d dn">▼ 0,20 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">≈ 3 864 $</span><span class="d dn">▼ ≈ 0,5 %</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">≈ 96,3 $</span><span class="d up">▲ ≈ 0,5 %</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">≈ 65 240 $</span><span class="d up">▲ 0,7 %</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+  </div>
+  <p class="cote-note">CAC 40 : clôture de lundi, contre 8 368,91 points vendredi, selon Zonebourse et BFM Bourse. Or : cours au comptant affiché par Kitco en matinée, comparé à la clôture de vendredi (3 883,40 $) ; les relevés du jour divergent. Brent : cours en séance publié par FinanceFeeds, comparé au règlement de vendredi (95,84 $), non un cours de clôture ; Fortune donnait 96,68 $ à 13 h 30, heure de Paris. Bitcoin : CoinDesk à 15 h 46, heure de Paris, variation sur vingt-quatre heures ; Fortune relevait 64 013 $ à 13 h 30. Airbus et euro/dollar : aucune clôture n'a pu être vérifiée ce soir.</p>
+</header>
+
+<section class="meteo" aria-labelledby="met">
+  <h2 id="met">Le temps de demain à Grenade</h2>
+  <p><b>Mardi 17.</b> Ciel chargé et temps incertain : neuf degrés au lever du jour, seize l'après-midi. Les prévisions se contredisent sur la pluie, Franceinfo Météo n'en annonçant point quand The Weather Channel prévoit des averses matinales, avec sept chances sur dix, sous un vent d'ouest-sud-ouest. Prévoir le parapluie. Soleil levé vers 7 h 50, couché vers 17 h 27.</p>
+  <p class="src">D'après Franceinfo Météo et The Weather Channel pour la commune (31330) ; l'API Open-Meteo n'était pas joignable depuis la rédaction, et les heures du soleil sont déduites de celles de lundi. Aucune vigilance n'est signalée pour la Haute-Garonne par les sources consultées ; Météo Paris annonce le retour d'un flux océanique perturbé dans la semaine, avec un risque de coup de vent vers jeudi, encore incertain.</p>
+</section>
+
+<div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
+
+<section class="sommaire" aria-labelledby="som">
+  <h2 id="som">Ce qu'il faut retenir de la journée</h2>
+  <ol>
+    <li>Faute de consensus, la Francophonie a reporté d'un an l'élection de son secrétaire général ; Mme Louise Mushikiwabo reste en fonctions jusqu'en novembre 2027.</li>
+    <li>Les ministres européens des Affaires étrangères ont arrêté de nouvelles sanctions visant la « flotte fantôme » russe, ses banques et ses acheteurs.</li>
+    <li>À la veille de la grève de la fonction publique, des communes annoncent la fermeture de cantines, à Marseille, Rennes ou Quimper.</li>
+    <li>Le Qatar, médiateur entre Washington et Téhéran, juge « dangereuse » l'escalade iranienne contre Bahreïn, qui a convoqué un diplomate iranien.</li>
+    <li>Le CAC 40 a cédé 0,20 %, à 8 352 points, mettant fin à cinq séances de hausse, dans l'attente des comptes de Nvidia.</li>
+  </ol>
+</section>
+
+<!-- 1 -->
+<article class="lead">
+  <div class="rubric">La question sociale</div>
+  <h2>Veille de grève : les cantines fermeront les premières</h2>
+  <p class="decks"><span>Huit syndicats unis pour le dégel du point</span><span>Le privé appelé à se joindre au mouvement</span><span>Les mairies organisent l'accueil des enfants</span></p>
+  <div class="text">
+    <p>L'annonce faite dimanche par M. David Amiel, une revalorisation réservée aux agents les moins payés, n'a pas désarmé le front syndical. Les huit organisations de la fonction publique, CFDT et FO comprises, maintiennent leur appel à cesser le travail mardi pour réclamer le dégel du point d'indice, et la CGT, l'Unsa, la FSU et Solidaires y convient aussi les salariés du privé, recensent les sites MétéoManif et C'est la grève. Aucun pronostic national de participation n'avait été publié ce soir, pas plus qu'un taux de grévistes attendu dans les écoles.</p>
+    <p>C'est donc dans les communes que la journée se dessine. À Marseille, les cantines des écoles maternelles et élémentaires seront closes, indique France 3 Provence-Alpes ; à Quimper, la restauration et les garderies seront perturbées dans plusieurs écoles, selon Ouest-France ; à Rennes, une vingtaine de cantines fermeront et vingt-cinq écoles passeront au pique-nique. La loi oblige la commune à organiser un service d'accueil dès lors qu'un quart au moins des enseignants d'une école se déclarent grévistes : les parents sont invités à se renseigner auprès de leur mairie, première informée.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi le geste de dimanche n'a-t-il pas suffi ?</summary><div class="ans">
+      <p>Parce qu'il ne touche qu'une partie des agents. La revalorisation annoncée par M. Amiel accompagne la hausse du Smic au 1<sup>er</sup> décembre et vise le bas des grilles, pour éviter que les premiers échelons ne passent sous le salaire minimum. Les syndicats réclament au contraire une hausse générale du point, seule à profiter à l'ensemble des quelque 5,8 millions d'agents ; le gouvernement objecte qu'un point de hausse coûte 2,4 milliards d'euros, quand il vise un déficit ramené à 5 % du PIB en 2027. Le prochain rendez-vous salarial est fixé au 11 décembre.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 2 -->
+<article>
+  <div class="rubric">La France au-dehors</div>
+  <h2>À Phnom Penh, la Francophonie ajourne son choix</h2>
+  <p class="decks"><span>L'élection du secrétaire général reportée d'un an</span><span>Mme Mushikiwabo prolongée jusqu'en 2027</span><span>Le différend entre Kinshasa et Kigali a pesé</span></p>
+  <div class="text">
+    <p>Le vote attendu ce lundi n'a pas eu lieu. Au terme de négociations que l'agence turque Anadolu dit « tendues », les chefs d'État et de gouvernement réunis au XX<sup>e</sup> Sommet de la Francophonie ont renoncé à élire le secrétaire général pour la période 2027-2030, faute de consensus, et reporté l'élection d'un an. La sortante, la Rwandaise Mme Louise Mushikiwabo, demeure en fonctions jusqu'en novembre 2027. Les trois autres prétendants, le Roumain M. Dacian Cioloș, la Congolaise Mme Juliana Lumumba et la Mauritanienne Mme Coumba Bâ, pourront se représenter, rapportent France 24 et le site FPOP. Le différend qui oppose la République démocratique du Congo au Rwanda, à propos de l'est congolais, planait sur le scrutin depuis l'ouverture du sommet.</p>
+    <p>Les lectures divergent sur l'avenir de la sortante : selon certaines sources, le compromis lui interdit de briguer un nouveau mandat ; selon d'autres, elle aurait elle-même renoncé, tandis qu'une troisième version prête à Kinshasa d'avoir bloqué sa reconduction. M. Emmanuel Macron a salué un « compromis » et l'« esprit de responsabilité » des membres ; le ministre congolais des Affaires étrangères y voit un arrangement « sage » qui préserve l'unité de l'organisation. La visite d'État au Cambodge s'est soldée par la signature de vingt-neuf accords, selon Franceinfo, au service d'un « partenariat renouvelé ».</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi le Rwanda et la RDC s'opposent-ils ?</summary><div class="ans">
+      <p>Kinshasa accuse depuis des années Kigali de soutenir la rébellion du M23 dans les provinces orientales du Congo, riches en minerais, ce que le Rwanda conteste en invoquant la menace de groupes armés hostiles réfugiés sur le sol congolais. Dans ce contexte, la candidature de Mme Lumumba face à une Rwandaise transformait l'élection en épreuve de force entre les deux capitales ; le report évite un vote qui aurait divisé les membres africains, majoritaires dans l'organisation.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 3 -->
+<article>
+  <div class="rubric">L'Europe &amp; la Russie</div>
+  <h2>Bruxelles resserre l'étau sur la « flotte fantôme »</h2>
+  <p class="decks"><span>Banques, acheteurs et navires inscrits sur les listes</span><span>Un pétrolier sous faux pavillon arraisonné en Méditerranée</span><span>Paris réunira une conférence le 4 décembre</span></p>
+  <div class="text">
+    <p>Réunis à Bruxelles, les ministres des Affaires étrangères de l'Union ont approuvé de nouvelles sanctions contre l'appareil qui permet à Moscou d'exporter son pétrole en dépit du plafonnement des prix : banques, acheteurs et sociétés de soutien à la « flotte fantôme », ces navires vétustes aux pavillons de complaisance. Le décompte varie selon les sources, 113 inscriptions pour l'une, 137 personnes et entités pour EUobserver, cité par le site azerbaïdjanais 1news ; la radiotélévision publique irlandaise RTÉ relève qu'un journaliste irlandais figure parmi les personnes sanctionnées pour propagande présumée. La liste officielle du Conseil n'avait pas été consultée ce soir.</p>
+    <p>La Haute représentante, Mme Kaja Kallas, a fait état d'une opération menée le 13 novembre : des forces de l'opération européenne Irini ont arraisonné en Méditerranée le pétrolier <i>Midag</i>, soupçonné d'appartenir à cette flotte, et constaté qu'il naviguait sous un faux pavillon, en vertu de l'article 110 de la convention des Nations unies sur le droit de la mer, rapportent Newsweek et The Maritime Executive. Le ministre français, M. Jean-Noël Barrot, a annoncé qu'il accueillerait à Paris, le 4 décembre, une conférence internationale sur le sujet, organisée avec le Royaume-Uni. Moscou dénonce de longue date ces mesures comme illégales ; aucune réaction russe à l'arraisonnement n'a été trouvée dans les sources consultées.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Qu'autorise l'article 110 ?</summary><div class="ans">
+      <p>La convention de Montego Bay, de 1982, consacre la liberté de la haute mer, mais son article 110 ménage un droit de visite : un navire de guerre peut arraisonner un bâtiment étranger s'il a de sérieuses raisons de le soupçonner, entre autres, d'être dépourvu de nationalité ou d'arborer un pavillon qui n'est pas le sien. Un navire sans pavillon valable perd la protection d'un État : c'est cette faille que les Européens exploitent désormais contre des pétroliers immatriculés sous des registres douteux.</p>
+    </div></details>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<!-- 4 -->
+<article>
+  <div class="rubric">Affaires d'Orient</div>
+  <h2>Bahreïn : le Golfe fait bloc, Téhéran garde la porte entrouverte</h2>
+  <p class="decks"><span>Le Qatar dénonce une « escalade dangereuse »</span><span>Manama convoque un diplomate iranien</span><span>L'Iran dit la voie d'un accord toujours ouverte</span></p>
+  <div class="text">
+    <p>Au lendemain de l'attaque revendiquée par les Gardiens de la révolution contre un radar américain de la base de Riffa, les réactions se sont succédé. Le Qatar, médiateur entre Washington et Téhéran, a qualifié de « dangereuse escalade » les tirs contre son voisin, et le secrétaire général du Conseil de coopération du Golfe y voit un « défi flagrant » aux efforts de paix régionaux, rapporte le quotidien émirien The National. Bahreïn a convoqué un diplomate iranien, selon Gulf News, et réclame l'application pleine et entière de la résolution 2817 du Conseil de sécurité, qui condamnait les attaques iraniennes contre les pays de la région.</p>
+    <p>Téhéran, de son côté, souffle le chaud et le froid : tout en assumant ses frappes, présentées comme une riposte à l'« agression » américaine, la République islamique a répété que la voie d'un accord avec les États-Unis restait ouverte, note l'agence américaine Bloomberg. Les versions demeurent inconciliables sur l'issue de l'attaque : les Gardiens revendiquent un coup au but, Manama assure avoir détruit les engins avant l'impact, rappelle Al Jazeera. Aucune déclaration de M. Donald Trump sur l'épisode n'a été relevée ce soir ; la Corbeille, elle, l'a entendu, le Brent gagnant quelque quarante cents.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<article class="corbeille">
+  <div class="rubric">La Corbeille</div>
+  <h2>Prudence avant Nvidia</h2>
+  <div class="text">
+    <p>Après cinq séances de hausse d'affilée, Paris a marqué le pas : le CAC 40 a cédé 0,20 %, à 8 352 points, finissant sur son plus bas du jour, selon Zonebourse et BFM Bourse. Francfort a reculé de 0,41 %, Londres est restée quasi inchangée. Les valeurs de semi-conducteurs ont fait les frais de l'attente, STMicroelectronics perdant 2,1 % et Soitec 3,3 %, quand Thales gagnait 1 % et Exosens 1,2 % ; les commentateurs attribuent cette réserve aux deux rendez-vous de la semaine pour l'intelligence artificielle, les comptes de Nvidia mardi soir et l'introduction en Bourse d'Anthropic, attendue jeudi au Nasdaq. Aucun chiffre fiable de l'ouverture new-yorkaise n'a pu être relevé. Sur les matières premières, le Brent s'est raffermi vers 96 dollars après l'attaque contre Bahreïn, tandis que l'or reculait sous 3 870 dollars l'once. Le bitcoin, tombé vers 62 000 dollars ce week-end, a regagné les abords de 65 000 dollars ; la plateforme KuCoin impute la faiblesse des actifs sans rendement à la perspective d'un resserrement monétaire américain, le rendement du Trésor à dix ans avoisinant 5,15 %, et le site Cryptonomist relève 2,1 milliards de dollars de retraits des fonds indiciels de bitcoin depuis le début du mois.</p>
+  </div>
+  <div class="chiffres"><span>CAC 40 : <b>8 352</b> (−0,20 %)</span><span>Francfort : <b>−0,41 %</b></span><span>STMicroelectronics : <b>−2,1 %</b></span><span>Thales : <b>+1 %</b></span></div>
+</article>
+
+<section class="agenda sommaire" aria-labelledby="dem">
+  <h2 id="dem">Demain</h2>
+  <ul>
+    <li><b>Mardi 17, journée.</b> Grève dans les trois versants de la fonction publique, doublée d'une journée d'action interprofessionnelle de la CGT, de l'Unsa, de la FSU et de Solidaires.</li>
+    <li><b>Mardi 17, journée.</b> À Manille, sommet spécial entre l'Association des nations de l'Asie du Sud-Est et les États-Unis, avec M. Donald Trump, avant le forum Asie-Pacifique de Shenzhen.</li>
+    <li><b>Mardi 17, 14 h 30.</b> Ventes au détail américaines d'octobre ; à Paris, comptes d'Alstom et journée investisseurs de Dassault Systèmes.</li>
+    <li><b>Mardi 17, 15 h.</b> Questions au gouvernement au Palais-Bourbon, au jour de la grève.</li>
+    <li><b>Mardi 17, 23 h.</b> Résultats trimestriels de Nvidia, publiés après la clôture de Wall Street.</li>
+    <li><b>Mercredi 18.</b> Vote solennel du Luxembourg sur le financement de la Sécurité sociale pour 2027 ; à 20 heures, compte rendu de la réunion d'octobre de la Réserve fédérale.</li>
+  </ul>
+</section>
+
+<footer>
+  <h2>Sources consultées</h2>
+  <ul>
+    <li>Grève : <a href="https://meteomanif.fr/dossier/greve-fonction-publique-17-novembre-2026">MétéoManif</a>, <a href="https://www.cestlagreve.fr/greve/fonction-publique-novembre-2026/">C'est la grève</a>, <a href="https://france3-regions.franceinfo.fr/provence-alpes-cote-d-azur/bouches-du-rhone/greve-du-17-novembre-manifestations-transports-ecoles-ce-que-l-on-sait-sur-la-journee-a-marseille-avignon-et-en-provence-alpes-3450345.html">France 3 Provence-Alpes</a> (service public), <a href="https://www.ouest-france.fr/economie/greve/greve-du-mardi-17-novembre-2026-les-cantines-et-garderies-perturbees-dans-les-ecoles-de-quimper-e1c451b8-e1c0-11f1-9a29-f4bab172af08">Ouest-France</a> (centre), <a href="https://bulletindescommunes.net/greve-du-17-novembre-communes/">Bulletin des communes</a>, <a href="https://www.actu-alt-plus.com/idees-solutions/greve-ecole-17-novembre-2026-qui-accueille-enfant/42125/">Actu Alt Plus</a></li>
+    <li>Francophonie : <a href="https://www.france24.com/fr/france/20261116-francophonie-oif-vote-%C3%A9lection-secr%C3%A9taire-g%C3%A9n%C3%A9ral-louise-mushikiwabo-rwanda-rd-congo-juliana-lumumba-dacian-ciolos-coumba-ba">France 24</a> (service public), <a href="https://www.aa.com.tr/fr/art-et-culture/francophonie-l%C3%A9lection-du-secr%C3%A9taire-g%C3%A9n%C3%A9ral-report%C3%A9e-dun-an-apr%C3%A8s-des-n%C3%A9gociations-tendues-%C3%A0-phnom-penh/4126299">Anadolu</a> (Turquie, agence d'État), <a href="https://www.fpop.media/francophonie-lelection-du-secretaire-general-repoussee-mushikiwabo-prolongee/">FPOP</a>, <a href="https://www.237online.com/francophonie-election-secretaire-general-reportee/">237online</a> (Cameroun), <a href="https://fr.madar.mr/actualites/mauritanie/mauritania-francophonie-summit-phnom-penh-coumba-ba-oif-secretary-general-race-main-20261115">Madar</a> (Mauritanie) ; accords franco-cambodgiens d'après le fil de <a href="https://www.franceinfo.fr/replay-jt/franceinfo/le-fil-info/le-fil-info-matin-du-lundi-16-novembre-2026_8255716.html">Franceinfo</a>.</li>
+    <li>Sanctions : <a href="https://www.rte.ie/news/europe/2026/1116/1599321-eu-ukraine-politics/">RTÉ</a> (Irlande, service public), <a href="https://www.newsweek.com/eu-sends-warning-to-russia-as-it-boards-shadow-fleet-tanker-12717169">Newsweek</a> (États-Unis), <a href="https://maritime-executive.com/article/eu-forces-board-and-inspect-false-flag-tanker-in-the-mediterranean">The Maritime Executive</a> (États-Unis, presse spécialisée), <a href="https://1news.az/en/news/20261116122011915-EU-plans-sanctions-against-nearly-137-individuals-and-entities-linked-to-Russia">1news</a> (Azerbaïdjan, d'après EUobserver), <a href="https://www.yahoo.com/news/world/articles/france-uk-hold-conference-fight-143542763.html">Yahoo News</a> (conférence de Paris), <a href="https://www.eeas.europa.eu/eeas/foreign-affairs-council-press-conference-high-representative-kaja-kallas_en">SEAE</a> (officiel)</li>
+    <li>Golfe : <a href="https://www.thenationalnews.com/news/gulf/2026/11/16/iran-attacks-bahrain-in-blatant-challenge-to-peace-push/">The National</a> (Émirats arabes unis), <a href="https://www.bloomberg.com/news/articles/2026-11-15/iran-strikes-bahrain-base-repeats-path-to-us-deal-remains-open">Bloomberg</a> (États-Unis, libéral), <a href="https://gulfnews.com/world/gulf/bahrain/bahrain-summons-iranian-diplomat-1.1553158">Gulf News</a> (Émirats arabes unis), <a href="https://www.aljazeera.com/news/2026/11/15/iran-says-it-targets-us-radar-in-bahrain-what-do-we-know">Al Jazeera</a> (Qatar)</li>
+    <li>Corbeille et Cote : <a href="https://www.zonebourse.com/actualite-bourse/fin-de-serie-pour-le-cac-40-les-marches-scrutent-nvidia-et-anthropic-ce785edfda81f626">Zonebourse</a>, <a href="https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-avant-deux-rendez-vous-cruciaux-pour-l-intelligence-artificielle-le-cac-40-joue-la-prudence-1173850.html">BFM Bourse</a> (libéral), <a href="https://www.mediaterranee.com/1612026-cac-40-paris-termine-8-352-points-fin-de-cinq-hausses-daffilee.html">Mediaterranee</a>, <a href="https://www.kitco.com/charts/gold">Kitco</a> (Canada), <a href="https://financefeeds.com/brent-crude-oil-price-96-28-monday-iran-bahrain-strike-bull-98-bear-91">FinanceFeeds</a>, <a href="https://fortune.com/article/price-of-oil-11-16-2026">Fortune</a> (États-Unis), <a href="https://www.coindesk.com/price/bitcoin">CoinDesk</a>, <a href="https://fortune.com/article/price-of-bitcoin-11-16-2026/">Fortune</a>, <a href="https://en.cryptonomist.ch/2026/11/16/bitcoin-price-faces-1b-november-etf-outflows-november-16-2026/">Cryptonomist</a> (Suisse), <a href="https://www.kucoin.com/news/articles/crypto-daily-market-report-november-16-2026">KuCoin</a></li>
+    <li>Agenda : calendrier hebdomadaire de Boursorama et agenda parlementaire repris des éditions de dimanche soir et de lundi matin de Novabene ; <a href="https://www.khaleejtimes.com/world/asia/us-pres-trump-to-visit-philippines-in-november-for-asean-summit">Khaleej Times</a> (Émirats arabes unis) et <a href="https://mothership.sg/2026/10/trump-asean-summit/">Mothership</a> (Singapour) pour le sommet de Manille.</li>
+    <li>Météo : <a href="https://meteo.franceinfo.fr/previsions-meteo-france/grenade/31330">Franceinfo Météo</a>, <a href="https://weather.com/fr-FR/temps/10jours/l/FRXX1309:1:FR">The Weather Channel</a> et <a href="https://www.meteo-paris.com/actualites/une-tempete-menace-la-france-en-milieu-de-semaine-prochaine">Météo Paris</a>, pour Grenade (31330).</li>
+  </ul>
+  <p>La lecture directe des pages était impossible depuis la rédaction ce soir : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'est parvenue dans la journée ; Le Figaro, Le Monde, Les Échos, L'Opinion, Libération, La Croix, CNews, Le JDD et L'Infiltré manquent donc à l'analyse, et seul Ouest-France est relevé, pour des faits. Rédigé le lundi 16 novembre 2026, entre dix-huit heures quarante-cinq et dix-neuf heures vingt.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('toggleAll');
+  btn.addEventListener('click',function(){
+    var open=btn.dataset.state!=='open';
+    document.querySelectorAll('details').forEach(function(d){d.open=open});
+    btn.dataset.state=open?'open':'closed';
+    btn.textContent=open?'Refermer toutes les suites':'Ouvrir toutes les suites';
+  });
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){});}
+  // En mode application, iOS reprend la page telle qu'on l'a laissée :
+  // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
+  var loaded=Date.now();
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
+  });
+})();
+</script>
+</body>
+</html>
