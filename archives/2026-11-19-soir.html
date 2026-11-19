@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Novabene">
+<meta name="theme-color" content="#EEEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.nb-nav{display:flex;justify-content:center;gap:4px 22px;flex-wrap:wrap;padding:10px 0 2px;font-family:"Old Standard TT","Didot",Georgia,serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.nb-nav a{color:var(--gray,#5E584D);text-decoration:none;padding:6px 2px;border-bottom:1px solid transparent}
+.nb-nav a[aria-current="page"]{color:var(--ink,#1B1915);border-bottom-color:var(--ink,#1B1915)}
+.nb-nav a:focus-visible{outline:2px solid var(--red,#7A2418);outline-offset:3px}
+</style>
+<title>Novabene du soir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout : quotidien du matin début de siècle — manchette à oreilles, filets doubles, titres centrés à sous-titres en cascade, texte justifié en colonnes sur grand écran, « suites » dépliables */
+:root{
+  --paper:#EEEAE0; --ink:#1B1915; --gray:#5E584D; --rule:#1B1915; --hair:#BDB5A4;
+  --red:#7A2418; --fold:#E4DFD2;
+  --mast:"Playfair Display","Didot","Bodoni 72",Georgia,serif;
+  --head:"Old Standard TT","Didot",Georgia,serif;
+  --body:"Libre Caslon Text","Caslon",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:860px;margin:0 auto;padding-block:22px 60px;display:flex;flex-direction:column;gap:34px}
+
+/* Manchette */
+.mast{display:flex;flex-direction:column;gap:8px}
+.mast-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.ear{border:1px solid var(--rule);padding:6px 8px;font-family:var(--head);font-size:11px;line-height:1.35;text-align:center;max-width:130px}
+.ear b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ear.r{justify-self:end}
+.mast h1{font-family:var(--mast);font-weight:900;font-size:clamp(30px,9vw,82px);line-height:.95;margin:0;text-align:center;letter-spacing:.005em;white-space:nowrap}
+.motto{text-align:center;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px;margin:0}
+.dateline{border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:5px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;
+  font-family:var(--head);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:560px){.mast-row{grid-template-columns:1fr}.ear{display:none}}
+
+/* Cote du matin */
+.cote{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch;border-bottom:1px solid var(--rule);font-family:var(--head);font-variant-numeric:lining-nums tabular-nums}
+.cote .t{display:flex;align-items:center;padding:6px 12px 6px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule)}
+.cote div.v{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--hair);text-align:center;gap:1px}
+.cote div.v:last-child{border-right:0}
+.cote .n{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.cote .p{font-size:15px;font-weight:700}
+.cote .d{font-size:12px}
+.cote .up{color:var(--ink)}
+.cote .dn{color:var(--red)}
+.cote-note{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center;margin:-2px 0 0}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote .t{grid-column:1/-1;justify-content:center;border-right:0;border-bottom:1px solid var(--hair);padding:5px 0}.cote div.v:nth-child(3){border-right:0}.cote div.v:nth-child(2),.cote div.v:nth-child(3){border-bottom:1px solid var(--hair)}}
+
+.howto{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;font-family:var(--head);font-size:13px;color:var(--gray);font-style:italic}
+button.toggle{font-family:var(--head);font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--ink);
+  border:1px solid var(--rule);padding:6px 14px;cursor:pointer}
+button.toggle:hover{background:var(--fold)}
+button.toggle:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Sommaire */
+.sommaire{border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:3px;padding:16px 20px;margin:4px}
+.sommaire h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 10px}
+.sommaire ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
+.sommaire li::marker{font-family:var(--head);font-weight:700}
+
+/* Articles */
+article{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px}
+.rubric{font-family:var(--head);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--red)}
+article h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,5vw,36px);line-height:1.1;margin:0;text-align:center;text-wrap:balance}
+.decks{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:15px;margin:0;text-wrap:balance}
+.decks span+span::before{content:" — "}
+.text{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.text p{margin:0 0 .7em;text-indent:1.4em}
+.text p:first-child{text-indent:0}
+@media (min-width:760px){.text{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.lead .text p:first-child::first-letter{font-family:var(--mast);font-weight:900;float:left;font-size:3.6em;line-height:.82;padding:4px 6px 0 0}
+.chiffres{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-family:var(--head);font-size:13.5px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px 0;font-variant-numeric:lining-nums tabular-nums}
+.chiffres b{font-weight:700}
+
+.suites{display:flex;flex-direction:column}
+.suites > .label{font-family:var(--head);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--gray);padding:4px 0 2px}
+details{border-bottom:1px dotted var(--gray)}
+summary{list-style:none;cursor:pointer;padding:10px 30px 10px 0;position:relative;font-family:var(--head);font-size:16.5px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"☞ ";color:var(--red)}
+summary::after{content:"Lire";position:absolute;right:0;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+details[open] summary::after{content:"Clore"}
+summary:hover{color:var(--red)}
+.ans{padding:2px 0 14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;background:linear-gradient(var(--fold),var(--fold)) no-repeat left/3px 100%;padding-left:14px}
+.ans p{margin:0 0 .6em}
+.ans p:last-child{margin:0}
+
+.breves ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 26px}
+.breves li{font-size:15px;text-align:justify}
+.breves li b{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+/* Planches : cartes et graphiques en noir et blanc */
+.planche{margin:4px 0;display:flex;flex-direction:column;gap:6px}
+.planche svg{width:100%;height:auto;max-width:100%;display:block}
+.planche text{font-family:var(--head);fill:var(--ink)}
+.planche .country{font-size:15px;letter-spacing:.25em}
+.planche .small{font-size:11px}
+.planche .sea{font-style:italic;font-size:13px;fill:var(--gray)}
+.planche .place{font-size:11px}
+.planche .strait{font-size:12px;font-style:italic;fill:var(--red)}
+.planche .scale text{font-size:10px}
+.planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
+.planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
+.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
+.epigraphe p{margin:0 0 6px}
+.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
+.epigraphe cite i{font-style:italic;letter-spacing:0}
+.fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
+
+footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
+footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0;text-align:center}
+footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
+footer p{margin:0;font-style:italic;text-align:center}
+
+/* Le temps qu'il fera, agenda, éphéméride, mot du jour */
+.meteo{border-bottom:1px solid var(--rule);padding:4px 0 8px;font-family:var(--head);font-size:13.5px;line-height:1.5;text-align:center}
+.meteo .t{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.meteo p{margin:0}
+.meteo .vig{font-style:italic;color:var(--gray);font-size:12.5px}
+.agenda{border:1px solid var(--hair);padding:12px 16px}
+.agenda h2,.ephemeride h2,.mot h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}
+.agenda ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
+.agenda li{display:grid;grid-template-columns:7.2em 1fr;gap:10px;border-bottom:1px dotted var(--hair);padding-bottom:4px}
+.agenda li:last-child{border-bottom:0}
+.agenda .h{font-family:var(--head);font-weight:700;font-variant-numeric:lining-nums tabular-nums}
+.agenda .note{font-family:var(--head);font-style:italic;font-size:12.5px;color:var(--gray);margin:8px 0 0;text-align:center}
+.ephemeride,.mot{border-top:1px solid var(--rule);padding-top:14px}
+.ephemeride ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:justify}
+.ephemeride li b{font-family:var(--head);font-size:15px;margin-right:6px}
+.mot .vedette{text-align:center;margin:0}
+.mot .vedette b{font-family:var(--mast);font-weight:900;font-size:clamp(26px,6vw,38px);letter-spacing:.02em}
+.mot .nature{display:block;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px}
+.mot p{margin:0 0 .5em;text-align:justify}
+.mot .ex{font-style:italic;text-align:center}
+@media (max-width:560px){.agenda li{grid-template-columns:5.6em 1fr}}
+/* Feuilleton : « rez-de-chaussée » du journal, séparé par un double filet, texte un peu plus petit */
+.feuilleton{border-top:4px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.feuilleton .rubric{color:var(--ink)}
+.feuilleton h2{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.15;margin:0;text-align:center;text-wrap:balance}
+.feuilleton .fe-meta{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:14px;margin:0}
+.feuilleton .fe-resume{font-family:var(--head);font-size:14.5px;font-style:italic;color:var(--gray);border:1px solid var(--hair);padding:8px 12px;margin:0;text-align:justify}
+.feuilleton .fe-texte{font-size:15.5px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.feuilleton .fe-texte p{margin:0 0 .65em;text-indent:1.4em}
+.feuilleton .fe-texte .fe-chap{font-family:var(--head);font-weight:700;text-align:center;text-indent:0;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:1em 0 .2em}
+.feuilleton .fe-texte .fe-titre{font-family:var(--head);text-align:center;text-indent:0;font-size:15px;margin:0 0 .5em}
+.feuilleton .fe-texte .fe-sommaire{font-family:var(--head);font-style:italic;font-size:13.5px;color:var(--gray);text-indent:0;margin:0 0 .8em}
+@media (min-width:760px){.feuilleton .fe-texte{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.feuilleton .fe-suite{font-family:var(--head);font-style:italic;text-align:right;margin:0}
+
+</style>
+
+<style>
+/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
+.cote{grid-template-columns:auto repeat(6,1fr)}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
+.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
+.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
+.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
+.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
+.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.agenda li{display:block;font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
+.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
+.corbeille .text{columns:auto}
+</style>
+
+
+</head>
+<body>
+<nav class="nb-nav" aria-label="Éditions"><a href="../index.html">Le matin</a><a href="../soir.html" aria-current="page">Le soir</a><a href="../archives/">Archives</a></nav>
+<div class="sheet">
+<header class="mast">
+  <div class="mast-row">
+    <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
+    <h1>Novabene</h1>
+    <div class="ear r"><b>N° 12</b>Lecture : dix minutes</div>
+  </div>
+  <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
+  <div class="dateline"><span>Jeudi 19 novembre 2026</span><span>Saint Tanguy</span><span>Parution de dix-neuf heures</span></div>
+  <div class="cote" aria-label="Cote du soir">
+    <span class="t">Cote du soir</span>
+    <div class="v"><span class="n">CAC 40</span><span class="p">8 080,74</span><span class="d dn">▼ 0,81 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">≈ 3 730 $</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">≈ 91,9 $</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">≈ 63 650 $</span><span class="d up">▲ ≈ 1,1 %</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">≈ 1,099</span><span class="d up">▲ 0,11 %</span></div>
+  </div>
+  <p class="cote-note">CAC 40 : clôture de jeudi selon Zonebourse et Moneyvox. Airbus : aucun cours de clôture daté du jour n'a pu être relevé. Or au comptant : cours de la séance européenne, après un passage sous 3 700 $ ; pas de variation vérifiée. Brent : cours de l'après-midi selon Arbiterz, à comparer au règlement de mercredi (91,95 $), sans règlement de jeudi connu au bouclage. Bitcoin : relevé de la journée (Mitrade), variation sur 24 heures. Euro/dollar : cours de la journée selon FXStreet. Relevés effectués vers 18 h 50, heure de Paris.</p>
+</header>
+
+<section class="meteo" aria-labelledby="met">
+  <h2 id="met">Le temps de demain à Grenade</h2>
+  <p><b>Vendredi 20.</b> Après les bourrasques de la nuit passée, une journée plus apaisée : ciel en partie nuageux, que perceront des éclaircies. Le thermomètre ira d'une dizaine de degrés au lever du jour à 16 degrés l'après-midi ; aucune pluie notable ni vent fort n'est signalé par les sources consultées. Soleil levé vers 7 h 55, couché vers 17 h 25.</p>
+  <p class="src">Prévisions d'Ouest-France pour Grenade (11 à 16 degrés) et de Franceinfo Météo pour Toulouse (9 à 16 degrés, ciel en partie nuageux). L'API Open-Meteo et le site de Météo-France n'étaient pas joignables depuis la rédaction ; la carte de vigilance n'a pu être lue, et les heures du soleil sont estimées d'après celles de jeudi.</p>
+</section>
+
+<div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
+
+<section class="sommaire" aria-labelledby="som">
+  <h2 id="som">Ce qu'il faut retenir de la journée</h2>
+  <ol>
+    <li>À Shenzhen, MM. Trump, Xi et Poutine ont signé une « déclaration de paix » en quatre points qui ne nomme ni l'Ukraine ni l'Iran.</li>
+    <li>À Berlin, la coalition des volontaires s'est réunie dans la foulée pour réclamer une place des Européens dans toute négociation.</li>
+    <li>Introduite à 83 dollars, l'action Anthropic a ouvert à 111,50 dollars au Nasdaq, la plus grosse introduction en Bourse jamais réalisée.</li>
+    <li>La Corbeille a cédé 0,81 %, à 8 080,74 points, son quatrième recul d'affilée.</li>
+    <li>Les retraités ont défilé de Montparnasse aux Invalides ; le Sénat ouvre demain l'examen du budget de l'État.</li>
+  </ol>
+</section>
+
+<!-- 1 -->
+<article class="lead">
+  <div class="rubric">Affaires d'Asie</div>
+  <h2>À Shenzhen, une déclaration de paix qui tait les guerres</h2>
+  <p class="decks"><span>Quatre points sur l'ONU, l'arme nucléaire et l'énergie</span><span>Ni l'Ukraine ni l'Iran ne sont nommés</span><span>M. Trump donne « 12 sur 10 », Kiev demeure sceptique</span></p>
+  <div class="text">
+    <p>La conversation annoncée ce matin a eu lieu, et elle a accouché d'un texte. À l'issue d'une rencontre d'environ quatre-vingts minutes selon Le Temps (Suisse), d'une heure et demie selon Le Grand Continent, MM. Donald Trump, Xi Jinping et Vladimir Poutine ont adopté une « déclaration de paix » en quatre points, diffusée par les médias d'État chinois et par le Kremlin. Elle porte sur la réforme des Nations unies, la réduction des risques nucléaires, la stabilité stratégique et l'approvisionnement énergétique, rapportent le Kyiv Post et CNBC ; la CBC (Canada) relève qu'elle met en garde les instances internationales contre tout abus de leur compétence. Euronews souligne qu'elle ne contient aucune disposition sur la fin de la guerre d'Ukraine, sur un retrait des troupes russes ou sur des garanties pour Kiev, et ne dit mot de l'Iran.</p>
+    <p>Les trois signataires s'en sont dits satisfaits. M. Trump, qui a quitté la Chine dans la soirée selon NBC, a noté la rencontre « 12 » sur une échelle de zéro à dix et qualifié M. Poutine d'ami, selon Fox News ; il avait ouvert la séance en assurant que l'Iran n'aurait pas l'arme atomique, d'après CNBC. M. Xi a parlé, selon le South China Morning Post (Hongkong), d'un entretien « positif, constructif et fructueux ». M. Poutine a jugé les échanges « ouverts » et « très utiles », rapporte la RTS, ajoutant que l'Ukraine avait été abordée lors de son tête-à-tête avec le président américain ; il a reproché à Kiev et aux Européens de ne pas être prêts au compromis. À Kiev, le ministre des Affaires étrangères, M. Andriï Sybiha, a fait valoir qu'une réunion incluant l'Ukraine aurait pu hâter la fin de la guerre. À Paris, M. Jean-Noël Barrot a estimé que les trois dirigeants, en désaccord sur tout, ne pouvaient guère s'accorder sur quoi que ce soit, selon les comptes rendus de la presse internationale. Le Grand Continent juge le texte vague ; d'aucuns, à Moscou, y voient au contraire un nouveau Yalta.</p>
+  </div>
+  <div class="chiffres"><span>Points de la déclaration : <b>4</b></span><span>Durée : <b>80 à 90 min</b> selon les sources</span><span>Mention de l'Ukraine : <b>aucune</b></span></div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Une déclaration sans clauses sur l'Ukraine change-t-elle quelque chose ?</summary><div class="ans">
+      <p>Juridiquement, rien : une déclaration commune n'engage pas comme un traité, et celle-ci ne crée aucune obligation sur le terrain. Politiquement, chacun en tire sa lecture. Le Kremlin met en avant l'image de trois puissances traitant d'égal à égal, et affirme que l'Ukraine a été discutée en aparté ; Kiev et les Européens soulignent au contraire que rien n'a été conclu sans eux, ce qui est précisément ce qu'ils redoutaient. Les négociations proprement dites restent celles qu'ont menées, il y a un peu plus d'une semaine à Abou Dhabi, des délégations ukrainienne, américaine et russe, rappelle le Kyiv Independent.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 2 -->
+<article>
+  <div class="rubric">Les marches de l'Est</div>
+  <h2>À Berlin, les Européens veulent leur chaise à la table</h2>
+  <p class="decks"><span>Dix-huitième réunion de la coalition des volontaires</span><span>Défense antiaérienne et 70 milliards à trouver pour 2027</span><span>Le pont de Crimée de nouveau touché</span></p>
+  <div class="text">
+    <p>La réunion berlinoise annoncée ce matin s'est tenue quelques heures après la photographie de Shenzhen. Accueillie par le chancelier Friedrich Merz et coprésidée par Paris et Londres, c'est la dix-huitième réunion de la coalition des volontaires depuis sa fondation à Paris en février 2025, et la première en présentiel à Berlin, relève Euronews ; le Quai d'Orsay dénombre trente-six pays, d'autres sources davantage. M. Volodymyr Zelensky s'y est entretenu avec MM. Merz et Emmanuel Macron et avec le Premier ministre britannique, puis séparément avec les envoyés américains MM. Steve Witkoff et Jared Kushner, selon le Kyiv Independent. Il a placé en tête de ses priorités la défense antiaérienne, à l'orée d'un hiver où Moscou vise derechef les réseaux électriques et de chauffage, rapporte France 24 ; le besoin de financement de l'Ukraine pour 2027 est évalué à 70 milliards d'euros.</p>
+    <p>L'Élysée a salué la crédibilité d'une force « essentiellement européenne », prête à apporter à Kiev des garanties de sécurité après un cessez-le-feu, et M. Macron devait plaider pour une pleine participation des Européens aux pourparlers, selon l'agence Anadolu (Turquie). Aucune déclaration finale n'était publiée à l'heure du bouclage. Sur le terrain, l'Ukraine a confirmé avoir de nouveau frappé le pont de Crimée avec des missiles Neptune, interrompant le trafic ferroviaire, selon le Kyiv Independent ; un responsable russe parle de la troisième attaque de la semaine, et M. Poutine a promis une riposte depuis Shenzhen.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Qu'est-ce que la « force multinationale » évoquée pour l'Ukraine ?</summary><div class="ans">
+      <p>Les plans de la coalition prévoient une force multinationale pour l'Ukraine, désignée par le sigle MNF-U, qui ne serait déployée qu'après un cessez-le-feu, à la demande du gouvernement ukrainien et à condition d'une cessation crédible des hostilités, selon Euronews. Elle aurait pour objet de dissuader une reprise de l'offensive plutôt que de combattre. Moscou a fait savoir à maintes reprises qu'il tiendrait toute présence militaire occidentale en Ukraine pour inacceptable ; Paris répond qu'il s'agirait d'une force de réassurance, non d'une partie au conflit.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 3 -->
+<article>
+  <div class="rubric">La question sociale</div>
+  <h2>Les retraités ont défilé, le budget gagne le Luxembourg</h2>
+  <p class="decks"><span>Cortège de Montparnasse aux Invalides</span><span>Aucun chiffre de participation au bouclage</span><span>Le projet de loi de finances au Sénat dès 9 h 30</span></p>
+  <div class="text">
+    <p>Le cortège annoncé ce matin s'est ébranlé de la gare Montparnasse vers la place Vauban, à l'appel des neuf organisations de retraités. Les cars et les trains de province avaient convergé vers la capitale : quatre-vingts manifestants venus de Clermont-Ferrand et de ses environs, une soixantaine du Loiret, rapporte France 3. Les organisateurs espéraient trente mille personnes ; ni la préfecture de police ni la CGT n'avaient publié d'estimation à l'heure où nous écrivons. Les manifestants contestent la revalorisation des pensions réservée, dans le projet initial, à celles de moins de 1 260 euros par mois — mesure que le Sénat a supprimée mercredi, mais qui reste soumise à la navette.</p>
+    <p>La partie budgétaire se joue désormais au Luxembourg. Le Sénat ouvre vendredi à 9 h 30 la discussion générale du projet de loi de finances pour 2027, considéré comme rejeté par l'Assemblée, et examinera l'article liminaire l'après-midi ; la première partie l'occupera jusqu'au 28 ou 29 novembre, le vote solennel étant prévu le 9 décembre, selon Public Sénat. La liste des « thèmes prioritaires » d'un compromis, que M. Sébastien Lecornu devait arrêter « dans les prochains jours », n'était pas publiée ce soir. M. David Amiel s'est voulu « très ferme sur le combien », c'est-à-dire le déficit de 5 %, et ouvert sur les moyens, rapportait l'AFP ; les socialistes réclament des concessions avant de renoncer à la censure.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<!-- 4 -->
+<article>
+  <div class="rubric">Affaires d'Amérique</div>
+  <h2>Anthropic s'envole pour ses débuts au Nasdaq</h2>
+  <p class="decks"><span>Ouverture à 111,50 dollars, 34 % au-dessus du prix d'introduction</span><span>Une capitalisation de quelque 2 000 milliards à l'ouverture</span><span>Le titre rend ensuite une partie de son avance</span></p>
+  <div class="text">
+    <p>La première cotation annoncée ce matin s'est fait attendre, puis a dépassé les espérances. Introduite à 83 dollars, l'action Anthropic, sous le symbole ANT, a échangé ses premiers titres vers 11 h 50, heure de New York, soit 17 h 50 à Paris, au cours de 111,50 dollars, en hausse de 34 %, rapportent NBC News et Fortune. Elle a touché 114,99 dollars au plus haut, selon CBS News, avant de refluer : CNN la donnait ensuite à 101,24 dollars, encore 22 % au-dessus du prix d'introduction. L'opération, qui porte sur 980 millions d'actions et quelque 81 milliards de dollars hors surallocation, est la plus importante introduction en Bourse jamais réalisée.</p>
+    <p>Au prix de 83 dollars, la société, éditrice des modèles d'intelligence artificielle Claude, était valorisée environ 1 500 milliards de dollars ; au cours d'ouverture, sa capitalisation approchait 2 000 milliards, selon Fortune et Zonebourse. Les commentateurs y lisent, d'un côté, la vigueur de l'appétit des investisseurs pour l'intelligence artificielle ; de l'autre, Zonebourse observe que l'enthousiasme n'a pas gagné l'ensemble de la cote, le Dow Jones et le S&amp;P 500 passant dans le rouge après une heure et demie d'échanges. On rappellera, par souci de transparence, que Novabene est rédigé avec un modèle de cette société.</p>
+  </div>
+  <div class="chiffres"><span>Prix d'introduction : <b>83 $</b></span><span>Ouverture : <b>111,50 $</b></span><span>Plus haut : <b>114,99 $</b></span><span>Actions offertes : <b>980 millions</b></span></div>
+</article>
+
+<!-- 5 -->
+<article>
+  <div class="rubric">Affaires d'Orient</div>
+  <h2>Dans le Golfe, Doha avertit que les pourparlers vacillent</h2>
+  <p class="decks"><span>Le Qatar appelle à la retenue après l'attaque contre Bahreïn</span><span>Des marins disparus après de nouvelles attaques de pétroliers</span><span>M. Trump évoque des armes chimiques ou biologiques</span></p>
+  <div class="text">
+    <p>Au lendemain des frappes iraniennes sur le Koweït et Bahreïn rapportées ce matin, le porte-parole de la diplomatie qatarie, M. Majed Al-Ansari, a averti que l'attaque contre la base américaine de Bahreïn menaçait les efforts de paix ; il a appelé toutes les parties à éviter une escalade, Doha devant recevoir des responsables iraniens pour examiner les propositions en présence, rapporte Arab News (Arabie saoudite). Le Koweït a condamné les attaques visant son voisin, selon le Kuwait Times. Téhéran, qui présente ses tirs comme une réponse aux frappes américaines sur l'île de Qeshm, tient le détroit d'Ormuz pour fermé tant que durera l'« ingérence » américaine.</p>
+    <p>Sur mer, Bloomberg relève que les attaques contre les pétroliers, accrues en octobre, se poursuivent à ce rythme : au moins deux marins sont portés disparus après celles de cette semaine, et les Gardiens de la révolution affirment, sans preuve, que d'autres navires ont heurté des mines. À Washington, M. Trump a déclaré à Fox News que l'Iran pourrait travailler à des armes chimiques ou biologiques, selon CBS News ; Téhéran n'avait pas répondu dans les sources consultées. Paradoxe relevé par Bloomberg : ces attaques surviennent alors que le baril recule, porté à la baisse par un afflux d'offre.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<article class="corbeille">
+  <div class="rubric">La Corbeille</div>
+  <h2>L'élan du matin n'a pas tenu</h2>
+  <div class="text">
+    <p>On attendait un rebond après trois séances de repli, et il a eu lieu, brièvement : le CAC 40 gagnait encore un demi-point en milieu de journée, vers 8 170 points, porté par les semi-conducteurs et par l'engouement entourant Anthropic. Puis l'étiage est revenu. Paris a terminé en baisse de 0,81 %, à 8 080,74 points, selon Zonebourse, et le Stoxx 600 a cédé 0,88 % ; Moneyvox note que les valeurs européennes des puces ont perdu leur élan au fil de l'après-midi. Soitec a fait exception, en hausse d'environ 15 % après ses résultats semestriels, de même qu'Aéroports de Paris, qui a pris 4,3 %. À New York, l'ouverture s'est faite dans le vert, le Dow Jones gagnant environ 0,5 % et le Nasdaq 1,6 %, avant que les deux grands indices hors technologie ne repassent sous l'équilibre, selon Boursorama et Zonebourse. Toile de fond : le compte rendu de la Réserve fédérale, publié mercredi soir, a conforté le scénario d'un relèvement de taux ; les marchés jugent désormais à 95 % probable une hausse d'un quart de point les 8 et 9 décembre, rapporte FXStreet, ce qui soutient le dollar et pèse sur l'or, passé sous 3 700 dollars avant de se reprendre vers 3 730. Le Brent oscille autour de 92 dollars, partagé entre la perspective d'un excédent d'offre et les attaques du détroit d'Ormuz.</p>
+  </div>
+  <div class="chiffres"><span>CAC 40 : <b>8 080,74</b> (−0,81 %)</span><span>Stoxx 600 : <b>−0,88 %</b></span><span>Soitec : <b>≈ +15 %</b></span><span>Hausse de la Fed en décembre : <b>95 %</b> de probabilité</span></div>
+</article>
+
+<section class="agenda sommaire" aria-labelledby="dem">
+  <h2 id="dem">Demain</h2>
+  <ul>
+    <li><b>Vendredi 20, 9 h 30.</b> Au Luxembourg, discussion générale du projet de loi de finances pour 2027, puis examen de l'article liminaire l'après-midi.</li>
+    <li><b>Vendredi 20, 15 h 30.</b> New York : deuxième séance de cotation d'Anthropic, après des débuts records.</li>
+    <li><b>Vendredi 20, 16 h.</b> Bruxelles : indice provisoire de confiance des consommateurs de la zone euro, attendu à −17,3 contre −17,9.</li>
+    <li><b>Vendredi 20, journée.</b> Retour de M. Trump à Washington ; la teneur de son tête-à-tête avec M. Poutine reste à préciser.</li>
+    <li><b>Lundi 23, 10 h.</b> Indices PMI provisoires de l'activité en zone euro, publiés par S&amp;P Global.</li>
+    <li><b>Jeudi 26.</b> Commission mixte paritaire sur le budget de la Sécurité sociale ; le délai de cinquante jours expire à minuit.</li>
+  </ul>
+</section>
+
+<footer>
+  <h2>Sources consultées</h2>
+  <ul>
+    <li>Shenzhen : <a href="https://www.rts.ch/info/monde/2026/minute-par-minute/29420465.html">RTS</a> (Suisse, service public), <a href="https://www.letemps.ch/monde/xi-jinping-donald-trump-et-vladimir-poutine-reunis-pour-un-sommet-inedit-aux-resultats-incertains">Le Temps</a> (Suisse, libéral), <a href="https://legrandcontinent.eu/fr/2026/11/19/le-texte-integral-de-la-rencontre-xi-trump-et-poutine-a-shenzhen/">Le Grand Continent</a> (revue européenne), <a href="https://www.ouest-france.fr/monde/sommet-trump-poutine-xi-guerre-en-ukraine-intelligence-artificielle-ce-quil-faut-retenir-de-cette-rencontre-18b0c2aa-e3f7-11f1-a3b1-0c6de532ce7d">Ouest-France</a> (centre), <a href="https://www.kyivpost.com/post/90605">Kyiv Post</a> (Ukraine), <a href="https://www.euronews.com/2026/11/19/us-and-china-want-to-help-end-ukraine-war-trump-says-ahead-of-trilateral-with-russia">Euronews</a> (Europe), <a href="https://www.scmp.com/news/china/diplomacy/article/3374977/world-leaders-gather-talk-trade-and-investment-apec-chinas-tech-hub-shenzhen">South China Morning Post</a> (Hongkong), <a href="https://www.cbc.ca/news/world/trump-xi-putin-apec-meeting-9.7427718">CBC</a> (Canada, service public), <a href="https://www.cnbc.com/2026/11/19/trump-xi-putin-trilateral-meeting-china.html">CNBC</a> (États-Unis), <a href="https://www.foxnews.com/live-news/trump-to-meet-xi-in-shenzhen-ahead-of-high-stakes-trilateral-talks-with-putin">Fox News</a> (États-Unis, droite), <a href="https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888">NBC News</a> (États-Unis)</li>
+    <li>Ukraine : <a href="https://www.france24.com/en/live-news/20261119-ukraine-s-allies-meet-in-berlin-after-trump-putin-xi-talks">France 24</a> (service public, d'après l'AFP), <a href="https://kyivindependent.com/zelensky-arrives-in-berlin-for-talks-with-european-officials-trumps-envoys">Kyiv Independent</a> (Ukraine), <a href="https://fr.euronews.com/2026/11/19/coalition-des-volontaires-reunie-a-berlin-quelles-priorites-pour-la-france">Euronews</a> (Europe), <a href="https://www.aa.com.tr/fr/politique/%C3%A0-berlin-macron-plaidera-pour-un-soutien-militaire-accru-%C3%A0-l-ukraine-/4130141">Anadolu</a> (Turquie, agence d'État), <a href="https://kyivindependent.com/ukrainian-forces-once-more-hit-russias-crimean-bridge-days-after-devastating-strike/">Kyiv Independent</a> (pont de Crimée), <a href="https://abc7.com/story/crimean-bridge-attacked-3rd-time-week-officials-say/20055278/">ABC7</a> (États-Unis, d'après AP)</li>
+    <li>Retraités et budget : <a href="https://france3-regions.franceinfo.fr/auvergne-rhone-alpes/puy-de-dome/clermont-ferrand/retraites-80-auvergnats-ont-pris-le-train-pour-manifester-a-paris-3452304.html">France 3</a> (service public), <a href="https://france3-regions.franceinfo.fr/centre-val-de-loire/loiret/soixante-retraites-du-loiret-defileront-a-paris-pour-reclamer-plus-de-moyens-le-19-novembre-3452337.html">France 3 Centre-Val de Loire</a>, <a href="https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles">Public Sénat</a> (service public parlementaire), <a href="https://www.senat.fr/ordre-du-jour/ordre-du-jour.html">Sénat</a> (officiel), <a href="https://www.europe1.fr/economie/budget-sebastien-lecornu-listera-dans-les-prochains-jours-les-priorites-pour-un-compromis-dit-david-amiel-1239702">Europe 1</a> (droite, d'après l'AFP)</li>
+    <li>Anthropic : <a href="https://www.nbcnews.com/business/markets/live-blog/anthropic-ipo-live-updates-rcna610159">NBC News</a>, <a href="https://fortune.com/2026/11/19/anthropic-ipo-first-day-trading-nasdaq-record-valuation/">Fortune</a>, <a href="https://www.cbsnews.com/news/anthropic-ipo-nasdaq-debut-claude-ai/">CBS News</a>, <a href="https://www.cnn.com/2026/11/19/business/live-news/anthropic-ipo">CNN</a> (centre-gauche), tous États-Unis ; <a href="https://www.zonebourse.com/actualite-bourse/anthropic-entre-dans-l-histoire-wall-street-vire-au-rouge-ce785ed2dd8df52d">Zonebourse</a></li>
+    <li>Golfe : <a href="https://www.arabnews.com/middle-east/qatar-warns-irans-attack-on-us-base-in-bahrain-threatens-peace-talks-3012408">Arab News</a> (Arabie saoudite), <a href="https://kuwaittimes.com/article/53875/kuwait/kuwait-slams-iran-attacks-on-bahrain/">Kuwait Times</a> (Koweït), <a href="https://www.bloomberg.com/news/articles/2026-11-19/iran-intensifies-hormuz-tanker-attacks-just-as-oil-prices-slide">Bloomberg</a> (États-Unis, libéral), <a href="https://www.cbsnews.com/live-updates/iran-war-us-gulf-retaliation-strikes-strait-of-hormuz/">CBS News</a> (États-Unis), <a href="https://www.aljazeera.com/where/iran/">Al Jazeera</a> (Qatar)</li>
+    <li>Corbeille et Cote : <a href="https://www.zonebourse.com/actualite-bourse/point-marches-europe-finit-dans-le-rouge-anthropic-atteint-2-000-mds-de-capitalisation-ce785ed2dd8eff23">Zonebourse</a> (d'après Reuters), <a href="https://www.moneyvox.fr/bourse/actualites/111326/cac-40-euphorie-aura-ete-de-courte-duree-retrouvez-les-infos-bourse-du-19-novembre">Moneyvox</a>, <a href="https://www.boursorama.com/bourse/actualites/wall-street-ouvre-en-hausse-suspendue-aux-debuts-boursiers-d-anthropic-909448a44323fa3bf8a851090ada1933">Boursorama</a> (d'après l'AFP), <a href="https://fxstreet.com/news/euro-struggles-to-recover-amid-increasingly-hawkish-fed-outlook-202611191529">FXStreet</a>, <a href="https://www.mitrade.com/au/insights/news/live-news/article-3-2264974-20261119">Mitrade</a> (bitcoin), <a href="https://www.mitrade.com/insights/commodity-analysis/gold/gold-breaks-14-low-hawkish-fed-minutes">Mitrade</a> (or), <a href="https://arbiterz.com/oil-prices-today-wti-falls-to-82-93-brent-slips-to-91-89-per-barrel">Arbiterz</a> (pétrole)</li>
+    <li>Agenda : <a href="https://www.senat.fr/ordre-du-jour/ordre-du-jour.html">Sénat</a> (officiel), <a href="https://admiralmarkets.com/education/articles/forex-analysis/euro-area-consumer-confidence-flash-november-2026">Admiral Markets</a> (d'après Trading Economics), <a href="https://www.pmi.spglobal.com/Public/Home/PDF/UK_Rel_Dates">S&amp;P Global</a></li>
+    <li>Météo : <a href="https://www.ouest-france.fr/meteo/region-occitanie/grenade-31330/">Ouest-France Météo</a> pour Grenade, <a href="https://meteo.franceinfo.fr/previsions-meteo-france/toulouse/31000">Franceinfo Météo</a> pour Toulouse.</li>
+  </ul>
+  <p>La lecture directe des pages et l'API Open-Meteo étaient inaccessibles depuis la rédaction : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'est parvenue dans la boîte de lecture depuis vingt-quatre heures ; Le Figaro, Le Monde, Les Échos, L'Opinion, Libération, La Croix, CNews, Le JDD et L'Infiltré n'ont pu être consultés, et l'analyse française repose sur Ouest-France, le service public et l'AFP. Le cours de clôture d'Airbus, le bilan chiffré de la manifestation des retraités et l'issue de la réunion de Berlin n'étaient pas connus au bouclage. Rédigé le jeudi 19 novembre 2026, entre dix-huit heures quarante-cinq et dix-neuf heures quinze.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('toggleAll');
+  btn.addEventListener('click',function(){
+    var open=btn.dataset.state!=='open';
+    document.querySelectorAll('details').forEach(function(d){d.open=open});
+    btn.dataset.state=open?'open':'closed';
+    btn.textContent=open?'Refermer toutes les suites':'Ouvrir toutes les suites';
+  });
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){});}
+  // En mode application, iOS reprend la page telle qu'on l'a laissée :
+  // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
+  var loaded=Date.now();
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
+  });
+})();
+</script>
+</body>
+</html>
