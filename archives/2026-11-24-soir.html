@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Novabene">
+<meta name="theme-color" content="#EEEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.nb-nav{display:flex;justify-content:center;gap:4px 22px;flex-wrap:wrap;padding:10px 0 2px;font-family:"Old Standard TT","Didot",Georgia,serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.nb-nav a{color:var(--gray,#5E584D);text-decoration:none;padding:6px 2px;border-bottom:1px solid transparent}
+.nb-nav a[aria-current="page"]{color:var(--ink,#1B1915);border-bottom-color:var(--ink,#1B1915)}
+.nb-nav a:focus-visible{outline:2px solid var(--red,#7A2418);outline-offset:3px}
+</style>
+<title>Novabene du soir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout : quotidien du matin début de siècle — manchette à oreilles, filets doubles, titres centrés à sous-titres en cascade, texte justifié en colonnes sur grand écran, « suites » dépliables */
+:root{
+  --paper:#EEEAE0; --ink:#1B1915; --gray:#5E584D; --rule:#1B1915; --hair:#BDB5A4;
+  --red:#7A2418; --fold:#E4DFD2;
+  --mast:"Playfair Display","Didot","Bodoni 72",Georgia,serif;
+  --head:"Old Standard TT","Didot",Georgia,serif;
+  --body:"Libre Caslon Text","Caslon",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:860px;margin:0 auto;padding-block:22px 60px;display:flex;flex-direction:column;gap:34px}
+
+/* Manchette */
+.mast{display:flex;flex-direction:column;gap:8px}
+.mast-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.ear{border:1px solid var(--rule);padding:6px 8px;font-family:var(--head);font-size:11px;line-height:1.35;text-align:center;max-width:130px}
+.ear b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ear.r{justify-self:end}
+.mast h1{font-family:var(--mast);font-weight:900;font-size:clamp(30px,9vw,82px);line-height:.95;margin:0;text-align:center;letter-spacing:.005em;white-space:nowrap}
+.motto{text-align:center;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px;margin:0}
+.dateline{border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:5px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;
+  font-family:var(--head);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:560px){.mast-row{grid-template-columns:1fr}.ear{display:none}}
+
+/* Cote du matin */
+.cote{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch;border-bottom:1px solid var(--rule);font-family:var(--head);font-variant-numeric:lining-nums tabular-nums}
+.cote .t{display:flex;align-items:center;padding:6px 12px 6px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule)}
+.cote div.v{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--hair);text-align:center;gap:1px}
+.cote div.v:last-child{border-right:0}
+.cote .n{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.cote .p{font-size:15px;font-weight:700}
+.cote .d{font-size:12px}
+.cote .up{color:var(--ink)}
+.cote .dn{color:var(--red)}
+.cote-note{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center;margin:-2px 0 0}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote .t{grid-column:1/-1;justify-content:center;border-right:0;border-bottom:1px solid var(--hair);padding:5px 0}.cote div.v:nth-child(3){border-right:0}.cote div.v:nth-child(2),.cote div.v:nth-child(3){border-bottom:1px solid var(--hair)}}
+
+.howto{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;font-family:var(--head);font-size:13px;color:var(--gray);font-style:italic}
+button.toggle{font-family:var(--head);font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--ink);
+  border:1px solid var(--rule);padding:6px 14px;cursor:pointer}
+button.toggle:hover{background:var(--fold)}
+button.toggle:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Sommaire */
+.sommaire{border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:3px;padding:16px 20px;margin:4px}
+.sommaire h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 10px}
+.sommaire ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
+.sommaire li::marker{font-family:var(--head);font-weight:700}
+
+/* Articles */
+article{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px}
+.rubric{font-family:var(--head);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--red)}
+article h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,5vw,36px);line-height:1.1;margin:0;text-align:center;text-wrap:balance}
+.decks{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:15px;margin:0;text-wrap:balance}
+.decks span+span::before{content:" — "}
+.text{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.text p{margin:0 0 .7em;text-indent:1.4em}
+.text p:first-child{text-indent:0}
+@media (min-width:760px){.text{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.lead .text p:first-child::first-letter{font-family:var(--mast);font-weight:900;float:left;font-size:3.6em;line-height:.82;padding:4px 6px 0 0}
+.chiffres{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-family:var(--head);font-size:13.5px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px 0;font-variant-numeric:lining-nums tabular-nums}
+.chiffres b{font-weight:700}
+
+.suites{display:flex;flex-direction:column}
+.suites > .label{font-family:var(--head);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--gray);padding:4px 0 2px}
+details{border-bottom:1px dotted var(--gray)}
+summary{list-style:none;cursor:pointer;padding:10px 30px 10px 0;position:relative;font-family:var(--head);font-size:16.5px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"☞ ";color:var(--red)}
+summary::after{content:"Lire";position:absolute;right:0;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+details[open] summary::after{content:"Clore"}
+summary:hover{color:var(--red)}
+.ans{padding:2px 0 14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;background:linear-gradient(var(--fold),var(--fold)) no-repeat left/3px 100%;padding-left:14px}
+.ans p{margin:0 0 .6em}
+.ans p:last-child{margin:0}
+
+.breves ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 26px}
+.breves li{font-size:15px;text-align:justify}
+.breves li b{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+/* Planches : cartes et graphiques en noir et blanc */
+.planche{margin:4px 0;display:flex;flex-direction:column;gap:6px}
+.planche svg{width:100%;height:auto;max-width:100%;display:block}
+.planche text{font-family:var(--head);fill:var(--ink)}
+.planche .country{font-size:15px;letter-spacing:.25em}
+.planche .small{font-size:11px}
+.planche .sea{font-style:italic;font-size:13px;fill:var(--gray)}
+.planche .place{font-size:11px}
+.planche .strait{font-size:12px;font-style:italic;fill:var(--red)}
+.planche .scale text{font-size:10px}
+.planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
+.planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
+.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
+.epigraphe p{margin:0 0 6px}
+.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
+.epigraphe cite i{font-style:italic;letter-spacing:0}
+.fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
+
+footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
+footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0;text-align:center}
+footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
+footer p{margin:0;font-style:italic;text-align:center}
+
+/* Le temps qu'il fera, agenda, éphéméride, mot du jour */
+.meteo{border-bottom:1px solid var(--rule);padding:4px 0 8px;font-family:var(--head);font-size:13.5px;line-height:1.5;text-align:center}
+.meteo .t{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.meteo p{margin:0}
+.meteo .vig{font-style:italic;color:var(--gray);font-size:12.5px}
+.agenda{border:1px solid var(--hair);padding:12px 16px}
+.agenda h2,.ephemeride h2,.mot h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}
+.agenda ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
+.agenda li{display:grid;grid-template-columns:7.2em 1fr;gap:10px;border-bottom:1px dotted var(--hair);padding-bottom:4px}
+.agenda li:last-child{border-bottom:0}
+.agenda .h{font-family:var(--head);font-weight:700;font-variant-numeric:lining-nums tabular-nums}
+.agenda .note{font-family:var(--head);font-style:italic;font-size:12.5px;color:var(--gray);margin:8px 0 0;text-align:center}
+.ephemeride,.mot{border-top:1px solid var(--rule);padding-top:14px}
+.ephemeride ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:justify}
+.ephemeride li b{font-family:var(--head);font-size:15px;margin-right:6px}
+.mot .vedette{text-align:center;margin:0}
+.mot .vedette b{font-family:var(--mast);font-weight:900;font-size:clamp(26px,6vw,38px);letter-spacing:.02em}
+.mot .nature{display:block;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px}
+.mot p{margin:0 0 .5em;text-align:justify}
+.mot .ex{font-style:italic;text-align:center}
+@media (max-width:560px){.agenda li{grid-template-columns:5.6em 1fr}}
+/* Feuilleton : « rez-de-chaussée » du journal, séparé par un double filet, texte un peu plus petit */
+.feuilleton{border-top:4px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.feuilleton .rubric{color:var(--ink)}
+.feuilleton h2{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.15;margin:0;text-align:center;text-wrap:balance}
+.feuilleton .fe-meta{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:14px;margin:0}
+.feuilleton .fe-resume{font-family:var(--head);font-size:14.5px;font-style:italic;color:var(--gray);border:1px solid var(--hair);padding:8px 12px;margin:0;text-align:justify}
+.feuilleton .fe-texte{font-size:15.5px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.feuilleton .fe-texte p{margin:0 0 .65em;text-indent:1.4em}
+.feuilleton .fe-texte .fe-chap{font-family:var(--head);font-weight:700;text-align:center;text-indent:0;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:1em 0 .2em}
+.feuilleton .fe-texte .fe-titre{font-family:var(--head);text-align:center;text-indent:0;font-size:15px;margin:0 0 .5em}
+.feuilleton .fe-texte .fe-sommaire{font-family:var(--head);font-style:italic;font-size:13.5px;color:var(--gray);text-indent:0;margin:0 0 .8em}
+@media (min-width:760px){.feuilleton .fe-texte{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.feuilleton .fe-suite{font-family:var(--head);font-style:italic;text-align:right;margin:0}
+
+</style>
+
+<style>
+/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
+.cote{grid-template-columns:auto repeat(6,1fr)}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
+.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
+.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
+.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
+.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
+.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.agenda li{display:block;font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
+.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
+.corbeille .text{columns:auto}
+</style>
+
+
+</head>
+<body>
+<nav class="nb-nav" aria-label="Éditions"><a href="../index.html">Le matin</a><a href="../soir.html" aria-current="page">Le soir</a><a href="../archives/">Archives</a></nav>
+<div class="sheet">
+<header class="mast">
+  <div class="mast-row">
+    <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
+    <h1>Novabene</h1>
+    <div class="ear r"><b>N° 15</b>Lecture : dix minutes</div>
+  </div>
+  <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
+  <div class="dateline"><span>Mardi 24 novembre 2026</span><span>Sainte Flore</span><span>Parution de dix-neuf heures</span></div>
+  <div class="cote" aria-label="Cote du soir">
+    <span class="t">Cote du soir</span>
+    <div class="v"><span class="n">CAC 40</span><span class="p">8 040,49</span><span class="d dn">▼ 0,05 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+  </div>
+  <p class="cote-note">CAC 40 : clôture de mardi selon ABC Bourse, Idéal Investisseur et Moneyvox, contre 8 044,84 points lundi ; le SBF 120 finit quasi stable à 6 076,01 points. Pour les autres valeurs, les relevés du jour se contredisent trop pour être retenus : l'or apparaît entre 3 567 et 3 655 $ selon l'heure et la source, en hausse ou en baisse ; le Brent entre 86,55 et 88,97 $ ; le bitcoin entre 59 995 et 60 552 $, en repli de 1 à 2 % ; l'euro entre 1,0916 et 1,0962 $. Aucun cours de clôture daté d'Airbus n'a pu être lu, les sites de cotation n'étant pas accessibles depuis la rédaction. Relevés faits entre 18 h 45 et 19 h, heure de Paris.</p>
+</header>
+
+<section class="meteo" aria-labelledby="met">
+  <h2 id="met">Le temps de demain à Grenade</h2>
+  <p><b>Mercredi 25.</b> Jour maussade : ciel bas et nuageux, pluie faible mais tenace, de 4 à 10 millimètres selon les modèles. Le thermomètre restera dans un mouchoir de poche, de 7 ou 8 degrés au petit jour à 10 degrés l'après-midi. Vent modéré d'ouest, de 25 km/h environ, avec des rafales approchant 48 km/h. Le soleil, guère visible, se lèvera peu après 8 heures et se couchera vers 17 h 20.</p>
+  <p class="src">Prévisions de Meteored (Tameteo), Sencrop et Météo60 pour Grenade (31330), lues au travers des résumés de recherche ; l'API Open-Meteo n'était pas joignable depuis la rédaction. Aucune vigilance Météo-France pour la Haute-Garonne n'a pu être lue ce soir ; heures du soleil estimées d'après celles du jour.</p>
+</section>
+
+<div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
+
+<section class="sommaire" aria-labelledby="som">
+  <h2 id="som">Ce qu'il faut retenir de la journée</h2>
+  <ol>
+    <li>Sanofi rachète l'américain Insmed pour quelque 41 milliards de dollars en numéraire, la plus grosse acquisition pharmaceutique depuis trois ans ; le titre a bondi de près de 10 % à Paris.</li>
+    <li>Le 108<sup>e</sup> Congrès des maires de France s'est ouvert porte de Versailles ; M. David Lisnard y défend sa présidence face à M. Philippe Laurent, le vote des adhérents s'achevant mercredi.</li>
+    <li>Au Luxembourg, les sénateurs ont adopté les conclusions de la commission mixte paritaire sur le budget de fin de gestion pour 2026.</li>
+    <li>À Téhéran, le chef de l'armée ordonne de resserrer « jour après jour » la fermeture du détroit d'Ormuz, tandis que le Qatar tente de relancer les pourparlers.</li>
+    <li>L'euphorie de lundi est retombée : Nvidia recule nettement à Wall Street, et le CAC 40 finit à l'équilibre, à 8 040 points.</li>
+  </ol>
+</section>
+
+<!-- 1 -->
+<article class="lead">
+  <div class="rubric">L'Industrie · La Pharmacie</div>
+  <h2>Sanofi s'offre Insmed pour 41 milliards de dollars</h2>
+  <p class="decks"><span>175 dollars par action, payés comptant</span><span>Préparer l'après-Dupixent</span><span>La plus grosse opération du secteur depuis Seagen</span></p>
+  <div class="text">
+    <p>Les rumeurs que l'agence Bloomberg avait fait courir le 19 novembre ont trouvé leur épilogue ce mardi à 6 h 30 : Sanofi a annoncé l'acquisition de la biotechnologie américaine Insmed, au prix de 175 dollars par action en numéraire, soit une valeur des fonds propres d'environ 41 milliards de dollars, ou 37,6 milliards d'euros, selon le communiqué du groupe et le document déposé par Insmed auprès de la SEC. La prime atteint quelque 46 % sur le cours du 18 novembre, veille des premières fuites, et environ 17 % sur la clôture de lundi (149,09 dollars), relève CNBC. Le laboratoire financera l'opération par sa trésorerie et par de la dette, pour laquelle il dispose d'engagements bancaires ; la transaction, soumise à l'approbation des actionnaires d'Insmed et des autorités américaines de la concurrence, devrait être bouclée au premier semestre 2027.</p>
+    <p>L'enjeu est connu des analystes : préparer l'après-Dupixent, le médicament vedette de Sanofi, dont les brevets approchent de leur terme, écrit Fierce Pharma (États-Unis). Insmed apporte le Brinsupri, que d'aucuns promettent, selon le même titre, à un avenir de grand succès commercial. La direction attend un effet positif sur le bénéfice par action d'ici à la fin de 2028 et maintient ses objectifs pour 2026. La Corbeille a applaudi : le titre a fini en tête du CAC 40, en hausse d'environ 9,8 %, quand Insmed gagnait près de 14 % à l'ouverture de New York, autour de 170 dollars, en deçà du prix offert. C'est, selon CNBC, la plus importante opération du secteur depuis le rachat de Seagen par Pfizer.</p>
+  </div>
+  <div class="chiffres"><span>Prix : <b>175 $</b> par action</span><span>Valeur : <b>≈ 41 Md$</b> (37,6 Md€)</span><span>Prime : <b>≈ 46 %</b> sur le cours non affecté</span><span>Sanofi : <b>≈ + 9,8 %</b></span></div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi l'action de l'acheteur monte-t-elle ?</summary><div class="ans">
+      <p>D'ordinaire, l'acquéreur d'une grosse proie voit son cours fléchir, les investisseurs redoutant d'avoir payé trop cher. Le 19 novembre, Sanofi avait d'ailleurs perdu près de 4 % à l'annonce des pourparlers. La hausse de ce mardi suggère que le marché, rassuré par le prix finalement retenu et par le maintien des objectifs annuels, juge l'opération à même de combler le trou d'air redouté après le Dupixent. Les sceptiques font valoir que la dette contractée pèsera sur le bilan et que le succès commercial du Brinsupri reste à démontrer.</p>
+    </div></details>
+    <details><summary>L'opération peut-elle encore échouer ?</summary><div class="ans">
+      <p>Oui, en théorie : il faut l'aval des actionnaires d'Insmed et celui des autorités américaines. Le fait que le titre Insmed cote sous les 175 dollars offerts traduit l'escompte que le marché applique au délai et au risque de rupture. Lors des premières rumeurs, Bloomberg n'excluait pas que d'autres acheteurs se manifestent.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 2 -->
+<article>
+  <div class="rubric">Les Communes</div>
+  <h2>Les maires réunis, la présidence de l'AMF disputée</h2>
+  <p class="decks"><span>Premier congrès depuis les municipales de mars</span><span>M. Lisnard face à M. Laurent</span><span>Un débat inédit à trois pour la clôture</span></p>
+  <div class="text">
+    <p>Le 108<sup>e</sup> Congrès des maires et des présidents d'intercommunalité s'est ouvert ce mardi au parc des expositions de la porte de Versailles, à Paris, pour trois jours. C'est le premier depuis le renouvellement municipal de mars, et quatre élus présents sur dix y découvrent leur fonction, note Maire-info. Le mot d'ordre, « Regagnons nos libertés », prolonge l'appel aux libertés locales que l'Association des maires de France porte depuis plusieurs années. La séance officielle d'ouverture, au Grand auditorium, devait commencer par un discours d'accueil de son président, M. David Lisnard, maire de Cannes.</p>
+    <p>Ce dernier remet son mandat en jeu face à M. Philippe Laurent, maire de Sceaux, qui lui reproche, selon CNews, d'instrumentaliser l'association. Le vote en ligne des adhérents, ouvert lundi, s'achève mercredi ; le mandat court sur trois ans. Les deux candidats se rejoignent sur le constat d'une décentralisation inachevée, et se séparent sur le ton à tenir face à l'exécutif, au moment où le gouvernement demande aux collectivités un effort de 5,5 milliards d'euros pour 2027, que le Sénat entend réduire de plus de moitié. Jeudi, la clôture prendra la forme d'un débat entre le Premier ministre, M. Sébastien Lecornu, le président du Sénat, M. Gérard Larcher, et le président de l'AMF.</p>
+  </div>
+</article>
+
+<!-- 3 -->
+<article>
+  <div class="rubric">Au Luxembourg</div>
+  <h2>Le budget de fin d'année franchit le Sénat</h2>
+  <p class="decks"><span>Les conclusions de la commission mixte paritaire adoptées</span><span>231 voix contre 111</span><span>Un texte naguère rejeté par l'Assemblée</span></p>
+  <div class="text">
+    <p>Annoncé dans notre édition du matin, le vote est acquis : les sénateurs ont adopté ce mardi, par 231 voix contre 111, les conclusions de la commission mixte paritaire sur le projet de loi de finances de fin de gestion pour 2026, qui tient lieu de collectif budgétaire, selon les résultats de scrutin publiés par le Sénat. Les sept députés et sept sénateurs de la commission étaient parvenus à un accord le 20 novembre, alors même que l'Assemblée nationale avait rejeté le texte le 12. Adopté en première lecture au Luxembourg le 18 novembre, il ouvre notamment des crédits pour les agriculteurs et pour faire face aux conséquences de la crise au Moyen-Orient, rapporte Public Sénat, et acte un déficit public de 5,4 % du PIB pour l'année, au lieu des 5 % prévus.</p>
+    <p>L'exercice n'épuise pas le calendrier, toujours serré : l'examen du budget pour 2027 se poursuit en séance, avec le vote de la première partie attendu samedi, et la règle d'or évoquée par le chef de l'État ne connaissait ce soir aucune traduction nouvelle. Les sources consultées n'indiquaient pas, à l'heure du bouclage, la date de la lecture des conclusions par les députés, sans laquelle le texte ne peut être définitivement adopté.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<!-- 4 -->
+<article>
+  <div class="rubric">Affaires d'Orient</div>
+  <h2>Ormuz se ferme un peu plus chaque jour</h2>
+  <p class="decks"><span>Le chef de l'armée iranienne durcit le ton</span><span>Trois pétroliers touchés par des mines, selon les Gardiens</span><span>Doha presse Washington de reprendre langue</span></p>
+  <div class="text">
+    <p>Au lendemain des menaces de Téhéran contre le blocus américain de ses ports, dont notre édition du matin rendait compte, le commandant en chef de l'armée iranienne, M. Amir Hatami, a ordonné à la marine de resserrer « jour après jour » la fermeture du détroit d'Ormuz, jusqu'à ce que soient remplies les sept conditions posées par la République islamique, rapportent Euronews et le site House of Saud. Les Gardiens de la révolution affirment que trois pétroliers escortés par la marine américaine ont heurté des mines dans le détroit ; le centre conjoint d'information maritime, qui suit le trafic pour le compte des marines occidentales, n'a pas confirmé ces dires. Le passage s'est réduit à une peau de chagrin : un relevé cité par CBS News fait état de 38 transits escortés par jour, contre 138 avant la guerre.</p>
+    <p>Sur le front diplomatique, le Premier ministre du Qatar a pressé le secrétaire d'État, M. Marco Rubio, et le vice-président, M. J. D. Vance, de relancer les négociations, selon Euronews. Le quotidien émirien The National rapporte que le Conseil suprême de sécurité nationale iranien a décidé samedi, en séance d'urgence, de suspendre l'envoi des quatorze pétroliers censés forcer le blocus, information que Téhéran n'a pas confirmée publiquement. Côté américain, plusieurs responsables auraient pris quelque distance avec l'idée d'une reprise des frappes, au profit d'une pression économique prolongée, indique Euronews ; M. Donald Trump évoquait encore dimanche des frappes « après le Nouvel An » faute d'accord. La version de chaque partie demeure invérifiable de façon indépendante.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Pourquoi le pétrole baisse-t-il malgré Ormuz ?</summary><div class="ans">
+      <p>Les opérateurs, selon les commentateurs cités lundi par Investing.com et la presse allemande, parient sur un retour progressif des approvisionnements du Golfe et sur un excédent d'offre mondial ; les menaces iraniennes, répétées depuis des semaines, ont perdu de leur pouvoir de surprise. Le Brent se traite au plus bas depuis la fin du mois d'août. Un incident grave dans le détroit, une mine confirmée ou un pétrolier coulé, pourrait toutefois raviver derechef la prime de risque.</p>
+    </div></details>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<article class="corbeille">
+  <div class="rubric">La Corbeille</div>
+  <h2>Sanofi soutient la cote, les puces la lestent</h2>
+  <div class="text">
+    <p>Après le rebond de lundi, la Corbeille a marqué le pas : le CAC 40 a cédé 0,05 %, à 8 040,49 points, et le SBF 120 a fini à 6 076,01 points, selon ABC Bourse et Moneyvox ; vingt et une valeurs ont progressé, dix-neuf ont reculé. Sanofi, porté par le rachat d'Insmed, a pris la tête de l'indice avec un gain proche de 10 %, à 93,58 euros au plus haut selon Boursorama (d'après l'AFP), compensant à lui seul le repli des valeurs technologiques : STMicroelectronics, après sa flambée de près de 9 % la veille, a rendu une partie de ses gains, de 1,5 % à plus de 4 % selon l'heure des relevés. L'« effet Nvidia », écrit ABC Bourse, s'est dissipé. À Wall Street, le fabricant de puces, qui avait gagné 31 % lundi au retour de M. Jensen Huang, reculait de 7 à 8 % à la mi-séance selon Yahoo Finance, entraînant les semi-conducteurs et le Nasdaq ; d'aucuns y voient une prise de bénéfices, d'autres le retour des doutes sur les valorisations de l'intelligence artificielle. Les marchés tiennent désormais pour acquise une hausse des taux de la Réserve fédérale le 9 décembre, relève l'AFP, et l'indice de volatilité VIX évolue autour de 27 points. Le taux de l'emprunt français à dix ans est resté stable, à 4,78 %. Le pétrole a poursuivi son étiage, le Brent restant sous les 90 dollars. Dell publie ses comptes ce soir après la clôture new-yorkaise.</p>
+  </div>
+  <div class="chiffres"><span>CAC 40 : <b>8 040,49</b> (− 0,05 %)</span><span>Sanofi : <b>≈ + 9,8 %</b></span><span>OAT à dix ans : <b>4,78 %</b></span><span>Nvidia en séance : <b>≈ − 7 %</b></span></div>
+</article>
+
+<section class="agenda sommaire" aria-labelledby="dem">
+  <h2 id="dem">Demain &amp; les jours suivants</h2>
+  <ul>
+    <li><b>Mercredi 25, matin.</b> Conseil des ministres à l'Élysée, où devrait être tranché, selon l'AFP, le sort du préfet de la région Centre-Val de Loire, M. Hugues Moutouh.</li>
+    <li><b>Mercredi 25.</b> Clôture du vote en ligne pour la présidence de l'Association des maires de France, entre MM. David Lisnard et Philippe Laurent ; deuxième journée du Congrès porte de Versailles.</li>
+    <li><b>Mercredi 25, 14 h 30.</b> États-Unis : deuxième estimation du PIB du troisième trimestre, inflation PCE et dépenses de consommation d'octobre, inscriptions hebdomadaires au chômage avancées d'un jour.</li>
+    <li><b>Mercredi 25.</b> Au Luxembourg, le Sénat poursuit l'examen de la première partie du budget de l'État pour 2027, dont le vote est attendu samedi 28.</li>
+    <li><b>Jeudi 26.</b> Wall Street fermée pour Thanksgiving ; clôture du Congrès des maires par un débat entre M. Sébastien Lecornu, M. Gérard Larcher et le président de l'AMF.</li>
+    <li><b>Jeudi 26.</b> Présentation au Conseil supérieur de l'éducation d'un projet de décret réformant les conseils de discipline des élèves.</li>
+    <li><b>Mercredi 9 décembre.</b> Décision de politique monétaire de la Réserve fédérale, où les marchés attendent une hausse des taux.</li>
+  </ul>
+</section>
+
+<footer>
+  <h2>Sources consultées</h2>
+  <ul>
+    <li>Sanofi et Insmed : <a href="https://www.sanofi.com/en/media-room/press-releases/2026/2026-11-24-06-30-00-3409002">Sanofi</a> (communiqué), <a href="https://www.sec.gov/Archives/edgar/data/0001104506/000114036126045364/ef20086426_ex99-1.htm">Insmed, formulaire 8-K</a> (SEC, États-Unis), <a href="https://www.cnbc.com/2026/11/24/insmed-sanofi-deal-stock-pharma.html">CNBC</a> (États-Unis, économique), <a href="https://www.fiercepharma.com/pharma/sanofi-inks-41b-insmed-buyout-post-dupixent-growth-drivers">Fierce Pharma</a> (États-Unis, spécialisé), <a href="https://qz.com/sanofi-insmed-acquisition-41-billion-pipeline-112426">Quartz</a> (États-Unis), <a href="https://www.france-epargne.fr/news/sanofi-etudie-le-rachat-de-lamericain-insmed-valorise-266-milliards-de-dollars">France Épargne</a> (rumeurs du 19 novembre)</li>
+    <li>Congrès des maires : <a href="https://www.maire-info.com/congra-s-de-lamf/le-108e-congra-s-des-maires-de-france-souvre-aujourdhui-art26-31312">Maire-info</a> (AMF), <a href="https://www.amf.asso.fr/documents-108e-congres-maires-un-nouvel-appel-aux-libertes-locales/43400">Association des maires de France</a> (officiel), <a href="https://www.cnews.fr/france/2026-11-24/congres-des-maires-2026-qui-sont-les-candidats-en-lice-pour-prendre-la-tete-de">CNews</a> (droite)</li>
+    <li>Budget de fin de gestion : <a href="https://www.publicsenat.fr/actualites/politique/budget-de-fin-de-gestion-pour-2026-le-senat-adopte-le-texte-qui-prevoit-des-credits-pour-les-agriculteurs-ou-pour-pallier-les-consequences-de-la-crise-au-moyen-orient">Public Sénat</a> (service public parlementaire), <a href="https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-de-fin-de-gestion-pour-2026.html">Sénat</a> (officiel), <a href="https://www.economiematin.fr/?p=242907">Économie Matin</a></li>
+    <li>Iran et Ormuz : <a href="https://www.euronews.com/2026/11/24/iran-orders-hormuz-closed-further-day-by-day-as-qatar-seeks-to-revive-peace-talks">Euronews</a> (Europe), <a href="https://www.thenationalnews.com/news/gulf/2026/11/24/is-iran-weighing-tanker-convoy-to-break-us-blockade/">The National</a> (Émirats arabes unis), <a href="https://www.cbsnews.com/live-updates/iran-war-us-trump-blockade-strait-of-hormuz-ship-attacks/">CBS News</a> (États-Unis), <a href="https://houseofsaud.com/iran-army-hormuz-conditions-nov24/">House of Saud</a> (site d'analyse sur le Golfe), <a href="https://www.newarab.com/analysis/could-iran-break-us-naval-blockade-strait-hormuz">The New Arab</a> (Royaume-Uni, financement qatari)</li>
+    <li>Corbeille et Cote : <a href="https://www.abcbourse.com/marches/cac-40-retour-au-calme-pour-la-bourse-de-paris-l-effet-nvidia-s-est-dissipe_706602">ABC Bourse</a>, <a href="https://www.ideal-investisseur.fr/bourse-cryptos/cac-40-sanofi-s-envole-de-pres-de-10-a-la-cloture-mais-les-semi-conducteurs-plombent-la-seance-parisienne-34071.html">Idéal Investisseur</a>, <a href="https://www.moneyvox.fr/bourse/actualites/111392/le-cac-40-en-equilibre-carton-pour-sanofi-le-journal-de-la-bourse-du-mardi-24-novembre-2026">Moneyvox</a>, <a href="https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-en-hausse-soutenue-par-sanofi-491980a9107add034212c4677d687d15">Boursorama</a> (d'après l'AFP), <a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-rebound-090614276.html">Yahoo Finance</a> (États-Unis), <a href="https://abc.net.au/news/2026-11-24/asx-markets-business-news-live-updates-nov-24-2026/107419524">ABC</a> (Australie, service public), <a href="https://www.exchangerates.org.uk/commodities.html">ExchangeRates.org.uk</a> (Royaume-Uni)</li>
+    <li>Agenda : <a href="https://www.simianx.ai/fr/stories/us-economic-calendar-this-month-in-your-time-zone">calendrier économique américain de Simianx</a>, <a href="https://www.franceinfo.fr/">franceinfo</a> (service public), notre édition du soir du 23 novembre (Conseil des ministres, d'après l'AFP) et l'édition du matin de ce jour (calendrier budgétaire de NosParlementaires)</li>
+    <li>Météo : <a href="https://www.tameteo.com/meteo_Grenade-Europe-France-Haute+Garonne--1-25141.html">Meteored</a>, <a href="https://www.sencrop.com/fr/meteo-agricole/grenade-31330">Sencrop</a> et <a href="https://www.meteo60.fr/previsions-meteo-france-grenade.html">Météo60</a> pour Grenade (31330) ; l'API Open-Meteo n'a pu être interrogée.</li>
+  </ul>
+  <p>La lecture directe des pages, l'API Open-Meteo et les sites de cotation étaient inaccessibles depuis la rédaction : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'est parvenue dans la boîte de lecture depuis vingt-quatre heures ; Le Figaro, Le Monde, Les Échos, L'Opinion, Libération, La Croix, Ouest-France, Le JDD et L'Infiltré n'ont pu être consultés ce soir. Les sujets du matin — règle d'or, COP31, Ukraine et Libye, grève belge — n'ont pas connu, dans les sources consultées, d'évolution notable depuis. Rédigé le mardi 24 novembre 2026, entre dix-huit heures quarante-cinq et dix-neuf heures vingt.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('toggleAll');
+  btn.addEventListener('click',function(){
+    var open=btn.dataset.state!=='open';
+    document.querySelectorAll('details').forEach(function(d){d.open=open});
+    btn.dataset.state=open?'open':'closed';
+    btn.textContent=open?'Refermer toutes les suites':'Ouvrir toutes les suites';
+  });
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){});}
+  // En mode application, iOS reprend la page telle qu'on l'a laissée :
+  // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
+  var loaded=Date.now();
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
+  });
+})();
+</script>
+</body>
+</html>
