@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Novabene">
+<meta name="theme-color" content="#EEEAE0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/icon-180.png">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.nb-nav{display:flex;justify-content:center;gap:4px 22px;flex-wrap:wrap;padding:10px 0 2px;font-family:"Old Standard TT","Didot",Georgia,serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.nb-nav a{color:var(--gray,#5E584D);text-decoration:none;padding:6px 2px;border-bottom:1px solid transparent}
+.nb-nav a[aria-current="page"]{color:var(--ink,#1B1915);border-bottom-color:var(--ink,#1B1915)}
+.nb-nav a:focus-visible{outline:2px solid var(--red,#7A2418);outline-offset:3px}
+</style>
+<title>Novabene du soir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout : quotidien du matin début de siècle — manchette à oreilles, filets doubles, titres centrés à sous-titres en cascade, texte justifié en colonnes sur grand écran, « suites » dépliables */
+:root{
+  --paper:#EEEAE0; --ink:#1B1915; --gray:#5E584D; --rule:#1B1915; --hair:#BDB5A4;
+  --red:#7A2418; --fold:#E4DFD2;
+  --mast:"Playfair Display","Didot","Bodoni 72",Georgia,serif;
+  --head:"Old Standard TT","Didot",Georgia,serif;
+  --body:"Libre Caslon Text","Caslon",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#17150F; --ink:#E9E3D3; --gray:#A49C8A; --rule:#E9E3D3; --hair:#4A4436;
+  --red:#D98A74; --fold:#211E16; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:860px;margin:0 auto;padding-block:22px 60px;display:flex;flex-direction:column;gap:34px}
+
+/* Manchette */
+.mast{display:flex;flex-direction:column;gap:8px}
+.mast-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.ear{border:1px solid var(--rule);padding:6px 8px;font-family:var(--head);font-size:11px;line-height:1.35;text-align:center;max-width:130px}
+.ear b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ear.r{justify-self:end}
+.mast h1{font-family:var(--mast);font-weight:900;font-size:clamp(30px,9vw,82px);line-height:.95;margin:0;text-align:center;letter-spacing:.005em;white-space:nowrap}
+.motto{text-align:center;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px;margin:0}
+.dateline{border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:5px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;
+  font-family:var(--head);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:560px){.mast-row{grid-template-columns:1fr}.ear{display:none}}
+
+/* Cote du matin */
+.cote{display:grid;grid-template-columns:auto repeat(4,1fr);align-items:stretch;border-bottom:1px solid var(--rule);font-family:var(--head);font-variant-numeric:lining-nums tabular-nums}
+.cote .t{display:flex;align-items:center;padding:6px 12px 6px 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border-right:1px solid var(--rule)}
+.cote div.v{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--hair);text-align:center;gap:1px}
+.cote div.v:last-child{border-right:0}
+.cote .n{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.cote .p{font-size:15px;font-weight:700}
+.cote .d{font-size:12px}
+.cote .up{color:var(--ink)}
+.cote .dn{color:var(--red)}
+.cote-note{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center;margin:-2px 0 0}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote .t{grid-column:1/-1;justify-content:center;border-right:0;border-bottom:1px solid var(--hair);padding:5px 0}.cote div.v:nth-child(3){border-right:0}.cote div.v:nth-child(2),.cote div.v:nth-child(3){border-bottom:1px solid var(--hair)}}
+
+.howto{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;font-family:var(--head);font-size:13px;color:var(--gray);font-style:italic}
+button.toggle{font-family:var(--head);font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--ink);
+  border:1px solid var(--rule);padding:6px 14px;cursor:pointer}
+button.toggle:hover{background:var(--fold)}
+button.toggle:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Sommaire */
+.sommaire{border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:3px;padding:16px 20px;margin:4px}
+.sommaire h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 10px}
+.sommaire ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
+.sommaire li::marker{font-family:var(--head);font-weight:700}
+
+/* Articles */
+article{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px}
+.rubric{font-family:var(--head);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--red)}
+article h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,5vw,36px);line-height:1.1;margin:0;text-align:center;text-wrap:balance}
+.decks{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:15px;margin:0;text-wrap:balance}
+.decks span+span::before{content:" — "}
+.text{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.text p{margin:0 0 .7em;text-indent:1.4em}
+.text p:first-child{text-indent:0}
+@media (min-width:760px){.text{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.lead .text p:first-child::first-letter{font-family:var(--mast);font-weight:900;float:left;font-size:3.6em;line-height:.82;padding:4px 6px 0 0}
+.chiffres{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;font-family:var(--head);font-size:13.5px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px 0;font-variant-numeric:lining-nums tabular-nums}
+.chiffres b{font-weight:700}
+
+.suites{display:flex;flex-direction:column}
+.suites > .label{font-family:var(--head);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--gray);padding:4px 0 2px}
+details{border-bottom:1px dotted var(--gray)}
+summary{list-style:none;cursor:pointer;padding:10px 30px 10px 0;position:relative;font-family:var(--head);font-size:16.5px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"☞ ";color:var(--red)}
+summary::after{content:"Lire";position:absolute;right:0;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+details[open] summary::after{content:"Clore"}
+summary:hover{color:var(--red)}
+.ans{padding:2px 0 14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;background:linear-gradient(var(--fold),var(--fold)) no-repeat left/3px 100%;padding-left:14px}
+.ans p{margin:0 0 .6em}
+.ans p:last-child{margin:0}
+
+.breves ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 26px}
+.breves li{font-size:15px;text-align:justify}
+.breves li b{font-family:var(--head);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+/* Planches : cartes et graphiques en noir et blanc */
+.planche{margin:4px 0;display:flex;flex-direction:column;gap:6px}
+.planche svg{width:100%;height:auto;max-width:100%;display:block}
+.planche text{font-family:var(--head);fill:var(--ink)}
+.planche .country{font-size:15px;letter-spacing:.25em}
+.planche .small{font-size:11px}
+.planche .sea{font-style:italic;font-size:13px;fill:var(--gray)}
+.planche .place{font-size:11px}
+.planche .strait{font-size:12px;font-style:italic;fill:var(--red)}
+.planche .scale text{font-size:10px}
+.planche figcaption{font-family:var(--head);font-size:13px;font-style:italic;color:var(--gray);text-align:center;text-wrap:balance}
+.planche figcaption b{font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--ink)}
+.epigraphe{margin:-10px auto 0;max-width:600px;padding:12px 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);text-align:center;font-family:var(--head);font-style:italic;color:var(--ink);font-size:17px;line-height:1.45}
+.epigraphe p{margin:0 0 6px}
+.epigraphe cite{display:block;font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--gray)}
+.epigraphe cite i{font-style:italic;letter-spacing:0}
+.fleuron{text-align:center;font-size:18px;color:var(--gray);letter-spacing:.6em;margin:-14px 0}
+
+footer{border-top:3px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--gray)}
+footer h2{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0;text-align:center}
+footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:3px}
+footer a{color:var(--ink);text-decoration-color:var(--hair);word-break:break-word}
+footer p{margin:0;font-style:italic;text-align:center}
+
+/* Le temps qu'il fera, agenda, éphéméride, mot du jour */
+.meteo{border-bottom:1px solid var(--rule);padding:4px 0 8px;font-family:var(--head);font-size:13.5px;line-height:1.5;text-align:center}
+.meteo .t{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.meteo p{margin:0}
+.meteo .vig{font-style:italic;color:var(--gray);font-size:12.5px}
+.agenda{border:1px solid var(--hair);padding:12px 16px}
+.agenda h2,.ephemeride h2,.mot h2{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}
+.agenda ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14.5px}
+.agenda li{display:grid;grid-template-columns:7.2em 1fr;gap:10px;border-bottom:1px dotted var(--hair);padding-bottom:4px}
+.agenda li:last-child{border-bottom:0}
+.agenda .h{font-family:var(--head);font-weight:700;font-variant-numeric:lining-nums tabular-nums}
+.agenda .note{font-family:var(--head);font-style:italic;font-size:12.5px;color:var(--gray);margin:8px 0 0;text-align:center}
+.ephemeride,.mot{border-top:1px solid var(--rule);padding-top:14px}
+.ephemeride ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:justify}
+.ephemeride li b{font-family:var(--head);font-size:15px;margin-right:6px}
+.mot .vedette{text-align:center;margin:0}
+.mot .vedette b{font-family:var(--mast);font-weight:900;font-size:clamp(26px,6vw,38px);letter-spacing:.02em}
+.mot .nature{display:block;font-family:var(--head);font-style:italic;color:var(--gray);font-size:14px}
+.mot p{margin:0 0 .5em;text-align:justify}
+.mot .ex{font-style:italic;text-align:center}
+@media (max-width:560px){.agenda li{grid-template-columns:5.6em 1fr}}
+/* Feuilleton : « rez-de-chaussée » du journal, séparé par un double filet, texte un peu plus petit */
+.feuilleton{border-top:4px double var(--rule);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.feuilleton .rubric{color:var(--ink)}
+.feuilleton h2{font-family:var(--head);font-weight:700;font-size:clamp(22px,4.4vw,30px);line-height:1.15;margin:0;text-align:center;text-wrap:balance}
+.feuilleton .fe-meta{font-family:var(--head);font-style:italic;text-align:center;color:var(--gray);font-size:14px;margin:0}
+.feuilleton .fe-resume{font-family:var(--head);font-size:14.5px;font-style:italic;color:var(--gray);border:1px solid var(--hair);padding:8px 12px;margin:0;text-align:justify}
+.feuilleton .fe-texte{font-size:15.5px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.feuilleton .fe-texte p{margin:0 0 .65em;text-indent:1.4em}
+.feuilleton .fe-texte .fe-chap{font-family:var(--head);font-weight:700;text-align:center;text-indent:0;letter-spacing:.12em;text-transform:uppercase;font-size:13px;margin:1em 0 .2em}
+.feuilleton .fe-texte .fe-titre{font-family:var(--head);text-align:center;text-indent:0;font-size:15px;margin:0 0 .5em}
+.feuilleton .fe-texte .fe-sommaire{font-family:var(--head);font-style:italic;font-size:13.5px;color:var(--gray);text-indent:0;margin:0 0 .8em}
+@media (min-width:760px){.feuilleton .fe-texte{columns:2;column-gap:30px;column-rule:1px solid var(--hair)}}
+.feuilleton .fe-suite{font-family:var(--head);font-style:italic;text-align:right;margin:0}
+
+</style>
+
+<style>
+/* Édition du soir : Cote à six valeurs, bulletin météo, retenir, agenda */
+.cote{grid-template-columns:auto repeat(6,1fr)}
+@media (max-width:560px){.cote{grid-template-columns:repeat(2,1fr)}.cote div.v{border-bottom:1px solid var(--hair)}.cote div.v:nth-child(odd){border-right:0}.cote div.v:nth-last-child(-n+2){border-bottom:0}}
+.meteo{border:1px solid var(--rule);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(var(--fold),var(--fold))}
+.meteo h2{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;border-bottom:1px solid var(--hair);padding-bottom:5px}
+.meteo p{margin:0;font-size:15px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.meteo p b{font-family:var(--head);font-variant:small-caps;letter-spacing:.04em;font-size:16px}
+.meteo .src{font-family:var(--head);font-size:11px;font-style:italic;color:var(--gray);text-align:center}
+.agenda ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.agenda li{display:block;font-size:15.5px;text-align:justify;padding-left:0;border-bottom:1px dotted var(--hair);padding-bottom:6px}
+.agenda li b{font-family:var(--head);font-variant:small-caps;letter-spacing:.05em;font-size:16px;color:var(--red)}
+.corbeille .text{columns:auto}
+</style>
+
+
+</head>
+<body>
+<nav class="nb-nav" aria-label="Éditions"><a href="../index.html">Le matin</a><a href="../soir.html" aria-current="page">Le soir</a><a href="../archives/">Archives</a></nav>
+<div class="sheet">
+<header class="mast">
+  <div class="mast-row">
+    <div class="ear"><b>Édition du soir</b>Paris &amp; Province</div>
+    <h1>Novabene</h1>
+    <div class="ear r"><b>N° 16</b>Lecture : dix minutes</div>
+  </div>
+  <p class="motto">Le bilan de la journée &amp; ce que réserve demain</p>
+  <div class="dateline"><span>Mercredi 25 novembre 2026</span><span>Sainte Catherine</span><span>Parution de dix-neuf heures</span></div>
+  <div class="cote" aria-label="Cote du soir">
+    <span class="t">Cote du soir</span>
+    <div class="v"><span class="n">CAC 40</span><span class="p">7 980,57</span><span class="d dn">▼ 0,75 %</span></div>
+    <div class="v"><span class="n">Airbus</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Or (once)</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Brent</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Bitcoin</span><span class="p">n. c.</span><span class="d">n. c.</span></div>
+    <div class="v"><span class="n">Euro/dollar</span><span class="p">1,0946</span><span class="d dn">▼ 0,16 %</span></div>
+  </div>
+  <p class="cote-note">CAC 40 : clôture de mercredi selon Moneyvox et l'AFP (Boursorama), contre 8 040,49 points mardi. Euro : niveau de la clôture européenne selon l'AFP, recoupé par FinScans (1,0948 $). Aucun cours de clôture daté n'a pu être lu pour les autres valeurs ; à titre d'indication seulement, Airbus se traitait vers 190 € (environ − 1,9 %) à 17 h 21, l'or à terme au Comex à 3 457,80 $ (− 2,9 %) à 16 h 20, le Brent vers 87,4 $ (plus de − 4 %) en séance, et le bitcoin sous les 58 700 $ dans l'après-midi. Relevés faits entre 18 h 45 et 19 h 15, heure de Paris.</p>
+</header>
+
+<section class="meteo" aria-labelledby="met">
+  <h2 id="met">Le temps de demain à Grenade</h2>
+  <p><b>Jeudi 26.</b> Le ciel demeurera bas et chargé, avec des averses faibles et intermittentes, de la nuit au soir ; on attend de 1,5 à 4 millimètres d'eau selon les modèles. Le thermomètre ira de 7 degrés au petit matin à 11 ou 12 degrés l'après-midi. Vent modéré d'ouest, sans rafale notable annoncée. Le soleil, peu visible, se lèvera vers 8 heures et se couchera vers 17 h 20.</p>
+  <p class="src">Prévisions de Franceinfo Météo, Meteored (Tameteo), Sencrop et Météo60 pour Grenade (31330), lues au travers des résumés de recherche ; l'API Open-Meteo n'était pas joignable depuis la rédaction. La carte de vigilance de Météo-France pour la Haute-Garonne n'a pu être lue ce soir ; heures du soleil estimées d'après celles du jour (8 h 01 et 17 h 21).</p>
+</section>
+
+<div class="howto">Les « suites » s'ouvrent au gré du lecteur. <button class="toggle" id="toggleAll" type="button">Ouvrir toutes les suites</button></div>
+
+<section class="sommaire" aria-labelledby="som">
+  <h2 id="som">Ce qu'il faut retenir de la journée</h2>
+  <ol>
+    <li>Le Conseil des ministres a mis fin aux fonctions du préfet du Loiret, M. Hugues Moutouh, visé par une enquête sur des fuites présumées vers le RN ; il dénonce « une opération de nature politique ».</li>
+    <li>M. David Lisnard a été réélu à la présidence de l'Association des maires de France avec 72,06 % des suffrages, face à M. Philippe Laurent.</li>
+    <li>Devant le Sénat, M. Sébastien Lecornu a écarté tout « passage en force » sur le budget 2027 et jugé un compromis possible sur les collectivités.</li>
+    <li>Washington a proposé de nouveaux droits de douane contre quatorze partenaires, dont l'Union européenne et la Chine ; Bruxelles les conteste « fermement ».</li>
+    <li>L'inflation américaine mesurée par l'indice PCE a atteint 3,8 % sur un an ; Wall Street a décroché et le CAC 40 est repassé sous les 8 000 points.</li>
+  </ol>
+</section>
+
+<!-- 1 -->
+<article class="lead">
+  <div class="rubric">L'Administration · La Place Beauvau</div>
+  <h2>Le préfet Moutouh relevé de ses fonctions</h2>
+  <p class="decks"><span>Soupçons de fuites vers le RN</span><span>M. Pierre Ory nommé dans le Loiret</span><span>L'intéressé porte plainte contre X</span></p>
+  <div class="text">
+    <p>Pressenti depuis plusieurs jours, le départ est acté : le Conseil des ministres a mis fin ce mercredi aux fonctions de M. Hugues Moutouh, préfet du Loiret et de la région Centre-Val de Loire, rapportent franceinfo et LCP. Le porte-parole du gouvernement par intérim, M. Mathieu Lefèvre, a indiqué que le préfet avait demandé à être relevé de ses fonctions et que le gouvernement en avait pris acte. Son successeur est M. Pierre Ory, jusqu'ici préfet de Seine-et-Marne, naguère en poste dans le Gers, les Vosges et le Maine-et-Loire ; l'AFP le présente comme un proche du ministre de l'Intérieur, M. Laurent Nuñez.</p>
+    <p>L'affaire tient à une enquête ouverte sur des fuites présumées d'informations judiciaires vers le Rassemblement national depuis le ministère de l'Intérieur, dont M. Moutouh dirigeait le secrétariat général ; Le Monde, cité par Reuters, avait fait état de soupçons le visant. Ces soupçons restent, à ce stade, à établir. Dans un entretien au Figaro, l'ancien préfet dénonce « une opération de nature politique », affirme ne connaître le dossier que par la presse et dit ne pas connaître M. Frédéric Chatillon, ancien proche de Mme Marine Le Pen dont le nom apparaît dans l'enquête ; son avocat dépose plainte contre X, selon franceinfo. La Libre, reprenant l'AFP, brosse le portrait d'un haut fonctionnaire au verbe sonore, ancien conseiller de M. Nicolas Sarkozy à l'Élysée.</p>
+  </div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Un préfet peut-il être révoqué du jour au lendemain ?</summary><div class="ans">
+      <p>Oui : les préfets sont nommés par décret du président de la République en Conseil des ministres, sur des emplois laissés à la décision du gouvernement, qui peut y mettre fin à tout moment sans avoir à motiver sa décision ni à attendre l'issue d'une procédure judiciaire. La formule retenue ce mercredi, une fin de fonctions à la demande de l'intéressé, ne préjuge en rien du fond de l'enquête ; M. Moutouh conserve la présomption d'innocence, et aucune mise en cause judiciaire à son encontre n'était rapportée ce soir dans les sources consultées.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 2 -->
+<article>
+  <div class="rubric">Les Communes</div>
+  <h2>M. Lisnard reconduit haut la main à l'AMF</h2>
+  <p class="decks"><span>72,06 % des voix</span><span>Une participation de 40 %</span><span>Un troisième mandat, à cinq mois de la présidentielle</span></p>
+  <div class="text">
+    <p>Le scrutin dont notre édition d'hier annonçait la clôture a rendu son verdict : M. David Lisnard, maire de Cannes, a été réélu ce mercredi à la présidence de l'Association des maires de France, pour un troisième mandat. Selon les résultats publiés par l'association, il a recueilli 9 505 voix, soit 72,06 % des suffrages, contre 3 686 voix, soit 27,94 %, à M. Philippe Laurent, maire de Sceaux ; la participation s'est établie à 40,43 %. La liste qu'il conduisait avec M. Jean-François Debat pour le bureau a obtenu 86,32 % des voix.</p>
+    <p>Le vainqueur a salué, selon Le JDD et Entrevue, la victoire d'une association qui entend rester indépendante, et la défaite des « intrigues » et des ingérences ; son rival lui reprochait d'instrumentaliser l'AMF au service de son ambition présidentielle, M. Lisnard étant candidat à l'élection de 2027, rappelle LCP. M. Édouard Philippe a fait savoir qu'il avait voté pour lui. Le président réélu aura dès jeudi l'occasion d'éprouver son crédit, lors du débat de clôture du congrès face au Premier ministre et au président du Sénat, alors que l'effort demandé aux collectivités pour 2027 est chiffré à 5,5 milliards d'euros par le gouvernement et à près de 9 milliards par le Comité des finances locales.</p>
+  </div>
+</article>
+
+<!-- 3 -->
+<article>
+  <div class="rubric">Au Luxembourg</div>
+  <h2>M. Lecornu récuse le « passage en force »</h2>
+  <p class="decks"><span>Un compromis jugé possible sur les collectivités</span><span>Retraités et parents isolés, pistes de discussion</span><span>Les socialistes réclament une négociation</span></p>
+  <div class="text">
+    <p>Au lendemain de la lettre aux parlementaires dont notre édition du matin rendait compte, et de l'accueil réservé que lui avaient fait les sénateurs, le Premier ministre s'est expliqué en séance au Luxembourg. M. Sébastien Lecornu a assuré n'avoir aucune « volonté de passage en force » sur le budget 2027 et appelé à un compromis capable, selon lui, d'éloigner la perspective d'une crise financière, en ramenant le déficit à 5 % du PIB, rapportent franceinfo et Moneyvox. La question des collectivités locales mérite « évidemment » un point d'accord, a-t-il dit, cité par Maire-info ; en commission, les ministres de l'Économie et des Comptes publics, MM. Roland Lescure et David Amiel, avaient déjà divisé par plus de deux la ponction de 5,5 milliards d'euros prévue.</p>
+    <p>Il a cité deux autres terrains de discussion : l'abattement fiscal de 10 % sur l'impôt sur le revenu des retraités, que les sénateurs ont nettement réduit mardi, et la demi-part fiscale des parents isolés, que la majorité sénatoriale entend supprimer. Le président du groupe socialiste, M. Patrick Kanner, lui a demandé d'engager une véritable négociation ; franceinfo croit savoir que le chef du gouvernement pourrait, faute d'accord, préférer l'article 49, alinéa 3, à l'ordonnance budgétaire. Les présidents des groupes des deux chambres seront reçus la semaine prochaine ; le vote solennel du Sénat sur le budget de l'État reste fixé au 9 décembre.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<!-- 4 -->
+<article>
+  <div class="rubric">Le Commerce des nations</div>
+  <h2>Washington brandit derechef l'arme douanière</h2>
+  <p class="decks"><span>Quatorze partenaires visés</span><span>Les produits européens de 10 à 15 %</span><span>Bruxelles conteste, Pékin le plus durement frappé</span></p>
+  <div class="text">
+    <p>Annoncée dans notre édition du matin, la nouvelle salve est tombée : l'administration de M. Donald Trump a proposé ce mercredi une série de droits de douane visant quatorze partenaires commerciaux, dont l'Union européenne, la Chine, le Brésil et la Suisse, rapportent France 24, franceinfo et le quotidien suisse 24 heures. Les mesures reposent sur une enquête relative à des subventions jugées illicites, la Cour suprême ayant invalidé en février une large part des droits imposés jusque-là. Les produits européens passeraient de 10 à 15 % ; la Chine subirait la surtaxe la plus lourde, jusqu'à 20 %. Rien n'entrera en vigueur avant un mois, délai laissé au public et aux entreprises pour présenter leurs observations écrites.</p>
+    <p>La Commission européenne a réagi par la voix de son porte-parole, M. Olof Gill : « Nous contestons fermement cette idée », a-t-il dit, regrettant l'absence d'action conjointe avec Washington contre des déséquilibres que Bruxelles impute surtout à des pays tiers, rapporte Touteleurope. Le site observe que le taux de 15 % correspond au plafond négocié à Turnberry, en Écosse, en juillet 2025, entre M. Trump et Mme Ursula von der Leyen : d'aucuns y lisent une simple remise à niveau, d'autres une remise en cause de l'esprit de l'accord. Aucune réaction officielle de Pékin ne figurait ce soir dans les sources consultées.</p>
+  </div>
+  <div class="chiffres"><span>Partenaires visés : <b>14</b></span><span>Union européenne : <b>10 → 15 %</b></span><span>Chine : jusqu'à <b>20 %</b></span><span>Entrée en vigueur : <b>dans un mois</b></span></div>
+  <div class="suites">
+    <span class="label">Les suites</span>
+    <details><summary>Que change la décision de la Cour suprême ?</summary><div class="ans">
+      <p>En février, la Cour suprême des États-Unis a jugé illégale une grande partie des droits de douane imposés par M. Trump, selon 24 heures et franceinfo. L'administration emprunte donc une autre voie juridique : celle des enquêtes sur les subventions, qui suppose une procédure, une période d'observations et des motifs propres à chaque pays. Ce détour explique le délai d'un mois ; il laisse aussi aux partenaires visés le temps de faire valoir leurs arguments, ou de négocier.</p>
+    </div></details>
+  </div>
+</article>
+
+<!-- 5 -->
+<article>
+  <div class="rubric">Le Golfe Persique</div>
+  <h2>À Ormuz, nouvelles explosions et liste noire allongée</h2>
+  <p class="decks"><span>Deux pétroliers et un méthanier touchés, selon les Gardiens</span><span>Les remorqueurs désormais proscrits</span><span>Téhéran fait miroiter une réouverture rapide, à ses conditions</span></p>
+  <div class="text">
+    <p>La journée a apporté son lot de déclarations iraniennes. La marine des Gardiens de la révolution affirme que deux pétroliers ont explosé tôt ce mercredi après avoir heurté des mines en empruntant des routes non autorisées par Téhéran, et qu'un méthanier a pris feu dans les mêmes circonstances, rapporte le site américain Oilprice ; aucune confirmation indépendante n'en était disponible ce soir. L'autorité iranienne qui prétend régir le détroit a ajouté vingt-six navires à sa liste noire, qui en compte désormais 266, et y a inscrit des exploitants de remorqueurs, rouage essentiel puisqu'ils tirent en lieu sûr les bâtiments endommagés, selon Insurance Journal (États-Unis).</p>
+    <p>Sur le plan diplomatique, le ministère iranien des Affaires étrangères assure que la navigation pourrait être rétablie promptement si Washington acceptait les conditions de Téhéran pour un accord de paix complet ; le président du Parlement, M. Mohammad Bagher Ghalibaf, exclut toute discussion avant leur satisfaction. Le Qatar indique que ses contacts se poursuivent pour rapprocher les deux parties. Les flux de brut sortant du détroit ont reculé ces derniers jours, note Oilprice, sans qu'on puisse l'attribuer aux seules attaques ; le Brent, pourtant, a cédé plus de 4 % en séance, les opérateurs redoutant davantage l'excédent d'offre mondial que la menace iranienne, selon JournalArta.</p>
+  </div>
+</article>
+
+<div class="fleuron" aria-hidden="true">✦ ✦ ✦</div>
+
+<article class="corbeille">
+  <div class="rubric">La Corbeille</div>
+  <h2>L'inflation américaine fait tomber les 8 000 points</h2>
+  <div class="text">
+    <p>La matinée promettait un faible rebond ; la séance s'est retournée l'après-midi. Le CAC 40 a fini en baisse de 0,75 %, à 7 980,57 points, entraîné par le décrochage de Wall Street, selon l'AFP reprise par Boursorama ; Francfort a perdu 1,14 % et Londres 0,38 %. À 14 h 30, Washington a publié une salve de statistiques : l'indice des prix PCE a progressé de 3,8 % sur un an en octobre, conformément aux attentes, mais sa composante sous-jacente a atteint 3,3 %, au-dessus des prévisions et au plus haut depuis trois ans ; la croissance du troisième trimestre a été révisée à 4,3 % en rythme annualisé, contre 3,4 % en première estimation. Partant, les marchés tiennent pour plus probable encore une hausse des taux de la Réserve fédérale le 9 décembre. À New York, la purge des valeurs de l'intelligence artificielle s'est accélérée : vers 17 h 30, heure de Paris, le Nasdaq perdait près de 4 % et le S&amp;P 500 2,7 %, à l'approche des 7 000 points, AMD cédant 9,6 % et Nvidia 8,7 %, selon The Motley Fool ; XTB évoque aussi le retour des craintes douanières. À Paris, STMicroelectronics a fini lanterne rouge (− 4,69 %, à 34,24 euros), tandis que Bureau Veritas s'envolait de 6,60 %, à 31,80 euros, sur la foi d'un intérêt du fonds Advent rapporté par Bloomberg, quoique le groupe ait démenti toute discussion. L'euro a reculé à 1,0946 dollar et le Brent a cédé plus de 4 % en séance ; aucun taux de clôture de l'OAT à dix ans n'a pu être relevé.</p>
+  </div>
+  <div class="chiffres"><span>CAC 40 : <b>7 980,57</b> (− 0,75 %)</span><span>PCE : <b>3,8 %</b> ; sous-jacent <b>3,3 %</b></span><span>PIB T3 : <b>4,3 %</b> l'an</span><span>Nasdaq à mi-séance : <b>≈ − 4 %</b></span></div>
+</article>
+
+<section class="agenda sommaire" aria-labelledby="dem">
+  <h2 id="dem">Demain</h2>
+  <ul>
+    <li><b>Jeudi 26.</b> Wall Street fermée pour Thanksgiving ; les places européennes seront privées de leur boussole américaine.</li>
+    <li><b>Jeudi 26, 10 h 30.</b> Au Luxembourg, le Sénat poursuit l'examen du projet de loi de finances pour 2027, que l'Assemblée nationale a rejeté en première lecture.</li>
+    <li><b>Jeudi 26.</b> Au Palais-Bourbon, journée réservée au groupe de la Droite républicaine selon le calendrier de NosParlementaires ; parmi les textes inscrits figurent des propositions sur l'égalité entre les territoires et une peine minimale pour les violences volontaires.</li>
+    <li><b>Jeudi 26, 13 h 30.</b> La BCE publie le compte rendu de sa dernière réunion de politique monétaire.</li>
+    <li><b>Jeudi 26.</b> Clôture du 108<sup>e</sup> Congrès des maires, porte de Versailles, par un débat entre M. Sébastien Lecornu, M. Gérard Larcher et M. David Lisnard.</li>
+    <li><b>Jeudi 26.</b> Présentation au Conseil supérieur de l'éducation d'un projet de décret réformant les conseils de discipline des élèves.</li>
+  </ul>
+</section>
+
+<footer>
+  <h2>Sources consultées</h2>
+  <ul>
+    <li>Préfet Moutouh : <a href="https://www.franceinfo.fr/politique/front-national/enquete-sur-des-soupcons-de-fuites-vers-le-rn-hugues-moutouh-a-ete-officiellement-demis-de-ses-fonctions-remplace-par-le-prefet-pierre-ory_8299428.html">franceinfo</a> (service public), <a href="https://www.franceinfo.fr/politique/front-national/enquete-sur-des-fuites-presumees-vers-le-rn-le-prefet-hugues-moutouh-denonce-une-operation-de-nature-politique_8299188.html">franceinfo, d'après Le Figaro</a> (droite), <a href="https://lcp.fr/actualites/soupcons-de-fuites-vers-le-rn-hugues-moutouh-officiellement-debarque-de-son-poste-de">LCP</a> (service public parlementaire), <a href="https://actu17.fr/societe/soupcons-de-fuites-vers-le-rn-demis-de-ses-fonctions-le-prefet-hugues-moutouh-denonce-une-operation-de-nature-politique.html">Actu17</a> (faits divers et sécurité), <a href="https://fr.qz.com/pierre-ory-remplace-prefet-hugues-moutouh-demis-112526">Quartz</a> (d'après l'AFP et Reuters), <a href="https://www.lalibre.be/dernieres-depeches/2026/11/25/hugues-moutouh-un-prefet-haut-en-couleur-emporte-par-la-tourmente-HDASEZWILJFRDESRQ63NDXANBA/">La Libre</a> (Belgique, centre, d'après l'AFP)</li>
+    <li>Association des maires de France : <a href="https://www.amf.asso.fr/documents-david-lisnard-reelu-la-presidence-lamf-avec-7206--voix/43426">AMF</a> (officiel), <a href="https://lcp.fr/actualites/presidentielle-2027-david-lisnard-tres-largement-reelu-a-la-tete-de-l-association-des">LCP</a>, <a href="https://www.lejdd.fr/politique/congres-des-maires-david-lisnard-reelu-haut-la-main-a-la-tete-de-lamf-189657">Le JDD</a> (droite), <a href="https://entrevue.fr/politique/david-lisnard-largement-reelu-a-la-tete-de-lamf-avec-72-des-voix/">Entrevue</a> (droite)</li>
+    <li>Budget 2027 : <a href="https://www.franceinfo.fr/economie/budget/sebastien-lecornu-n-a-pas-de-volonte-de-passage-en-force-et-appelle-au-compromis-pour-faire-adopter-le-budget-2027_8299881.html">franceinfo</a>, <a href="https://www.moneyvox.fr/votre-argent/actualites/111416/budget-2027-lecornu-affirme-ne-pas-vouloir-un-passage-en-force-et-appelle-au-compromis">Moneyvox</a> (d'après l'AFP), <a href="https://www.maire-info.com/budget/budget-2027-sa-bastien-lecornu-appelle-les-parlementaires-au-a-compromis-a-notamment-sur-les-collectivita-s-art26-31317">Maire-info</a> (AMF)</li>
+    <li>Droits de douane : <a href="https://www.france24.com/fr/am%C3%A9riques/20261125-union-europ%C3%A9enne-chine-br%C3%A9sil-administration-am%C3%A9ricaine-donald-trump-propose-nouvelle-s%C3%A9rie-droits-douane-%C3%A9tats-unis">France 24</a> (service public), <a href="https://www.franceinfo.fr/monde/usa/droits-de-douane/les-etats-unis-annoncent-de-nouveaux-droits-de-douane-contre-leurs-principaux-partenaires-commerciaux_8299734.html">franceinfo</a>, <a href="https://www.24heures.ch/droits-de-douane-trump-vise-la-suisse-lue-et-la-chine-146230893232">24 heures</a> (Suisse, centre), <a href="https://www.touteleurope.eu/economie-et-social/droits-de-douane-les-etats-unis-annoncent-de-nouvelles-taxes-visant-notamment-l-union-europeenne/">Touteleurope</a> (information européenne), <a href="https://fr.qz.com/ue-conteste-nouveaux-droits-douane-americains-112526">Quartz</a></li>
+    <li>Ormuz : <a href="https://oilprice.com/Latest-Energy-News/World-News/Iran-Reports-Fresh-Tanker-Explosions-as-Hormuz-Attacks-Intensify.html">Oilprice</a> (États-Unis, spécialisé), <a href="https://www.insurancejournal.com/news/international/2026/11/25/893726.htm">Insurance Journal</a> (États-Unis, spécialisé), <a href="https://www.yahoo.com/news/politics/articles/iran-live-updates-tehran-says-093556957.html">Yahoo News</a> (États-Unis), <a href="https://journalarta.com/en/2026/11/25/brent-crude-slides-4-6-as-supply-surplus-fears-outweigh-hormuz-risks">JournalArta</a> (Roumanie)</li>
+    <li>Corbeille et Cote : <a href="https://www.moneyvox.fr/bourse/actualites/111425/le-nasdaq-plonge-le-cac-40-limite-la-casse-les-infos-bourse-du-mercredi-25-novembre-2026">Moneyvox</a>, <a href="https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-termine-en-baisse-entrainee-par-le-decrochage-de-wall-street-433969c54c4595bb9b96daa1793758d6">Boursorama</a> et <a href="https://www.boursedirect.fr/fr/actualites/categorie/economie/la-bourse-de-paris-termine-en-baisse-entrainee-par-le-decrochage-de-wall-street-afp-871a0427227c504c3234472b84337f6325cb08c0">Bourse Direct</a> (d'après l'AFP), <a href="https://libnanews.com/etats-unis-linflation-pce-monte-a-38-la-croissance-revisee-a-43/">Libnanews</a> (Liban), <a href="https://www.fxstreet.com/news/us-core-pce-inflation-set-to-heat-up-in-october-prompting-federal-reserve-rate-hikes-in-2027-202611250930">FXStreet</a> (Espagne, marchés), <a href="https://www.fool.com/coverage/stock-market-today/2026/11/25/stock-market-midday-nov-25-nasdaq-plunges-4-as-ai-sell-off-deepens-and-inflation-remains-stubborn/">The Motley Fool</a> (États-Unis), <a href="https://www.xtb.com/en/market-analysis/us-open-ai-sector-slump-and-return-of-inflation-push-wall-street-toward-7-000-pts">XTB</a> (Pologne, courtier), <a href="https://finscans.com/news/2026/11/25/eurusd-slips-to-10948-as-strong-us-gdp-and-pce-data-bolster">FinScans</a>, <a href="https://www.abcbourse.com/cotation/AIRp">ABC Bourse</a> (Airbus en séance), <a href="https://aroundprague.cz/en/news/us/why-is-gold-falling-today-gold-drops-below-3-500-for-first-time-since-2025">Around Prague</a> (or à terme)</li>
+    <li>Agenda : <a href="https://www.senat.fr/ordre-du-jour/ordre-du-jour.html">Sénat</a> (officiel), <a href="https://www.assemblee-nationale.fr/dyn/seance-publique/textes-inscrits-ordre-du-jour">Assemblée nationale</a> (officiel), <a href="https://nosparlementaires.fr/actualites/calendrier-parlementaire-2026-2027-dates-sessions-vacances">NosParlementaires</a>, <a href="https://lejdd.fr/politique/lecornu-et-les-maires-zemmour-sur-cnews-melenchon-a-berlin-les-4-infos-dont-vous-allez-entendre-parler-demain-189570">Le JDD</a> (clôture du congrès), notre édition du matin (BCE, d'après Zonebourse) et notre édition du soir d'hier (Conseil supérieur de l'éducation)</li>
+    <li>Météo : <a href="https://meteo.franceinfo.fr/previsions-meteo-france/grenade/31330">Franceinfo Météo</a>, <a href="https://www.tameteo.com/meteo_Grenade-Europe-France-Haute+Garonne--1-25141.html">Meteored</a>, <a href="https://www.sencrop.com/fr/meteo-agricole/grenade-31330">Sencrop</a> et <a href="https://www.meteo60.fr/previsions-meteo-france-grenade.html">Météo60</a> pour Grenade (31330) ; l'API Open-Meteo n'a pu être interrogée.</li>
+  </ul>
+  <p>La lecture directe des pages, l'API Open-Meteo et les sites de cotation étaient inaccessibles depuis la rédaction : les faits proviennent des résumés de recherche, recoupés entre plusieurs titres. Aucune lettre d'information des quotidiens du panel n'est parvenue dans la boîte de lecture depuis vingt-quatre heures ; Le Monde, Les Échos, L'Opinion, Libération, La Croix, Ouest-France, CNews et L'Infiltré n'ont pu être consultés directement ce soir. Parmi les sujets du matin, Sanofi, l'Estonie et les trains de nuit n'ont pas connu d'évolution notable dans les sources consultées ; aucune date n'était fixée ce soir pour la prochaine séance de pourparlers sur l'Ukraine. Rédigé le mercredi 25 novembre 2026, entre dix-huit heures quarante-cinq et dix-neuf heures trente.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('toggleAll');
+  btn.addEventListener('click',function(){
+    var open=btn.dataset.state!=='open';
+    document.querySelectorAll('details').forEach(function(d){d.open=open});
+    btn.dataset.state=open?'open':'closed';
+    btn.textContent=open?'Refermer toutes les suites':'Ouvrir toutes les suites';
+  });
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){});}
+  // En mode application, iOS reprend la page telle qu'on l'a laissée :
+  // on recharge si elle a plus d'une heure, pour afficher la dernière édition.
+  // La pastille de l'icône disparaît dès qu'on ouvre le journal.
+  function effacer(){ if(navigator.clearAppBadge){ navigator.clearAppBadge().catch(function(){}); } }
+  effacer();
+  var loaded=Date.now();
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState!=='visible') return;
+    effacer();
+    if(Date.now()-loaded>3600000){location.reload();}
+  });
+})();
+</script>
+</body>
+</html>
